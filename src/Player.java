@@ -15,13 +15,13 @@ public class Player extends MapEvent {
 		idle = true;
 	}
 	
-	public void tryToMove( int dir, Map map, ArrayList<MapEvent> chars, ArrayList<String> input ) {
+	public void tryToMove( int dir ) {
 		this.dir = dir;
 		
-		if(input.contains("RIGHT") && !this.isBlocked(this.getX()+1, this.getY(), map, chars)) move(RIGHT);
-    	else if(input.contains("LEFT") && !this.isBlocked(this.getX()-1, this.getY(), map, chars)) move(LEFT);
-    	else if(input.contains("UP") && !this.isBlocked(this.getX(), this.getY()-1, map, chars)) move(UP);
-    	else if(input.contains("DOWN") && !this.isBlocked(this.getX(), this.getY()+1, map, chars)) move(DOWN);
+		if(Game.inputs.contains("RIGHT") && !this.isBlocked(this.getX()+1, this.getY(), Game.map, Game.map.mapEvents)) move(RIGHT);
+    	else if(Game.inputs.contains("LEFT") && !this.isBlocked(this.getX()-1, this.getY(), Game.map, Game.map.mapEvents)) move(LEFT);
+    	else if(Game.inputs.contains("UP") && !this.isBlocked(this.getX(), this.getY()-1, Game.map, Game.map.mapEvents)) move(UP);
+    	else if(Game.inputs.contains("DOWN") && !this.isBlocked(this.getX(), this.getY()+1, Game.map, Game.map.mapEvents)) move(DOWN);
 	}
 	
 	public void move( int dir ) {
@@ -35,17 +35,17 @@ public class Player extends MapEvent {
 		idle = false;
 	}
 
-	public void update(Map map, ArrayList<MapEvent> chars, ArrayList<String> input) {
+	public void update() {
 		if( animation.isFinished() ) {
 			idle = true;
 			animation = CharacterAnimation.createStandingAnimation(posx , posy, dir, charSet);
 		}
 		
 		if( !idle ) animation.update();
-    	else if(input.contains("RIGHT")) tryToMove(RIGHT, map, chars, input);
-    	else if(input.contains("LEFT")) tryToMove(LEFT, map, chars, input);
-    	else if(input.contains("UP")) tryToMove(UP, map, chars, input);
-    	else if(input.contains("DOWN")) tryToMove(DOWN, map, chars, input);
+    	else if(Game.inputs.contains("RIGHT")) tryToMove(RIGHT);
+    	else if(Game.inputs.contains("LEFT")) tryToMove(LEFT);
+    	else if(Game.inputs.contains("UP")) tryToMove(UP);
+    	else if(Game.inputs.contains("DOWN")) tryToMove(DOWN);
 	}
 	
 	public void draw( GraphicsContext gc) {

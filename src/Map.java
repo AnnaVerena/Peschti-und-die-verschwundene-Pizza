@@ -4,6 +4,9 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
+import java.util.ArrayList;
+
+import javafx.scene.image.Image;
 
 public class Map 
 {
@@ -11,6 +14,8 @@ public class Map
 	int height;
 	int[][][] map;
 	boolean[][] blocked;
+	ArrayList<MapEvent> mapEvents = new ArrayList<MapEvent>();
+	public Image tileset;
 	
 	Map(int width, int height)
 	{

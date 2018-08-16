@@ -51,7 +51,7 @@ class MapEvent extends GameEvent{
 		dir = d;
 	}
 	
-	public void update(Map map, ArrayList<MapEvent> chars, ArrayList<String> input)
+	public void update()
 	{
 		
 	}
