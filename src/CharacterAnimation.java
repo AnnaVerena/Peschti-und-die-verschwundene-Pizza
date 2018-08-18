@@ -10,7 +10,7 @@ public class CharacterAnimation {
 	
 	public static final GameEvent createWalkingAnimation( int x, int y, int dir, Image charset ) {
 		return new GameEvent() {
-			int animationTimer = 16;			
+			int animationTimer = 15;			
 			
 			public void update() {
 				if( animationTimer > 0 ) animationTimer--;
@@ -19,27 +19,23 @@ public class CharacterAnimation {
 			public void draw(GraphicsContext gc) {
 				if(dir == RIGHT)
 		        {
-		        	if( (animationTimer / 4)%2 == 0 ) gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32-animationTimer*2, (y-1)*32, 32, 64);
-		        	else if( (animationTimer / 4)%4 == 3 ) gc.drawImage(charset, 1*32, dir*64, 32, 64, x*32-animationTimer*2, (y-1)*32, 32, 64);
-		        	else if( (animationTimer / 4)%4 == 1 ) gc.drawImage(charset, 2*32, dir*64, 32, 64, x*32-animationTimer*2, (y-1)*32, 32, 64);
+		        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32-animationTimer*2, (y-1)*32, 32, 64);
+		        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) gc.drawImage(charset, ((x+y)%2 +1)*32, dir*64, 32, 64, x*32-animationTimer*2, (y-1)*32, 32, 64);
 		        }
 		        else if(dir == LEFT)
 		        {
-		        	if( (animationTimer / 4)%2 == 0 ) gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32+animationTimer*2, (y-1)*32, 32, 64);
-		        	else if( (animationTimer / 4)%4 == 3 ) gc.drawImage(charset, 1*32, dir*64, 32, 64, x*32+animationTimer*2, (y-1)*32, 32, 64);
-		        	else if( (animationTimer / 4)%4 == 1 ) gc.drawImage(charset, 2*32, dir*64, 32, 64, x*32+animationTimer*2, (y-1)*32, 32, 64);
+		        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32+animationTimer*2, (y-1)*32, 32, 64);
+		        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) gc.drawImage(charset, ((x+y)%2 +1)*32, dir*64, 32, 64, x*32+animationTimer*2, (y-1)*32, 32, 64);
 		        }
 		        else if(dir == DOWN)
 		        {
-		        	if( (animationTimer / 4)%2 == 0 ) gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32, (y-1)*32-animationTimer*2, 32, 64);
-		        	else if( (animationTimer / 4)%4 == 3 ) gc.drawImage(charset, 1*32, dir*64, 32, 64, x*32, (y-1)*32-animationTimer*2, 32, 64);
-		        	else if( (animationTimer / 4)%4 == 1 ) gc.drawImage(charset, 2*32, dir*64, 32, 64, x*32, (y-1)*32-animationTimer*2, 32, 64);
+		        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32, (y-1)*32-animationTimer*2, 32, 64);
+		        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) gc.drawImage(charset, ((x+y)%2+1)*32, dir*64, 32, 64, x*32, (y-1)*32-animationTimer*2, 32, 64);
 		        }
 		        else if(dir == UP)
 		        {
-		        	if( (animationTimer / 4)%2 == 0 ) gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32, (y-1)*32+animationTimer*2, 32, 64);
-		        	else if( (animationTimer / 4)%4 == 3 ) gc.drawImage(charset, 1*32, dir*64, 32, 64, x*32, (y-1)*32+animationTimer*2, 32, 64);
-		        	else if( (animationTimer / 4)%4 == 1 ) gc.drawImage(charset, 2*32, dir*64, 32, 64, x*32, (y-1)*32+animationTimer*2, 32, 64);
+		        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32, (y-1)*32+animationTimer*2, 32, 64);
+		        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) gc.drawImage(charset, ((x+y)%2+1)*32, dir*64, 32, 64, x*32, (y-1)*32+animationTimer*2, 32, 64);
 		        }				
 			}
 			
