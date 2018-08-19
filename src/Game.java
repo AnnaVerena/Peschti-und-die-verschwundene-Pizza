@@ -22,7 +22,8 @@ public class Game {
 	public static Map map;
 	public static Player player;
 	public static ArrayList<String> inputs = new ArrayList<String>();
-	
+	public static GameEvent currentEvent;
+	public static Image textboxTileset;
 	
 	/**
 	 * Hier malen wir die Karte
@@ -53,6 +54,9 @@ public class Game {
         	{
         		gc.drawImage( map.tileset, (map.getTile(2, x, y)%8)*32, (map.getTile(2, x, y)/8)*32, 32, 32, x*32, y*32, 32, 32 );
         	}
+        
+        if(currentEvent != null)
+        	currentEvent.draw(gc);
 		
 	}
 	
@@ -61,21 +65,37 @@ public class Game {
 	 */	
 	public static void update() {
 		
-		for( MapEvent x : map.mapEvents) x.update();
+		for( MapEvent x : map.mapEvents) 
+			if(currentEvent == null)
+			   x.update();
+			else break;
+		if(currentEvent != null)
+			{currentEvent.update();
+			if(currentEvent.isFinished())
+				currentEvent = null;
+			}
 		Collections.sort(map.mapEvents, new Comparator<MapEvent>() {
             @Override
             public int compare(MapEvent o1, MapEvent o2) {
                 return o1.getY() - o2.getY();
             }
         });
+		
 	}
+	
+	/**
+	 * Wir initialisieren die Parameter
+	 * @throws MalformedURLException
+	 */
 	
 	public static void init() throws MalformedURLException {
 		Game.map = new Map(new File("res/map.txt"));        
         Game.map.mapEvents.add( new Player( 5, 5, DOWN, resample (new Image(new File("res/Peschti.png").toURI().toURL().toString()),2)));
         Game.map.mapEvents.add( new MapEvent( 8,5, DOWN, resample (new Image(new File("res/Business.png").toURI().toURL().toString()),2)));
         Game.map.tileset = resample (new Image(new File("res/Tileset.png").toURI().toURL().toString()),2);
+        Game.textboxTileset = resample (new Image(new File("res/Textbox.png").toURI().toURL().toString()),2);
         
+        currentEvent = new Textbox("Willkommen zur Outiwoch!\nWillkommen im Shop!\nPeschti!\nOutis!");
 	}
 	
 	private static Image resample(Image input, int scaleFactor) {

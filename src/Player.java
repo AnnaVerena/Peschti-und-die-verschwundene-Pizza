@@ -8,6 +8,14 @@ public class Player extends MapEvent {
 	GameEvent animation;
 	boolean idle;
 
+	/**
+	 * Player erbt von MapEvent
+	 * @param posx x-Position
+	 * @param posy y-Position
+	 * @param dir Richtung
+	 * @param charset Bilddatei
+	 */
+	
 	public Player(int posx, int posy, int dir, Image charset) {
 		super(posx, posy, dir, charset);
 		
