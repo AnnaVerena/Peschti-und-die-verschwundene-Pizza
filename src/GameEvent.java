@@ -7,6 +7,10 @@ import javafx.scene.canvas.GraphicsContext;
  */
 
 public class GameEvent {
+	public void init() {
+		
+	}
+	
 	public void update() {
 		
 	}

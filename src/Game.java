@@ -91,11 +91,22 @@ public class Game {
 	public static void init() throws MalformedURLException {
 		Game.map = new Map(new File("res/map.txt"));        
         Game.map.mapEvents.add( new Player( 5, 5, DOWN, resample (new Image(new File("res/Peschti.png").toURI().toURL().toString()),2)));
-        Game.map.mapEvents.add( new MapEvent( 8,5, DOWN, resample (new Image(new File("res/Business.png").toURI().toURL().toString()),2)));
+        
+        MapEvent busi = new MapEvent( 8,5, DOWN, resample (new Image(new File("res/Business.png").toURI().toURL().toString()),2));
+        busi.actionEvent = new Textbox("Kaufen, kaufen, kaufen!\n"
+        		+ "Ich habe die besten Preise!");
+        
+        Game.map.mapEvents.add( busi );
         Game.map.tileset = resample (new Image(new File("res/Tileset.png").toURI().toURL().toString()),2);
         Game.textboxTileset = resample (new Image(new File("res/Textbox.png").toURI().toURL().toString()),2);
         
         currentEvent = new Textbox("Willkommen zur Outiwoch!\nWillkommen im Shop!\nPeschti!\nOutis!");
+	}
+	
+	public static void startEvent(GameEvent event )
+	{
+		Game.currentEvent = event;
+		currentEvent.init();
 	}
 	
 	private static Image resample(Image input, int scaleFactor) {

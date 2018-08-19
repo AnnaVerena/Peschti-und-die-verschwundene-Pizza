@@ -8,6 +8,9 @@ class MapEvent extends GameEvent{
 	int posx;
 	int posy;
 	
+	boolean belowPlayer = false;
+	GameEvent actionEvent = null;
+	
 	Image charSet;
 	int dir;
 	

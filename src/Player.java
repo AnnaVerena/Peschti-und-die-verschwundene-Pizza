@@ -50,6 +50,25 @@ public class Player extends MapEvent {
 		}
 		
 		if( !idle ) animation.update();
+		else if(Game.inputs.contains("ENTER"))
+		{
+			Game.inputs.remove("ENTER");
+			int x = posx;
+			if(dir == RIGHT) x++;
+			if(dir == LEFT) x--;
+			int y = posy;
+			if(dir == UP) y--;
+			if(dir == DOWN) y++;
+			
+			for(MapEvent me: Game.map.mapEvents)
+			{
+				if( me.getX() == x && me.getY() == y && me.actionEvent != null)
+				{
+					Game.startEvent(me.actionEvent);
+					break;
+				}
+			}
+		}
     	else if(Game.inputs.contains("RIGHT")) tryToMove(RIGHT);
     	else if(Game.inputs.contains("LEFT")) tryToMove(LEFT);
     	else if(Game.inputs.contains("UP")) tryToMove(UP);

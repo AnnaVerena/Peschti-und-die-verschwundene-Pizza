@@ -11,10 +11,16 @@ public class Textbox extends GameEvent{
 		this.text = text;
 	}
 	
+	public void init() {
+		finished = false;
+	}
+	
 	public void update() {
 		if(Game.inputs.contains("ENTER"))
+		{
 			finished = true;
-		
+			Game.inputs.remove("ENTER");
+		}		
 	}
 	
 	public void draw( GraphicsContext gc ){
