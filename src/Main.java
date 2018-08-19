@@ -1,9 +1,4 @@
-import java.io.File;
 import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
-
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;
@@ -13,12 +8,7 @@ import javafx.scene.Group;
 import javafx.scene.Scene;
 import javafx.scene.canvas.Canvas;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
 import javafx.scene.input.KeyEvent;
-import javafx.scene.paint.Color;
 import javafx.stage.Stage;
 import javafx.util.Duration;
  
@@ -72,23 +62,19 @@ public class Main extends Application
         KeyFrame kf = new KeyFrame(
             Duration.seconds(0.017),                // 60 FPS
             new EventHandler<ActionEvent>()
-            {
-            
-            	
-                public void handle(ActionEvent ae)
-                {Game.update();
-                Game.draw(gc);
+            { 
+            	public void handle(ActionEvent ae)
+                {
+                	Game.update();
+                	Game.draw(gc);
                 }
             });
         
         gameLoop.getKeyFrames().add( kf );
-        gameLoop.play();
-        
+        gameLoop.play();        
         
         theStage.show();
-    }
-    
-    
+    } 
 }
 
 
