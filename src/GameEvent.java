@@ -1,5 +1,11 @@
 import javafx.scene.canvas.GraphicsContext;
 
+/**
+ * GameEvents sind Events wie Dialoge, Kämpfe etc.
+ * @author Verena
+ *
+ */
+
 public class GameEvent {
 	public void update() {
 		
