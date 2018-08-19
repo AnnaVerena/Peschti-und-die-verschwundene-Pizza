@@ -113,9 +113,11 @@ public class Game {
         shop.mapEvents.add( new MapEvent(14, 10, DOWN, null, bookEvent ));
         shop.mapEvents.add( new MapEvent(15, 10, DOWN, null, bookEvent ));
         
-        GameEvent cookieEvent = new Textbox("Hmm ...\n"
-        		+ "Die Kekse sehen sehr lecker aus!");
+        GameEvent cookieEvent = new Choicebox("Hmm ...\n"
+        		+ "Die Kekse sehen \nsehr lecker aus!\nMöchtest du einen kaufen?", new Textbox("Ein Keks kosten 1 $."), new Textbox("Du bist ja komisch."));
         shop.mapEvents.add( new MapEvent(11, 7, DOWN, null, cookieEvent ));
+        
+        
         
         GameEvent kakaoEvent = new Textbox("Kakao ist sehr lecker und stellt auch\n"
         		+ "Energie wieder her!");
