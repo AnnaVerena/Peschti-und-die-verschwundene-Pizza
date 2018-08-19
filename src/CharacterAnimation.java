@@ -3,10 +3,24 @@ import javafx.scene.image.Image;
 
 public class CharacterAnimation {
 	
+	
+	/**
+	 * Wir codieren die Richtungen, in die die Figur blicken kann
+	 * 
+	 */
 	static final int UP = 1;
 	static final int DOWN = 0;
 	static final int LEFT = 2;
 	static final int RIGHT = 3;
+	
+	/**
+	 *
+	 * @param x x-Posiiton
+	 * @param y y-Position
+	 * @param dir Richtung, wie gerade codiert
+	 * @param charset Bilddatei für die Figur
+	 * @return Game Event: Figur bewegt sich. 
+	 */
 	
 	public static final GameEvent createWalkingAnimation( int x, int y, int dir, Image charset ) {
 		return new GameEvent() {
@@ -48,6 +62,16 @@ public class CharacterAnimation {
 			}
 		};
 	}
+	
+	/**
+	 * 
+	 * 
+	 * @param x wie oben
+	 * @param y wie oben
+	 * @param dir wie oben
+	 * @param charset wie oben
+	 * @return GameEvent: Figur steht
+	 */
 	
 	public static final GameEvent createStandingAnimation( int x, int y, int dir, Image charset ) {
 		return new GameEvent() {

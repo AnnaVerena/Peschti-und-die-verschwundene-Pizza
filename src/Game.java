@@ -23,6 +23,12 @@ public class Game {
 	public static Player player;
 	public static ArrayList<String> inputs = new ArrayList<String>();
 	
+	
+	/**
+	 * Hier malen wir die Karte
+	 * 
+	 * @param gc braucht man zum Malen
+	 */
 	public static void draw(GraphicsContext gc) {
 		gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, 640,480);
@@ -49,6 +55,10 @@ public class Game {
         	}
 		
 	}
+	
+	/**
+	 * wir updaten die MpEvents und sortieren sie
+	 */
 	
 	public static void update() {
 		

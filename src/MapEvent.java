@@ -23,9 +23,16 @@ class MapEvent extends GameEvent{
 		this.dir = dir;
 	}
 	
+	
+	/**
+	 * @param name description Bildfile, Blickrichtung, Position
+	 * Wir malen die Figur
+	 */
+	
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(charSet, 0*32, dir*64, 32, 64, posx*32, (posy-1)*32, 32, 64);		
+		gc.drawImage(charSet, 0*32, dir*64, 32, 64, posx*32, (posy-1)*32, 32, 64);	
 	}
+	
 	
 	int getX() {
 		return posx;
@@ -55,6 +62,16 @@ class MapEvent extends GameEvent{
 	{
 		
 	}
+	
+	/**
+	 * 
+	 *
+	 * @param x x-Position 
+	 * @param y y-Position
+	 * @param map Karte
+	 * @param chars Liste der Map-Events
+	 * @return Wir erfahren, ob eine Position auf der Karte durch einen Gegenstand oder eine Figur geblockt ist
+	 */
 
 	boolean isBlocked(int x, int y, Map map, ArrayList<MapEvent> chars) {
 		if(map.isBlocked(x, y)) return true;
