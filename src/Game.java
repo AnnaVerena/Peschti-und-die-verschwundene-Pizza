@@ -58,8 +58,7 @@ public class Game {
 	
 	/**
 	 * wir updaten die MpEvents und sortieren sie
-	 */
-	
+	 */	
 	public static void update() {
 		
 		for( MapEvent x : map.mapEvents) x.update();
