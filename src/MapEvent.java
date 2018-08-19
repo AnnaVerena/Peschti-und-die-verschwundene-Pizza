@@ -26,6 +26,14 @@ class MapEvent extends GameEvent{
 		this.dir = dir;
 	}
 	
+	public MapEvent(int posx, int posy, int dir, Image charSet, GameEvent actionEvent ) {
+		this.posx = posx;
+		this.posy=posy;
+		this.charSet=charSet;
+		this.dir = dir;
+		this.actionEvent = actionEvent;
+	}
+	
 	
 	/**
 	 * @param name description Bildfile, Blickrichtung, Position
@@ -33,7 +41,7 @@ class MapEvent extends GameEvent{
 	 */
 	
 	public void draw(GraphicsContext gc) {
-		gc.drawImage(charSet, 0*32, dir*64, 32, 64, posx*32, (posy-1)*32, 32, 64);	
+		if( charSet != null ) gc.drawImage(charSet, 0*32, dir*64, 32, 64, posx*32, (posy-1)*32, 32, 64);	
 	}
 	
 	

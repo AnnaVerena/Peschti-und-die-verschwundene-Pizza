@@ -96,6 +96,38 @@ public class Game {
         busi.actionEvent = new Textbox("Kaufen, kaufen, kaufen!\n"
         		+ "Ich habe die besten Preise!");
         
+        GameEvent bookEvent = new Textbox("Buecher...\n"
+        		+ "Peschti mag nicht lesen.");        
+        Game.map.mapEvents.add( new MapEvent(10, 4, DOWN, null, bookEvent ));
+        Game.map.mapEvents.add( new MapEvent(11, 4, DOWN, null, bookEvent ));
+        Game.map.mapEvents.add( new MapEvent(14, 4, DOWN, null, bookEvent ));
+        Game.map.mapEvents.add( new MapEvent(15, 4, DOWN, null, bookEvent ));
+        Game.map.mapEvents.add( new MapEvent(14, 7, DOWN, null, bookEvent ));
+        Game.map.mapEvents.add( new MapEvent(15, 7, DOWN, null, bookEvent ));
+        Game.map.mapEvents.add( new MapEvent(14, 10, DOWN, null, bookEvent ));
+        Game.map.mapEvents.add( new MapEvent(15, 10, DOWN, null, bookEvent ));
+        
+        GameEvent cookieEvent = new Textbox("Hmm ...\n"
+        		+ "Die Kekse sehen sehr lecker aus!");
+        Game.map.mapEvents.add( new MapEvent(11, 7, DOWN, null, cookieEvent ));
+        
+        GameEvent kakaoEvent = new Textbox("Kakao ist sehr lecker und stellt auch\n"
+        		+ "Energie wieder her!");
+        Game.map.mapEvents.add( new MapEvent(9, 7, DOWN, null, kakaoEvent ));
+        
+        GameEvent energyEvent = new Textbox("Energietrunk!\n"
+        		+ "Dieses Getraenk liefert eine erhebliche\n"
+        		+ "Menge Energie. Es ist gruen\n"
+        		+ "und leuchtet bei Dunkelheit.");
+        Game.map.mapEvents.add( new MapEvent(10, 7, DOWN, null, energyEvent ));
+
+        GameEvent pizzaEvent = new Textbox("Leider ist diese Pizza mit Oliven belegt.\n"
+        		+ "Wer macht sowas nur?");
+        Game.map.mapEvents.add( new MapEvent(8, 7, DOWN, null, pizzaEvent ));
+        
+        GameEvent pictureEvent = new Textbox("Ein Bild vom Business.");
+        Game.map.mapEvents.add( new MapEvent(9, 3, DOWN, null, pictureEvent ));
+        
         Game.map.mapEvents.add( busi );
         Game.map.tileset = resample (new Image(new File("res/Tileset.png").toURI().toURL().toString()),2);
         Game.textboxTileset = resample (new Image(new File("res/Textbox.png").toURI().toURL().toString()),2);
