@@ -160,7 +160,7 @@ public class Editor extends Application {
 	    GraphicsContext gc = canvas.getGraphicsContext2D();	    
 	    GraphicsContext gct = tCanvas.getGraphicsContext2D();
 	    
-	    Image tileset = resample( new Image( new File("res/Tileset2.png").toURI().toURL().toString()), SCALE );
+	    Image tileset = resample( new Image( new File("res/OutiZimmer.png").toURI().toURL().toString()), SCALE );
 	    
 	    int[] tileId = new int[1];
 	    tileId[0] = 8;

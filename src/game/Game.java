@@ -100,6 +100,7 @@ public class Game {
 		
 		Game.maps.add( new maps.ShopMap() );
         Game.maps.add( new maps.VillageMap() );
+        Game.maps.add(new maps.OutisZimmer());
         
         for( Map m : Game.maps ) m.mapEvents.add(player);
         

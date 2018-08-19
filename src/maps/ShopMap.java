@@ -21,7 +21,8 @@ public class ShopMap extends game.Map{
         
         MapEvent busi = new MapEvent( 8,5, Game.DOWN, Game.resample (new Image(new File("res/Business.png").toURI().toURL().toString()),2));
         busi.actionEvent = new EventList( new TurnToPlayer(busi), new Textbox("Kaufen, kaufen, kaufen!\n"
-        		+ "Ich habe die besten Preise!"));
+        		+ "Ich habe die besten Preise!"), new events.TurnEvent(busi, Game.DOWN));
+        
         mapEvents.add( busi );
         
         GameEvent bookEvent = new Textbox("Buecher...\n"

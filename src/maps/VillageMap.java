@@ -15,6 +15,10 @@ public class VillageMap extends game.Map{
         tileset = Game.resample (new Image(new File("res/Tileset2.png").toURI().toURL().toString()),2);
         
         mapEvents.add(new MapEvent(13, 5, Game.DOWN, null, false, new Teleport(0, 9, 12, Game.UP), null));
+        
+        mapEvents.add(new MapEvent(4, 7, Game.DOWN, null, false, new Teleport(2, 6, 9, Game.UP), null));
 	}
+	
+	
 
 }
