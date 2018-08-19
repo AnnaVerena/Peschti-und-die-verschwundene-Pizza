@@ -60,6 +60,24 @@ public class CharacterAnimation {
 		};
 	}
 	
+	public static final GameEvent createWaitAnimation( int x, int y, int dir, Image charset ) {
+		return new GameEvent() {
+			int animationTimer = 10;			
+			
+			public void update() {
+				if( animationTimer > 0 ) animationTimer--;
+			}
+			
+			public void draw(GraphicsContext gc) {
+				gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32, (y-1)*32, 32, 64);
+			}
+			
+			public boolean isFinished() {
+				return animationTimer == 0;
+			}
+		};
+	}
+	
 	/**
 	 * 
 	 * 

@@ -11,6 +11,7 @@ public class MapEvent extends GameEvent{
 	
 	boolean belowPlayer = false;
 	public GameEvent actionEvent = null;
+	public GameEvent touchEvent = null;
 	
 	Image charSet;
 	int dir;
@@ -27,12 +28,14 @@ public class MapEvent extends GameEvent{
 		this.dir = dir;
 	}
 	
-	public MapEvent(int posx, int posy, int dir, Image charSet, GameEvent actionEvent ) {
+	public MapEvent(int posx, int posy, int dir, Image charSet, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
 		this.posx = posx;
 		this.posy=posy;
 		this.charSet=charSet;
 		this.dir = dir;
+		this.belowPlayer = belowPlayer;
 		this.actionEvent = actionEvent;
+		this.touchEvent = touchEvent;
 	}
 	
 	
@@ -88,7 +91,7 @@ public class MapEvent extends GameEvent{
 	boolean isBlocked(int x, int y, Map map, ArrayList<MapEvent> chars) {
 		if(map.isBlocked(x, y)) return true;
 		for (MapEvent me : chars) {
-			if(x == me.getX() && y == me.getY()) return true;
+			if(x == me.getX() && y == me.getY() && !me.belowPlayer) return true;
 		}
 		return false;
 	}

@@ -27,6 +27,22 @@ public class Player extends MapEvent {
 	public void tryToMove( int dir ) {
 		this.dir = dir;
 		
+		int x = posx;
+		if(dir == RIGHT) x++;
+		if(dir == LEFT) x--;
+		int y = posy;
+		if(dir == UP) y--;
+		if(dir == DOWN) y++;
+		
+		for(MapEvent me: Game.map.mapEvents)
+		{
+			if( me.getX() == x && me.getY() == y && me.touchEvent != null)
+			{
+				Game.startEvent(me.touchEvent);
+				break;
+			}
+		}
+		
 		if(Game.inputs.contains("RIGHT") && !this.isBlocked(this.getX()+1, this.getY(), Game.map, Game.map.mapEvents)) move(RIGHT);
     	else if(Game.inputs.contains("LEFT") && !this.isBlocked(this.getX()-1, this.getY(), Game.map, Game.map.mapEvents)) move(LEFT);
     	else if(Game.inputs.contains("UP") && !this.isBlocked(this.getX(), this.getY()-1, Game.map, Game.map.mapEvents)) move(UP);

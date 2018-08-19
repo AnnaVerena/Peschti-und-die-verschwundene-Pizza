@@ -24,7 +24,7 @@ public class Main extends Application
  
     public void start(Stage theStage) throws MalformedURLException 
     {
-        theStage.setTitle( "Canvas Example" );
+        theStage.setTitle( "Peschti" );
              
         Group root = new Group();
         Scene theScene = new Scene( root );
