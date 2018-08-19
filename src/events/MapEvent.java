@@ -14,8 +14,11 @@ public class MapEvent extends GameEvent{
 	public GameEvent actionEvent = null;
 	public GameEvent touchEvent = null;
 	
-	Image charSet;
-	int dir;
+	// Das charset besteht aus 3x4 Bildern.
+	// dir und step geben das Bild an.
+	Image charset;
+	int dir; 		// y-Position im Charset
+	int step = 0; 	// x-Position im Charset
 	
 	final int UP = 1;
 	final int DOWN = 0;
@@ -25,14 +28,14 @@ public class MapEvent extends GameEvent{
 	public MapEvent(int posx, int posy, int dir, Image charSet ) {
 		this.posx = posx;
 		this.posy=posy;
-		this.charSet=charSet;
+		this.charset=charSet;
 		this.dir = dir;
 	}
 	
 	public MapEvent(int posx, int posy, int dir, Image charSet, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
 		this.posx = posx;
 		this.posy=posy;
-		this.charSet=charSet;
+		this.charset=charSet;
 		this.dir = dir;
 		this.belowPlayer = belowPlayer;
 		this.actionEvent = actionEvent;
@@ -46,7 +49,7 @@ public class MapEvent extends GameEvent{
 	 */
 	
 	public void draw(GraphicsContext gc) {
-		if( charSet != null ) gc.drawImage(charSet, 0*32, dir*64, 32, 64, posx*32, (posy-1)*32, 32, 64);	
+		if( charset != null ) gc.drawImage(charset, step*32, dir*64, 32, 64, posx*32, (posy-1)*32, 32, 64);	
 	}
 	
 	
@@ -72,6 +75,14 @@ public class MapEvent extends GameEvent{
 	
 	void setDirection(int d) {
 		dir = d;
+	}
+	void setStep(int s) {
+		step = s;
+	}
+	
+	public void init()
+	{
+		step = 0;
 	}
 	
 	public void update()

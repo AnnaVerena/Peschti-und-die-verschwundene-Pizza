@@ -57,14 +57,21 @@ public class Player extends MapEvent {
 		if( dir == RIGHT ) posx++;
 		
 		this.dir = dir;
-		animation = CharacterAnimation.createWalkingAnimation(posx, posy, dir, charSet);
+		animation = CharacterAnimation.createWalkingAnimation(posx, posy, dir, charset);
 		idle = false;
+	}
+	
+	public void init()
+	{
+		step = 0;
+		idle = true;
+		animation = CharacterAnimation.createStandingAnimation(posx , posy, dir, charset);		
 	}
 
 	public void update() {
 		if( animation.isFinished() ) {
 			idle = true;
-			animation = CharacterAnimation.createStandingAnimation(posx , posy, dir, charSet);
+			animation = CharacterAnimation.createStandingAnimation(posx , posy, dir, charset);
 		}
 		
 		if( !idle ) animation.update();

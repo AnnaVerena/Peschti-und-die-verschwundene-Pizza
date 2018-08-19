@@ -2,15 +2,15 @@ package events;
 
 import javafx.scene.canvas.GraphicsContext;
 
-public class TurnEvent extends GameEvent {
+public class SetStepEvent extends GameEvent {
 	
 	MapEvent me;
 	boolean finished;
-	int dir;
+	int step;
 	
-	public TurnEvent( MapEvent me, int dir ) {
+	public SetStepEvent( MapEvent me, int step ) {
 		this.me = me;
-		this.dir = dir;
+		this.step = step;
 	}
 	
 	public void init() {
@@ -18,7 +18,7 @@ public class TurnEvent extends GameEvent {
 	}
 	
 	public void update() {
-		me.setDirection(dir);
+		me.setStep(step);
 		finished = true;
 	}
 	

@@ -23,9 +23,8 @@ public class Teleport extends GameEvent{
 		Game.player.setX(x);
 		Game.player.setY(y);;
 		Game.player.setDirection(dir);
-		
-		Game.player.animation = CharacterAnimation.createWaitAnimation(x, y, dir, Game.player.charSet);
-		Game.player.idle = false;
+				
+		for( MapEvent me: Game.map.mapEvents) me.init(); 
 		
 		finished = true;
 	}
