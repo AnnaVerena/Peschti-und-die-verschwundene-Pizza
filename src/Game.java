@@ -22,6 +22,7 @@ public class Game {
 	public static Map map;
 	public static Player player;
 	public static ArrayList<String> inputs = new ArrayList<String>();
+	public static ArrayList<Map> maps = new ArrayList<Map>();
 	public static GameEvent currentEvent;
 	public static Image textboxTileset;
 	
@@ -89,47 +90,67 @@ public class Game {
 	 */
 	
 	public static void init() throws MalformedURLException {
-		Game.map = new Map(new File("res/map.txt"));        
-        Game.map.mapEvents.add( new Player( 5, 5, DOWN, resample (new Image(new File("res/Peschti.png").toURI().toURL().toString()),2)));
+		
+		player = new Player( 5, 5, DOWN, resample (new Image(new File("res/Peschti.png").toURI().toURL().toString()),2));
+		
+		//SHOP
+		Map shop = new Map(new File("res/map_shop.txt"));        
+        shop.mapEvents.add( player );
         
         MapEvent busi = new MapEvent( 8,5, DOWN, resample (new Image(new File("res/Business.png").toURI().toURL().toString()),2));
         busi.actionEvent = new Textbox("Kaufen, kaufen, kaufen!\n"
         		+ "Ich habe die besten Preise!");
+        shop.mapEvents.add( busi );
         
         GameEvent bookEvent = new Textbox("Buecher...\n"
         		+ "Peschti mag nicht lesen.");        
-        Game.map.mapEvents.add( new MapEvent(10, 4, DOWN, null, bookEvent ));
-        Game.map.mapEvents.add( new MapEvent(11, 4, DOWN, null, bookEvent ));
-        Game.map.mapEvents.add( new MapEvent(14, 4, DOWN, null, bookEvent ));
-        Game.map.mapEvents.add( new MapEvent(15, 4, DOWN, null, bookEvent ));
-        Game.map.mapEvents.add( new MapEvent(14, 7, DOWN, null, bookEvent ));
-        Game.map.mapEvents.add( new MapEvent(15, 7, DOWN, null, bookEvent ));
-        Game.map.mapEvents.add( new MapEvent(14, 10, DOWN, null, bookEvent ));
-        Game.map.mapEvents.add( new MapEvent(15, 10, DOWN, null, bookEvent ));
+        shop.mapEvents.add( new MapEvent(10, 4, DOWN, null, bookEvent ));
+        shop.mapEvents.add( new MapEvent(11, 4, DOWN, null, bookEvent ));
+        shop.mapEvents.add( new MapEvent(14, 4, DOWN, null, bookEvent ));
+        shop.mapEvents.add( new MapEvent(15, 4, DOWN, null, bookEvent ));
+        shop.mapEvents.add( new MapEvent(14, 7, DOWN, null, bookEvent ));
+        shop.mapEvents.add( new MapEvent(15, 7, DOWN, null, bookEvent ));
+        shop.mapEvents.add( new MapEvent(14, 10, DOWN, null, bookEvent ));
+        shop.mapEvents.add( new MapEvent(15, 10, DOWN, null, bookEvent ));
         
         GameEvent cookieEvent = new Textbox("Hmm ...\n"
         		+ "Die Kekse sehen sehr lecker aus!");
-        Game.map.mapEvents.add( new MapEvent(11, 7, DOWN, null, cookieEvent ));
+        shop.mapEvents.add( new MapEvent(11, 7, DOWN, null, cookieEvent ));
         
         GameEvent kakaoEvent = new Textbox("Kakao ist sehr lecker und stellt auch\n"
         		+ "Energie wieder her!");
-        Game.map.mapEvents.add( new MapEvent(9, 7, DOWN, null, kakaoEvent ));
+        shop.mapEvents.add( new MapEvent(9, 7, DOWN, null, kakaoEvent ));
         
         GameEvent energyEvent = new Textbox("Energietrunk!\n"
         		+ "Dieses Getraenk liefert eine erhebliche\n"
         		+ "Menge Energie. Es ist gruen\n"
         		+ "und leuchtet bei Dunkelheit.");
-        Game.map.mapEvents.add( new MapEvent(10, 7, DOWN, null, energyEvent ));
+        shop.mapEvents.add( new MapEvent(10, 7, DOWN, null, energyEvent ));
 
         GameEvent pizzaEvent = new Textbox("Leider ist diese Pizza mit Oliven belegt.\n"
         		+ "Wer macht sowas nur?");
-        Game.map.mapEvents.add( new MapEvent(8, 7, DOWN, null, pizzaEvent ));
+        shop.mapEvents.add( new MapEvent(8, 7, DOWN, null, pizzaEvent ));
         
         GameEvent pictureEvent = new Textbox("Ein Bild vom Business.");
-        Game.map.mapEvents.add( new MapEvent(9, 3, DOWN, null, pictureEvent ));
+        shop.mapEvents.add( new MapEvent(9, 3, DOWN, null, pictureEvent ));
         
-        Game.map.mapEvents.add( busi );
-        Game.map.tileset = resample (new Image(new File("res/Tileset.png").toURI().toURL().toString()),2);
+        shop.mapEvents.add(new MapEvent(9, 13, DOWN, null, new Teleport(1, 13, 6, DOWN)));
+        shop.mapEvents.add(new MapEvent(10, 13, DOWN, null, new Teleport(1, 13, 6, DOWN)));
+        
+        shop.tileset = resample (new Image(new File("res/Tileset.png").toURI().toURL().toString()),2);
+        
+        Game.maps.add(shop);
+        
+        //VILLAGE
+        Map village = new Map(new File("res/map_village.txt"));        
+        village.mapEvents.add( player );
+        village.tileset = resample (new Image(new File("res/Tileset2.png").toURI().toURL().toString()),2);
+        
+        village.mapEvents.add(new MapEvent(13, 5, DOWN, null, new Teleport(0, 9, 12, UP)));
+        
+        Game.maps.add(village);
+        
+        Game.map = shop;
         Game.textboxTileset = resample (new Image(new File("res/Textbox.png").toURI().toURL().toString()),2);
         
         currentEvent = new Textbox("Willkommen zur Outiwoch!\nWillkommen im Shop!\nPeschti!\nOutis!");
