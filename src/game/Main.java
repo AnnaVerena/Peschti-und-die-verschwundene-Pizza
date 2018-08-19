@@ -1,4 +1,6 @@
+package game;
 import java.net.MalformedURLException;
+
 import javafx.animation.KeyFrame;
 import javafx.animation.Timeline;
 import javafx.application.Application;

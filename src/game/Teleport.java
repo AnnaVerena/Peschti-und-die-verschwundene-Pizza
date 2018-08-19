@@ -1,3 +1,4 @@
+package game;
 import javafx.scene.canvas.GraphicsContext;
 
 public class Teleport extends GameEvent{

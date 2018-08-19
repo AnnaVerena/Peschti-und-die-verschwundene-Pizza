@@ -1,15 +1,16 @@
+package game;
 import java.util.ArrayList;
 
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-class MapEvent extends GameEvent{
+public class MapEvent extends GameEvent{
 
 	int posx;
 	int posy;
 	
 	boolean belowPlayer = false;
-	GameEvent actionEvent = null;
+	public GameEvent actionEvent = null;
 	
 	Image charSet;
 	int dir;

@@ -1,3 +1,4 @@
+package game;
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.FileNotFoundException;
@@ -14,10 +15,10 @@ public class Map
 	int height;
 	int[][][] map;
 	boolean[][] blocked;
-	ArrayList<MapEvent> mapEvents = new ArrayList<MapEvent>();
+	public ArrayList<MapEvent> mapEvents = new ArrayList<MapEvent>();
 	public Image tileset;
 	
-	Map(int width, int height)
+	public Map(int width, int height)
 	{
 		this.width = width;
 		this.height = height;
@@ -25,7 +26,7 @@ public class Map
 		blocked = new boolean[width][height];
 	}
 	
-	Map( File f )
+	public Map( File f )
 	{
 		try {
 			BufferedReader br = new BufferedReader(new FileReader( f ));
