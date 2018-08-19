@@ -125,7 +125,7 @@ public class Game {
         		+ "Wer macht sowas nur?");
         Game.map.mapEvents.add( new MapEvent(8, 7, DOWN, null, pizzaEvent ));
         
-        GameEvent pictureEvent = new Textbox("Ein Bild vom Business.");
+        GameEvent pictureEvent = new Textbox("Ein Bild vom Outis.");
         Game.map.mapEvents.add( new MapEvent(9, 3, DOWN, null, pictureEvent ));
         
         Game.map.mapEvents.add( busi );
