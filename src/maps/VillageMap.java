@@ -3,9 +3,9 @@ package maps;
 import java.io.File;
 import java.net.MalformedURLException;
 
+import events.MapEvent;
+import events.Teleport;
 import game.Game;
-import game.MapEvent;
-import game.Teleport;
 import javafx.scene.image.Image;
 
 public class VillageMap extends game.Map{

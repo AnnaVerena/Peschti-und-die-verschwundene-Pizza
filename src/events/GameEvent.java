@@ -1,4 +1,4 @@
-package game;
+package events;
 import javafx.scene.canvas.GraphicsContext;
 
 /**

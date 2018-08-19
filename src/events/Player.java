@@ -1,6 +1,7 @@
-package game;
+package events;
 import java.util.ArrayList;
 
+import game.Game;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 

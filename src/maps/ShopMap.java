@@ -3,12 +3,14 @@ package maps;
 import java.io.File;
 import java.net.MalformedURLException;
 
-import game.Choicebox;
+import events.Choicebox;
+import events.GameEvent;
+import events.MapEvent;
+import events.Teleport;
+import events.Textbox;
+import events.TurnToPlayer;
+import events.EventList;
 import game.Game;
-import game.GameEvent;
-import game.MapEvent;
-import game.Teleport;
-import game.Textbox;
 import javafx.scene.image.Image;
 
 public class ShopMap extends game.Map{
@@ -18,8 +20,8 @@ public class ShopMap extends game.Map{
         tileset = Game.resample (new Image(new File("res/Tileset.png").toURI().toURL().toString()),2);
         
         MapEvent busi = new MapEvent( 8,5, Game.DOWN, Game.resample (new Image(new File("res/Business.png").toURI().toURL().toString()),2));
-        busi.actionEvent = new Textbox("Kaufen, kaufen, kaufen!\n"
-        		+ "Ich habe die besten Preise!");
+        busi.actionEvent = new EventList( new TurnToPlayer(busi), new Textbox("Kaufen, kaufen, kaufen!\n"
+        		+ "Ich habe die besten Preise!"));
         mapEvents.add( busi );
         
         GameEvent bookEvent = new Textbox("Buecher...\n"

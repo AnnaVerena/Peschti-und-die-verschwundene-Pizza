@@ -1,6 +1,7 @@
-package game;
+package events;
 import java.util.ArrayList;
 
+import game.Map;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
@@ -57,7 +58,7 @@ public class MapEvent extends GameEvent{
 		posx=x;
 	}
 	
-	int getY() {
+	public int getY() {
 		return posy;
 	}
 	
