@@ -140,7 +140,7 @@ public class Editor extends Application {
         });
 	    
 	    Canvas canvas = new Canvas( map.getWidth()*16*SCALE, map.getHeigth()*16*SCALE );	    
-	    Canvas tCanvas = new Canvas( 128*SCALE,256*SCALE );
+	    Canvas tCanvas = new Canvas( 128*SCALE,512*SCALE );
 	    
 	    scrollPane.setContent( canvas );
 	    scrollPane2.setContent( tCanvas );
@@ -288,7 +288,7 @@ public class Editor extends Application {
         	    
         	    
         	    gct.setFill(Color.BLACK);
-        	    gct.fillRect(0, 0, 128*SCALE, 256*SCALE);
+        	    gct.fillRect(0, 0, 128*SCALE, 512*SCALE);
         	    gct.drawImage(tileset, 0, 0);
 
         	    gct.setStroke(Color.RED);
