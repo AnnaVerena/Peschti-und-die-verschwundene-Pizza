@@ -42,7 +42,17 @@ public class Game {
 		gc.setTransform(new Affine());
 		gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, 640,480);
-        gc.setTransform(new Affine(new Translate(-player.animation.getX()+19*16, -player.animation.getY()+7*32)));
+        
+        int tx = -player.animation.getX()+19*16;
+        if( tx > 0 ) tx = 0;
+        if(tx < -map.getWidth()*32 + 20*32) tx = -map.getWidth()*32 + 20*32;
+        
+        int ty = -player.animation.getY()+7*32;
+        if( ty > 0 ) ty = 0;
+        if( ty < -map.getHeight()*32 + 15*32 ) ty = -map.getHeight()*32 + 15*32;
+        
+        gc.setTransform(new Affine(new Translate(tx, ty)));
+        
         for( int x = 0; x < map.getWidth(); x++ )
         	for( int y = 0; y < map.getHeight(); y++ )
         	{
