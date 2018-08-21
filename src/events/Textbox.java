@@ -3,6 +3,7 @@ import game.Game;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.transform.Affine;
 
 public class Textbox extends GameEvent{
 	
@@ -26,6 +27,8 @@ public class Textbox extends GameEvent{
 	}
 	
 	public void draw( GraphicsContext gc ){
+		gc.setTransform(new Affine() );
+		
 		gc.drawImage(Game.textboxTileset, 0, 0, 32, 32, 2*16*2, 11*16*2, 32, 32  );
 		gc.drawImage(Game.textboxTileset, 0, 32, 32, 32, 2*16*2, 12*16*2, 32, 32  );
 		gc.drawImage(Game.textboxTileset, 0, 32, 32, 32, 2*16*2, 13*16*2, 32, 32  );

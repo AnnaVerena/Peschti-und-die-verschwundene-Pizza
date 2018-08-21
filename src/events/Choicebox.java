@@ -3,6 +3,7 @@ import game.Game;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
+import javafx.scene.transform.Affine;
 
 public class Choicebox extends GameEvent {
 
@@ -63,6 +64,7 @@ public class Choicebox extends GameEvent {
 	}
 	
 	public void draw( GraphicsContext gc ){
+		gc.setTransform(new Affine() );
 		if( choosen )
 		{
 			if( choice == true ) yes.draw(gc);
