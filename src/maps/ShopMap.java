@@ -60,8 +60,8 @@ public class ShopMap extends game.Map{
         GameEvent pictureEvent = new Textbox("Ein Bild vom Outis.");
         mapEvents.add( new MapEvent(9, 3, Game.DOWN, null, false, pictureEvent, null ));
         
-        mapEvents.add(new MapEvent(9, 13, Game.DOWN, null, true, null, new EventList( new Teleport(1, 13, 6, Game.DOWN), new WaitEvent(10) )));
-        mapEvents.add(new MapEvent(10, 13, Game.DOWN, null, true, null, new EventList( new Teleport(1, 13, 6, Game.DOWN), new WaitEvent(10) )));
+        mapEvents.add(new MapEvent(9, 13, Game.DOWN, null, true, null, new EventList( new Teleport(1, 18, 6, Game.DOWN), new WaitEvent(10) )));
+        mapEvents.add(new MapEvent(10, 13, Game.DOWN, null, true, null, new EventList( new Teleport(1, 18, 6, Game.DOWN), new WaitEvent(10) )));
 	}
 
 }

@@ -43,14 +43,14 @@ public class Game {
 		gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, 640,480);
         gc.setTransform(new Affine(new Translate(-player.animation.getX()+19*16, -player.animation.getY()+7*32)));
-        for( int x = 0; x < 20; x++ )
-        	for( int y = 0; y < 15; y++ )
+        for( int x = 0; x < map.getWidth(); x++ )
+        	for( int y = 0; y < map.getHeight(); y++ )
         	{
         		gc.drawImage( map.tileset, (map.getTile(0, x, y)%8)*32, (map.getTile(0, x, y)/8)*32, 32, 32, x*32, y*32, 32, 32 );
         	}
         
-        for( int x = 0; x < 20; x++ )
-        	for( int y = 0; y < 15; y++ )
+        for( int x = 0; x < map.getWidth(); x++ )
+        	for( int y = 0; y < map.getHeight(); y++ )
         	{
         		gc.drawImage( map.tileset, (map.getTile(1, x, y)%8)*32, (map.getTile(1, x, y)/8)*32, 32, 32, x*32, y*32, 32, 32 );
         	}
@@ -59,8 +59,8 @@ public class Game {
         for( MapEvent x : map.mapEvents) x.draw(gc);
         
         
-        for( int x = 0; x < 20; x++ )
-        	for( int y = 0; y < 15; y++ )
+        for( int x = 0; x < map.getWidth(); x++ )
+        	for( int y = 0; y < map.getHeight(); y++ )
         	{
         		gc.drawImage( map.tileset, (map.getTile(2, x, y)%8)*32, (map.getTile(2, x, y)/8)*32, 32, 32, x*32, y*32, 32, 32 );
         	}

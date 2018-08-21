@@ -139,7 +139,7 @@ public class Editor extends Application {
             }
         });
 	    
-	    Canvas canvas = new Canvas( map.getWidth()*16*SCALE, map.getHeigth()*16*SCALE );	    
+	    Canvas canvas = new Canvas( map.getWidth()*16*SCALE, map.getHeight()*16*SCALE );	    
 	    Canvas tCanvas = new Canvas( 128*SCALE,512*SCALE );
 	    
 	    scrollPane.setContent( canvas );
@@ -235,22 +235,22 @@ public class Editor extends Application {
             public void handle(long currentNanoTime)
             {
             	canvas.setWidth(map.getWidth()*16*SCALE);
-            	canvas.setHeight(map.getHeigth()*16*SCALE);
+            	canvas.setHeight(map.getHeight()*16*SCALE);
             	
             	gc.setFill(Color.DARKGRAY);
-        	    gc.fillRect(0,0,map.getWidth()*16*SCALE,map.getHeigth()*16*SCALE);
+        	    gc.fillRect(0,0,map.getWidth()*16*SCALE,map.getHeight()*16*SCALE);
         	    
         	    if( layer[0] < 3 )
         	    {
         	    	for( int l = 0; l < layer[0]; l++ )
-            	    	for( int y = 0; y < map.getHeigth(); y++ )
+            	    	for( int y = 0; y < map.getHeight(); y++ )
             	    		for( int x = 0; x < map.getWidth(); x++ )
             	    			renderTile( x, y, map.getTile(l, x, y), tileset, gc );
         	    	
         	    	gc.setFill(Color.rgb(0,0,0,0.3));
-        	    	gc.fillRect(0,0,map.getWidth()*16*SCALE,map.getHeigth()*16*SCALE);
+        	    	gc.fillRect(0,0,map.getWidth()*16*SCALE,map.getHeight()*16*SCALE);
         	    	
-        	    	for( int y = 0; y < map.getHeigth(); y++ )
+        	    	for( int y = 0; y < map.getHeight(); y++ )
         	    		for( int x = 0; x < map.getWidth(); x++ )
         	    		{
         	    			renderTile( x, y, map.getTile(layer[0], x, y), tileset, gc );        
@@ -261,14 +261,14 @@ public class Editor extends Application {
         	    }
         	    else {
         	    	for( int l = 0; l < 3; l++ )
-            	    	for( int y = 0; y < map.getHeigth(); y++ )
+            	    	for( int y = 0; y < map.getHeight(); y++ )
             	    		for( int x = 0; x < map.getWidth(); x++ )
             	    			renderTile( x, y, map.getTile(l, x, y), tileset, gc );
             	    
             	    if( layer[0] == 4 )
             	    {            	    	
                     	
-            	    	for( int y = 0; y < map.getHeigth(); y++ )
+            	    	for( int y = 0; y < map.getHeight(); y++ )
             	    		for( int x = 0; x < map.getWidth(); x++ ) {
             	    			gc.setStroke(Color.GRAY);
         	    				gc.strokeRect(x*16*SCALE + 0.5, y*16*SCALE + 0.5, 16*SCALE , 16*SCALE );
