@@ -42,7 +42,7 @@ public class Game {
 		gc.setTransform(new Affine());
 		gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, 640,480);
-        gc.setTransform(new Affine(new Translate(-player.getX()*32+19*16, -player.getY()*32+7*32)));
+        gc.setTransform(new Affine(new Translate(-player.animation.getX()+19*16, -player.animation.getY()+7*32)));
         for( int x = 0; x < 20; x++ )
         	for( int y = 0; y < 15; y++ )
         	{

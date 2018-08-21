@@ -2,7 +2,7 @@ package events;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.Image;
 
-public class CharacterAnimation {
+public class CharacterAnimation extends GameEvent {
 	
 	
 	/**
@@ -14,6 +14,14 @@ public class CharacterAnimation {
 	static final int LEFT = 2;
 	static final int RIGHT = 3;
 	
+	public int getX() {
+		return 0;
+	}
+	
+	public int getY() {
+		return 0;
+	}
+	
 	/**
 	 *
 	 * @param x x-Posiiton
@@ -23,8 +31,8 @@ public class CharacterAnimation {
 	 * @return Game Event: Figur bewegt sich. 
 	 */
 	
-	public static final GameEvent createWalkingAnimation( int x, int y, int dir, Image charset ) {
-		return new GameEvent() {
+	public static final CharacterAnimation createWalkingAnimation( int x, int y, int dir, Image charset ) {
+		return new CharacterAnimation() {
 			int animationTimer = 15;			
 			
 			public void update() {
@@ -57,6 +65,18 @@ public class CharacterAnimation {
 			public boolean isFinished() {
 				return animationTimer == 0;
 			}
+			
+			public int getX() {
+				if( dir == RIGHT ) return x*32-animationTimer*2;
+				else if( dir == LEFT ) return x*32+animationTimer*2;
+				else return x*32;
+			}
+			
+			public int getY() {
+				if( dir == DOWN ) return (y)*32-animationTimer*2;
+				else if (dir == UP ) return (y)*32+animationTimer*2;
+				else return (y)*32;
+			}
 		};
 	}
 	
@@ -70,12 +90,21 @@ public class CharacterAnimation {
 	 * @return GameEvent: Figur steht
 	 */
 	
-	public static final GameEvent createStandingAnimation( int x, int y, int dir, Image charset ) {
-		return new GameEvent() {
+	public static final CharacterAnimation createStandingAnimation( int x, int y, int dir, Image charset ) {
+		return new CharacterAnimation() {
 			
 			public void draw(GraphicsContext gc) {
 				gc.drawImage(charset, 0*32, dir*64, 32, 64, x*32, (y-1)*32, 32, 64);
 			}
+			
+			public int getX() {
+				return x*32;
+			}
+			
+			public int getY() {
+				return y*32;
+			}
+
 		};
 	}
 }
