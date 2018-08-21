@@ -36,6 +36,8 @@ public class Main extends Application
                 public void handle(KeyEvent e)
                 {
                     String code = e.getCode().toString();
+                    if( code.equals("SPACE")) code = "ENTER";
+                    
                     if ( !Game.inputs.contains(code) )
                         Game.inputs.add( code );
                 }
@@ -47,6 +49,8 @@ public class Main extends Application
                 public void handle(KeyEvent e)
                 {
                     String code = e.getCode().toString();
+                    if( code.equals("SPACE")) code = "ENTER";
+                    
                     Game.inputs.remove( code );
                 }
             });
