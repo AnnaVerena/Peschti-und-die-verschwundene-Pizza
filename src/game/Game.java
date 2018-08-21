@@ -14,6 +14,8 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
+import javafx.scene.transform.Affine;
+import javafx.scene.transform.Translate;
 
 public class Game {
 	
@@ -30,14 +32,17 @@ public class Game {
 	public static GameEvent currentEvent;
 	public static Image textboxTileset;
 	
+	public static Camera camera = new Camera(0,0);
 	/**
 	 * Hier malen wir die Karte
 	 * 
 	 * @param gc braucht man zum Malen
 	 */
 	public static void draw(GraphicsContext gc) {
+		gc.setTransform(new Affine());
 		gc.setFill(Color.BLACK);
         gc.fillRect(0, 0, 640,480);
+        gc.setTransform(new Affine(new Translate(-player.getX()*32+19*16, -player.getY()*32+7*32)));
         for( int x = 0; x < 20; x++ )
         	for( int y = 0; y < 15; y++ )
         	{

@@ -53,7 +53,7 @@ public class MapEvent extends GameEvent{
 	}
 	
 	
-	int getX() {
+	public int getX() {
 		return posx;
 	}
 	
