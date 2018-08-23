@@ -26,7 +26,7 @@ public class ShopMap extends game.Map{
         
         mapEvents.add( busi );
         
-        GameEvent bookEvent = new Textbox("Buecher...\n"
+        GameEvent bookEvent = new Textbox("Bücher...\n"
         		+ "Peschti mag nicht lesen.");        
         mapEvents.add( new MapEvent(10, 4, Game.DOWN, null, false, bookEvent, null ));
         mapEvents.add( new MapEvent(11, 4, Game.DOWN, null, false, bookEvent, null ));
@@ -38,7 +38,7 @@ public class ShopMap extends game.Map{
         mapEvents.add( new MapEvent(15, 10, Game.DOWN, null, false, bookEvent, null ));
         
         GameEvent cookieEvent = new Choicebox("Hmm ...\n"
-        		+ "Die Kekse sehen \nsehr lecker aus!\nM�chtest du einen kaufen?", new Textbox("Ein Keks kosten 1 $."), new Textbox("Du bist ja komisch."));
+        		+ "Die Kekse sehen sehr lecker aus!\nMöchtest du einen kaufen?", new Textbox("Ein Keks kostet 1$."), new Textbox("Du bist ja komisch."));
         mapEvents.add( new MapEvent(11, 7, Game.DOWN, null, false, cookieEvent, null ));
         
         
@@ -48,8 +48,8 @@ public class ShopMap extends game.Map{
         mapEvents.add( new MapEvent(9, 7, Game.DOWN, null, false, kakaoEvent, null ));
         
         GameEvent energyEvent = new Textbox("Energietrunk!\n"
-        		+ "Dieses Getraenk liefert eine erhebliche\n"
-        		+ "Menge Energie. Es ist gruen\n"
+        		+ "Dieses Getränk liefert eine erhebliche\n"
+        		+ "Menge Energie. Es ist grün\n"
         		+ "und leuchtet bei Dunkelheit.");
         mapEvents.add( new MapEvent(10, 7, Game.DOWN, null, false, energyEvent, null ));
 
