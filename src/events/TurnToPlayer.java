@@ -1,6 +1,7 @@
 package events;
 
 import game.Game;
+import game.GameUtil;
 import javafx.scene.canvas.GraphicsContext;
 
 public class TurnToPlayer extends GameEvent {
@@ -17,10 +18,10 @@ public class TurnToPlayer extends GameEvent {
 	}
 	
 	public void update() {
-		if( Game.player.getDirection() == Game.UP ) me.setDirection(Game.DOWN);
-		if( Game.player.getDirection() == Game.DOWN ) me.setDirection(Game.UP);
-		if( Game.player.getDirection() == Game.LEFT ) me.setDirection(Game.RIGHT);
-		if( Game.player.getDirection() == Game.RIGHT ) me.setDirection(Game.LEFT);
+		if( Game.player.getDirection() == GameUtil.UP ) me.setDirection(GameUtil.DOWN);
+		if( Game.player.getDirection() == GameUtil.DOWN ) me.setDirection(GameUtil.UP);
+		if( Game.player.getDirection() == GameUtil.LEFT ) me.setDirection(GameUtil.RIGHT);
+		if( Game.player.getDirection() == GameUtil.RIGHT ) me.setDirection(GameUtil.LEFT);
 		finished = true;
 	}
 	

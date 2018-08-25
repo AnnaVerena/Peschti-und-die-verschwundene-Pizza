@@ -46,7 +46,7 @@ public class Editor extends Application {
 	
 	public void start(Stage theStage) throws MalformedURLException 
 	{
-	    theStage.setTitle( "Mapeditor (Ebene 1)" );
+	    theStage.setTitle( "Mapeditor (Layer 0)" );
 	    map = new Map(20, 15);
 	    int[] layer = {0};
 	         

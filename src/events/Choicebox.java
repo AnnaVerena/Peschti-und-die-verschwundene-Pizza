@@ -1,5 +1,6 @@
 package events;
 import game.Game;
+import game.GameUtil;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.paint.Color;
 import javafx.scene.text.Font;
@@ -71,39 +72,8 @@ public class Choicebox extends GameEvent {
 			else no.draw( gc );
 		}
 		else {
-			gc.drawImage(Game.textboxTileset, 0, 0, 32, 32, 2*16*2, 11*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 0, 32, 32, 32, 2*16*2, 12*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 0, 32, 32, 32, 2*16*2, 13*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 0, 64, 32, 32, 2*16*2, 14*16*2, 32, 32  );
-			
-			for( int x = 3; x < 14; x++ ) {
-				gc.drawImage(Game.textboxTileset, 32, 0, 32, 32, x*16*2, 11*16*2, 32, 32  );
-				gc.drawImage(Game.textboxTileset, 32, 32, 32, 32, x*16*2, 12*16*2, 32, 32  );
-				gc.drawImage(Game.textboxTileset, 32, 32, 32, 32, x*16*2, 13*16*2, 32, 32  );
-				gc.drawImage(Game.textboxTileset, 32, 64, 32, 32, x*16*2, 14*16*2, 32, 32  );
-			}
-			
-			gc.drawImage(Game.textboxTileset, 64, 0, 32, 32, 14*16*2, 11*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 64, 32, 32, 32, 14*16*2, 12*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 64, 32, 32, 32, 14*16*2, 13*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 64, 64, 32, 32, 14*16*2, 14*16*2, 32, 32  );
-			
-			gc.drawImage(Game.textboxTileset, 0, 0, 32, 32, 15*16*2, 11*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 0, 32, 32, 32, 15*16*2, 12*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 0, 32, 32, 32, 15*16*2, 13*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 0, 64, 32, 32, 15*16*2, 14*16*2, 32, 32  );
-			
-			for( int x = 16; x < 17; x++ ) {
-				gc.drawImage(Game.textboxTileset, 32, 0, 32, 32, x*16*2, 11*16*2, 32, 32  );
-				gc.drawImage(Game.textboxTileset, 32, 32, 32, 32, x*16*2, 12*16*2, 32, 32  );
-				gc.drawImage(Game.textboxTileset, 32, 32, 32, 32, x*16*2, 13*16*2, 32, 32  );
-				gc.drawImage(Game.textboxTileset, 32, 64, 32, 32, x*16*2, 14*16*2, 32, 32  );
-			}
-			
-			gc.drawImage(Game.textboxTileset, 64, 0, 32, 32, 17*16*2, 11*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 64, 32, 32, 32, 17*16*2, 12*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 64, 32, 32, 32, 17*16*2, 13*16*2, 32, 32  );
-			gc.drawImage(Game.textboxTileset, 64, 64, 32, 32, 17*16*2, 14*16*2, 32, 32  );
+			GameUtil.drawTextbox(gc, 2, 11, 16, 4);			
+			GameUtil.drawTextbox(gc, 15, 11, 3, 4);
 			
 			Font font = Font.loadFont("file:res/OxygenMono-Regular.otf", 20 );
 		    gc.setFont( font );
