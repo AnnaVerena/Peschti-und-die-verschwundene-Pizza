@@ -7,8 +7,8 @@ import javafx.scene.image.Image;
 
 public class MapEvent extends GameEvent{
 
-	int posx;
-	int posy;
+	protected int posx;
+	protected int posy;
 	
 	boolean belowPlayer = false;
 	public GameEvent actionEvent = null;
@@ -16,7 +16,7 @@ public class MapEvent extends GameEvent{
 	
 	// Das charset besteht aus 3x4 Bildern.
 	// dir und step geben das Bild an.
-	Image charset;
+	protected Image charset;
 	int dir; 		// y-Position im Charset
 	int step = 0; 	// x-Position im Charset
 	

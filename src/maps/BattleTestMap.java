@@ -61,6 +61,20 @@ public class BattleTestMap extends game.Map{
         
         MapEvent char3 = new MapEvent( 18,5, GameUtil.LEFT, GameUtil.resample (new Image(new File("res/Business.png").toURI().toURL().toString()),2));
         mapEvents.add(char3);
+        
+        MapEvent hundi = new MapEvent( 2, 7, GameUtil.RIGHT, GameUtil.resample(new Image( new File("res/hundi.png").toURI().toURL().toString()), 2)) {
+        	int timer = 0;
+        	
+        	public void update() {
+        		timer++;
+        	}
+        	
+        	public void draw(GraphicsContext gc) {
+        		int tmp = (timer/20)%2 == 0 ? 0 : 64;
+        		if( charset != null ) gc.drawImage(charset, tmp, 0, 64, 64, posx*32, (posy-1)*32, 64, 64);	
+        	}
+        };
+        mapEvents.add(hundi);
 	}
 	
 	
