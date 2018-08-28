@@ -8,7 +8,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 
 import events.MapEvent;
-import javafx.scene.image.Image;
+import render.Image;
 
 public class Map 
 {
@@ -86,12 +86,30 @@ public class Map
 		map[layer][x][y] = tile;
 	}
 	
-	public boolean isBlocked( int x, int y )
+	public boolean isTileBlocked( int x, int y )
 	{
 		return blocked[x][y];
 	}
 	
-	public void setBlocked( int x, int y, boolean b )
+	/**
+	 * 
+	 *
+	 * @param x x-Position 
+	 * @param y y-Position
+	 * @param map Karte
+	 * @param chars Liste der Map-Events
+	 * @return Wir erfahren, ob eine Position auf der Karte durch einen Gegenstand oder eine Figur geblockt ist
+	 */
+
+	public boolean isBlocked(int x, int y ) {
+		if(isTileBlocked(x, y)) return true;
+		for (MapEvent me : mapEvents) {
+			if(x == me.getX() && y == me.getY() && !me.belowPlayer) return true;
+		}
+		return false;
+	}
+	
+	public void setTileBlocked( int x, int y, boolean b )
 	{
 		blocked[x][y] = b;
 	}

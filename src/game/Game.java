@@ -9,18 +9,16 @@ import events.GameEvent;
 import events.MapEvent;
 import events.Player;
 import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.Translate;
+import render.Image;
+import render.Renderer;
 
 public class Game {
-	
-
-	
 	
 	public static Map map;
 	public static Player player;
@@ -35,45 +33,47 @@ public class Game {
 	 * 
 	 * @param gc braucht man zum Malen
 	 */
-	public static void draw(GraphicsContext gc) {
-		gc.setTransform(new Affine());
-		gc.setFill(Color.BLACK);
-        gc.fillRect(0, 0, 640,480);
+	public static void render() {
+		Renderer.clearScreen();
         
-        int tx = -player.animation.getX()+19*16;
+        int tx = -player.getScrX()+19*8;
         if( tx > 0 ) tx = 0;
-        if(tx < -map.getWidth()*32 + 20*32) tx = -map.getWidth()*32 + 20*32;
+        if(tx < -map.getWidth()*16 + 20*16) tx = -map.getWidth()*16 + 20*16;
         
-        int ty = -player.animation.getY()+7*32;
+        int ty = -player.getScrY()+7*16;
         if( ty > 0 ) ty = 0;
-        if( ty < -map.getHeight()*32 + 15*32 ) ty = -map.getHeight()*32 + 15*32;
+        if( ty < -map.getHeight()*16 + 15*16 ) ty = -map.getHeight()*16 + 15*16;
         
-        gc.setTransform(new Affine(new Translate(tx, ty)));
-        
-        for( int x = 0; x < map.getWidth(); x++ )
+        camera.setPos(tx,ty);
+        Renderer.setView(camera.view);
+        /*
+		for( int x = 0; x < map.getWidth(); x++ )
         	for( int y = 0; y < map.getHeight(); y++ )
         	{
-        		gc.drawImage( map.tileset, (map.getTile(0, x, y)%8)*32, (map.getTile(0, x, y)/8)*32, 32, 32, x*32, y*32, 32, 32 );
+        		Renderer.renderSubImage( map.tileset, (map.getTile(0, x, y)%8)*16, (map.getTile(0, x, y)/8)*16, 16, 16, x*16, y*16, 16, 16 );
         	}
         
         for( int x = 0; x < map.getWidth(); x++ )
         	for( int y = 0; y < map.getHeight(); y++ )
         	{
-        		gc.drawImage( map.tileset, (map.getTile(1, x, y)%8)*32, (map.getTile(1, x, y)/8)*32, 32, 32, x*32, y*32, 32, 32 );
+        		Renderer.renderSubImage( map.tileset, (map.getTile(1, x, y)%8)*16, (map.getTile(1, x, y)/8)*16, 16, 16, x*16, y*16, 16, 16 );
         	}
-          
+          */
+		Renderer.renderMapLayer(map, 0);
+		Renderer.renderMapLayer(map,  1);
         
-        for( MapEvent x : map.mapEvents) x.draw(gc);
+        for( MapEvent x : map.mapEvents) x.render();
         
-        
+        Renderer.renderMapLayer(map,  2);
+        /*
         for( int x = 0; x < map.getWidth(); x++ )
         	for( int y = 0; y < map.getHeight(); y++ )
         	{
-        		gc.drawImage( map.tileset, (map.getTile(2, x, y)%8)*32, (map.getTile(2, x, y)/8)*32, 32, 32, x*32, y*32, 32, 32 );
+        		Renderer.renderSubImage( map.tileset, (map.getTile(2, x, y)%8)*16, (map.getTile(2, x, y)/8)*16, 16, 16, x*16, y*16, 16, 16 );
         	}
-        
+        */
         if(currentEvent != null)
-        	currentEvent.draw(gc);
+        	currentEvent.render();
 		
 	}
 	
@@ -100,24 +100,32 @@ public class Game {
 		
 	}
 	
+	public static void loop() {
+		update();
+		render();
+	}
+	
 	/**
 	 * Wir initialisieren die Parameter
 	 * @throws MalformedURLException
 	 */
 	
-	public static void init() throws MalformedURLException {
+	public static void init(){
 
-        Game.textboxTileset = GameUtil.resample (new Image(new File("res/Textbox.png").toURI().toURL().toString()),2);
-		player = new Player( 5, 5, GameUtil.DOWN, GameUtil.resample (new Image(new File("res/Peschti.png").toURI().toURL().toString()),2));
+        Game.textboxTileset = Image.loadImage(new File("res/Textbox.png"));
+		player = new Player( 7, 9, GameUtil.DOWN, Image.loadImage(new File("res/charsets/Peschti.png")));
 		
-		Game.maps.add( new maps.ShopMap() );
-        Game.maps.add( new maps.VillageMap() );
-        Game.maps.add(new maps.OutisZimmer());
-        Game.maps.add(new maps.BattleTestMap());
+		try {
+			Game.maps.add( new maps.ShopMap() );
+			Game.maps.add( new maps.VillageMap() );
+			Game.maps.add(new maps.OutisZimmer());
+		} catch (MalformedURLException e) {
+			e.printStackTrace();
+		}
         
         for( Map m : Game.maps ) m.mapEvents.add(player);
         
-        Game.map = Game.maps.get(3);
+        Game.map = Game.maps.get(1);
 	}
 	
 	public static void startEvent(GameEvent event )

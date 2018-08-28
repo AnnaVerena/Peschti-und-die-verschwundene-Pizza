@@ -217,7 +217,7 @@ public class Editor extends Application {
 	                	int tx = (int)e.getX()/(16*SCALE);
 	                	int ty = (int)e.getY()/(16*SCALE);
 	                	if( layer[0] < 3 ) map.setTile(layer[0], tx, ty, tileId[0]);
-	                	if( layer[0] == 4 ) map.setBlocked(tx, ty, !map.isBlocked(tx, ty));
+	                	if( layer[0] == 4 ) map.setTileBlocked(tx, ty, !map.isTileBlocked(tx, ty));
 	                }
 	            });
 	    
@@ -273,7 +273,7 @@ public class Editor extends Application {
             	    			gc.setStroke(Color.GRAY);
         	    				gc.strokeRect(x*16*SCALE + 0.5, y*16*SCALE + 0.5, 16*SCALE , 16*SCALE );
         	    				
-            	    			if(map.isBlocked(x, y))
+            	    			if(map.isTileBlocked(x, y))
             	    			{    	    				
             	    				
             	    				gc.setStroke(Color.BLACK);

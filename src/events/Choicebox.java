@@ -1,10 +1,9 @@
 package events;
+
 import game.Game;
 import game.GameUtil;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.paint.Color;
-import javafx.scene.text.Font;
-import javafx.scene.transform.Affine;
+import render.Color;
+import render.Renderer;
 
 public class Choicebox extends GameEvent {
 
@@ -42,12 +41,12 @@ public class Choicebox extends GameEvent {
 		}
 		else
 		{
-			if(Game.inputs.contains("ENTER"))
+			if(Game.inputs.contains("A"))
 			{
 				choosen = true;
 				yes.init();
 				no.init();
-				Game.inputs.remove("ENTER");
+				Game.inputs.remove("A");
 			}			
 			if(Game.inputs.contains("DOWN"))
 			{
@@ -64,31 +63,30 @@ public class Choicebox extends GameEvent {
 		
 	}
 	
-	public void draw( GraphicsContext gc ){
-		gc.setTransform(new Affine() );
+	public void render( ){
+		
+		Renderer.setView(Renderer.MAT4_IDENTITY);
+		
 		if( choosen )
 		{
-			if( choice == true ) yes.draw(gc);
-			else no.draw( gc );
+			if( choice == true ) yes.render();
+			else no.render();
 		}
 		else {
-			GameUtil.drawTextbox(gc, 2, 11, 16, 4);			
-			GameUtil.drawTextbox(gc, 15, 11, 3, 4);
+			GameUtil.renderTextbox( 2, 11, 16, 4);			
+			GameUtil.renderTextbox(15, 11, 3, 4);
 			
-			Font font = Font.loadFont("file:res/OxygenMono-Regular.otf", 20 );
-		    gc.setFont( font );
-		    gc.setFill(Color.BLACK);
-		    gc.fillText( text , 2*32+16 , 12*32  );
-		    if(choice == true)
-		    	gc.setFill(Color.BLACK);
-		    else gc.setFill(Color.GREY);
+			Renderer.renderText(2*16+8, 11*16+5, text, Color.BLACK);
+			Color color = Color.BLACK;
+			
+			if(choice == true)
+		    	Renderer.renderText(15*16+8, 11*16+5, "\nJa", color);
+		    else Renderer.renderText(15*16+8, 11*16+5, "\n\nNein", color);
 		    
-		    gc.fillText( "\nJa" , 15*32+16 +4 , 12*32  );
-		    
-		    if(choice == false)
-		    	gc.setFill(Color.BLACK);
-		    else gc.setFill(Color.GREY);
-		    gc.fillText( "\n\nNein" , 15*32+16 +4 , 12*32  );
+			color = Color.GRAY;
+			if(choice == false)
+		    	Renderer.renderText(15*16+8, 11*16+5, "\nJa", color);
+		    else Renderer.renderText(15*16+8, 11*16+5, "\n\nNein", color);
 		}		
 	}
 	

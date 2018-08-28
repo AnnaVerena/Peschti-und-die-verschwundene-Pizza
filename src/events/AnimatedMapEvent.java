@@ -1,6 +1,6 @@
 package events;
 
-import javafx.scene.image.Image;
+import render.Image;
 
 public class AnimatedMapEvent extends MapEvent{
 
@@ -23,8 +23,8 @@ public class AnimatedMapEvent extends MapEvent{
 		
 		if( timer > duration ) {
 			timer = 0;
-			step++;
-			step %= 3;
+			frame++;
+			frame %= 3;
 		}
 	}
 

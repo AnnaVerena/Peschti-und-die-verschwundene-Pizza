@@ -1,7 +1,5 @@
 package events;
 
-import javafx.scene.canvas.GraphicsContext;
-
 public class EventList extends GameEvent{
 	GameEvent[] events;
 	int stage;
@@ -31,10 +29,10 @@ public class EventList extends GameEvent{
 		}
 	}
 	
-	public void draw( GraphicsContext gc ){
+	public void render(){
 		if( length == 0 ) return;
-		else if( stage >= length ) events[length-1].draw(gc);
-		else events[stage].draw(gc);
+		else if( stage >= length ) events[length-1].render();
+		else events[stage].render();
 	}
 	
 	public boolean isFinished() {

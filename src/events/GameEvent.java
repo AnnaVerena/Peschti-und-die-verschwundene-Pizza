@@ -1,8 +1,7 @@
 package events;
-import javafx.scene.canvas.GraphicsContext;
 
 /**
- * GameEvents sind Events wie Dialoge, Kämpfe etc.
+ * GameEvents sind Events wie Dialoge, Kï¿½mpfe etc.
  * @author Verena
  *
  */
@@ -16,7 +15,7 @@ public class GameEvent {
 		
 	}
 	
-	public void draw( GraphicsContext gc ){
+	public void render(){
 		
 	}
 	

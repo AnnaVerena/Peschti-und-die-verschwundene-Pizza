@@ -1,12 +1,11 @@
 package events;
 import game.Game;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
+import render.Image;
+import render.Renderer;
 
 public class Player extends MapEvent {
 	
-	public CharacterAnimation animation;
-	boolean idle;
+	int timer;
 
 	/**
 	 * Player erbt von MapEvent
@@ -19,8 +18,7 @@ public class Player extends MapEvent {
 	public Player(int posx, int posy, int dir, Image charset) {
 		super(posx, posy, dir, charset);
 		
-		animation = CharacterAnimation.createStandingAnimation(posx, posy, dir, charset);
-		idle = true;
+		timer = 0;
 	}
 	
 	public void tryToMove( int dir ) {
@@ -42,10 +40,10 @@ public class Player extends MapEvent {
 			}
 		}
 		
-		if(Game.inputs.contains("RIGHT") && !this.isBlocked(this.getX()+1, this.getY(), Game.map, Game.map.mapEvents)) move(RIGHT);
-    	else if(Game.inputs.contains("LEFT") && !this.isBlocked(this.getX()-1, this.getY(), Game.map, Game.map.mapEvents)) move(LEFT);
-    	else if(Game.inputs.contains("UP") && !this.isBlocked(this.getX(), this.getY()-1, Game.map, Game.map.mapEvents)) move(UP);
-    	else if(Game.inputs.contains("DOWN") && !this.isBlocked(this.getX(), this.getY()+1, Game.map, Game.map.mapEvents)) move(DOWN);
+		if(Game.inputs.contains("RIGHT") && !Game.map.isBlocked(this.getX()+1, this.getY())) move(RIGHT);
+    	else if(Game.inputs.contains("LEFT") && !Game.map.isBlocked(this.getX()-1, this.getY())) move(LEFT);
+    	else if(Game.inputs.contains("UP") && !Game.map.isBlocked(this.getX(), this.getY()-1)) move(UP);
+    	else if(Game.inputs.contains("DOWN") && !Game.map.isBlocked(this.getX(), this.getY()+1)) move(DOWN);
 	}
 	
 	public void move( int dir ) {
@@ -55,27 +53,21 @@ public class Player extends MapEvent {
 		if( dir == RIGHT ) posx++;
 		
 		this.dir = dir;
-		animation = CharacterAnimation.createWalkingAnimation(posx, posy, dir, charset);
-		idle = false;
+		timer = 15;
 	}
 	
 	public void init()
 	{
-		step = 0;
-		idle = true;
-		animation = CharacterAnimation.createStandingAnimation(posx , posy, dir, charset);		
+		frame = 0;
+		timer = 0;
 	}
 
 	public void update() {
-		if( animation.isFinished() ) {
-			idle = true;
-			animation = CharacterAnimation.createStandingAnimation(posx , posy, dir, charset);
-		}
-		
-		if( !idle ) animation.update();
-		else if(Game.inputs.contains("ENTER"))
+				
+		if( timer > 0 ) timer--;
+		else if(Game.inputs.contains("A"))
 		{
-			Game.inputs.remove("ENTER");
+			Game.inputs.remove("A");
 			int x = posx;
 			if(dir == RIGHT) x++;
 			if(dir == LEFT) x--;
@@ -95,11 +87,43 @@ public class Player extends MapEvent {
     	else if(Game.inputs.contains("RIGHT")) tryToMove(RIGHT);
     	else if(Game.inputs.contains("LEFT")) tryToMove(LEFT);
     	else if(Game.inputs.contains("UP")) tryToMove(UP);
-    	else if(Game.inputs.contains("DOWN")) tryToMove(DOWN);
+    	else if(Game.inputs.contains("DOWN")) tryToMove(DOWN); 
 	}
 	
-	public void draw( GraphicsContext gc) {
-		animation.draw(gc);
+	public void render() {
+		
+		if(dir == RIGHT)
+        {
+        	if( (timer / 4) == 0 || (timer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16-timer, (posy-1)*16, 16, 32);
+        	else if( (timer / 4) == 1 || (timer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*32, 16, 32, posx*16-timer, (posy-1)*16, 16, 32);
+        }
+        else if(dir == LEFT)
+        {
+        	if( (timer / 4) == 0 || (timer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16+timer, (posy-1)*16, 16, 32);
+        	else if( (timer / 4) == 1 || (timer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*32, 16, 32, posx*16+timer, (posy-1)*16, 16, 32);
+        }
+        else if(dir == DOWN)
+        {
+        	if( (timer / 4) == 0 || (timer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16-timer, 16, 32);
+        	else if( (timer / 4) == 1 || (timer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16-timer, 16, 32);
+        }
+        else if(dir == UP)
+        {
+        	if( (timer / 4) == 0 || (timer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16+timer, 16, 32);
+        	else if( (timer / 4) == 1 || (timer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16+timer, 16, 32);
+        }				
+	}
+	
+	public int getScrX() {
+		if( dir == RIGHT ) return posx*16-timer;
+		else if( dir == LEFT ) return posx*16+timer;
+		else return posx*16;
+	}
+	
+	public int getScrY() {
+		if( dir == DOWN ) return posy*16-timer;
+		else if (dir == UP ) return posy*16+timer;
+		else return posy*16;
 	}
 	
 	

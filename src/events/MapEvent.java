@@ -1,24 +1,22 @@
 package events;
-import java.util.ArrayList;
 
-import game.Map;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.Image;
+import render.Image;
+import render.Renderer;
 
 public class MapEvent extends GameEvent{
 
 	protected int posx;
 	protected int posy;
 	
-	boolean belowPlayer = false;
+	public boolean belowPlayer = false;
 	public GameEvent actionEvent = null;
 	public GameEvent touchEvent = null;
 	
 	// Das charset besteht aus 3x4 Bildern.
-	// dir und step geben das Bild an.
+	// dir und frame geben das Bild an.
 	protected Image charset;
 	int dir; 		// y-Position im Charset
-	int step = 0; 	// x-Position im Charset
+	int frame = 0; 	// x-Position im Charset
 	
 	final int UP = 1;
 	final int DOWN = 0;
@@ -48,8 +46,10 @@ public class MapEvent extends GameEvent{
 	 * Wir malen die Figur
 	 */
 	
-	public void draw(GraphicsContext gc) {
-		if( charset != null ) gc.drawImage(charset, step*32, dir*64, 32, 64, posx*32, (posy-1)*32, 32, 64);	
+	public void render() {
+		if( charset != null ) {
+			Renderer.renderSubImage(charset, frame*16, dir*32, 16, 32, posx*16, (posy-1)*16, 16, 32);	
+		}
 	}
 	
 	
@@ -76,13 +76,13 @@ public class MapEvent extends GameEvent{
 	void setDirection(int d) {
 		dir = d;
 	}
-	void setStep(int s) {
-		step = s;
+	void setFrame(int f) {
+		frame = f;
 	}
 	
 	public void init()
 	{
-		step = 0;
+		frame = 0;
 	}
 	
 	public void update()
@@ -90,21 +90,5 @@ public class MapEvent extends GameEvent{
 		
 	}
 	
-	/**
-	 * 
-	 *
-	 * @param x x-Position 
-	 * @param y y-Position
-	 * @param map Karte
-	 * @param chars Liste der Map-Events
-	 * @return Wir erfahren, ob eine Position auf der Karte durch einen Gegenstand oder eine Figur geblockt ist
-	 */
-
-	boolean isBlocked(int x, int y, Map map, ArrayList<MapEvent> chars) {
-		if(map.isBlocked(x, y)) return true;
-		for (MapEvent me : chars) {
-			if(x == me.getX() && y == me.getY() && !me.belowPlayer) return true;
-		}
-		return false;
-	}
+	
 }
