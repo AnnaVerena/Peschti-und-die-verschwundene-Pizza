@@ -1,4 +1,4 @@
-package events;
+package event;
 
 /**
  * GameEvents sind Events wie Dialoge, K�mpfe etc.

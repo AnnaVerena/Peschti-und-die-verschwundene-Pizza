@@ -1,16 +1,16 @@
-package maps;
+package map;
 
 import java.io.File;
 import java.net.MalformedURLException;
 
-import events.Choicebox;
-import events.GameEvent;
-import events.MapEvent;
-import events.Teleport;
-import events.Textbox;
-import events.TurnToPlayer;
-import events.WaitEvent;
-import events.EventList;
+import event.Choicebox;
+import event.EventList;
+import event.GameEvent;
+import event.MapEvent;
+import event.Teleport;
+import event.Textbox;
+import event.TurnToPlayer;
+import event.WaitEvent;
 import game.GameUtil;
 import render.Image;
 
@@ -22,7 +22,7 @@ public class ShopMap extends game.Map{
         
         MapEvent busi = new MapEvent( 8,5, GameUtil.DOWN, Image.loadImage(new File("res/charsets/Business.png")));
         busi.actionEvent = new EventList( new TurnToPlayer(busi), new Textbox("Kaufen, kaufen, kaufen!\n"
-        		+ "Ich habe die besten Preise!"), new events.TurnEvent(busi, GameUtil.DOWN));
+        		+ "Ich habe die besten Preise!"), new event.TurnEvent(busi, GameUtil.DOWN));
         
         mapEvents.add( busi );
         

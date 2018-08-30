@@ -1,4 +1,4 @@
-package events;
+package event;
 
 public class EventList extends GameEvent{
 	GameEvent[] events;

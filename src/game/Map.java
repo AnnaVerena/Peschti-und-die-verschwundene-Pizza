@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import events.MapEvent;
+import event.MapEvent;
 import render.Image;
 
 public class Map 

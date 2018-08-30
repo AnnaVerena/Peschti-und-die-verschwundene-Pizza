@@ -1,4 +1,4 @@
-package events;
+package event;
 
 import game.Game;
 import game.GameUtil;

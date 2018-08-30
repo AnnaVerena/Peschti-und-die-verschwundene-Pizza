@@ -1,4 +1,4 @@
-package events;
+package event;
 
 import render.Image;
 import render.Renderer;

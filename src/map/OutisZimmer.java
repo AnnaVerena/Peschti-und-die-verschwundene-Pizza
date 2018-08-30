@@ -1,14 +1,15 @@
-package maps;
+package map;
 
 import java.io.File;
 import java.net.MalformedURLException;
 
-import events.EventList;
-import events.MapEvent;
-import events.Teleport;
-import events.Textbox;
-import events.TurnToPlayer;
-import events.WaitEvent;
+import event.EventList;
+import event.MapEvent;
+import event.Teleport;
+import event.Textbox;
+import event.TurnEvent;
+import event.TurnToPlayer;
+import event.WaitEvent;
 import game.GameUtil;
 import render.Image;
 
@@ -23,9 +24,12 @@ public class OutisZimmer extends game.Map{
         
         MapEvent outi = new MapEvent( 11,4, GameUtil.DOWN, Image.loadImage(new File("res/charsets/Business.png")));
         outi.actionEvent = new EventList( new TurnToPlayer(outi), new Textbox("Outis: Hier ist mein Zimmer!\n"
-        		+ "Hier gibt es gratis Kekse und Kakao!"), new events.TurnEvent(outi, GameUtil.DOWN));
+        		+ "Hier gibt es gratis Kekse und Kakao!"), new event.TurnEvent(outi, GameUtil.DOWN));
         
         mapEvents.add( outi );
+        
+        mapEvents.add( new MapEvent( 6,4, GameUtil.DOWN, null, true, null, new EventList( new TurnEvent(outi, GameUtil.LEFT),
+        				new Textbox("Outis: Was suchst du hinter meinem Bett?"), new TurnEvent(outi, GameUtil.DOWN)  )));
 	}
 
 }

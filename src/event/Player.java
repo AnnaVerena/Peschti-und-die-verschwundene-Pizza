@@ -1,4 +1,4 @@
-package events;
+package event;
 import game.Game;
 import render.Image;
 import render.Renderer;
@@ -33,7 +33,7 @@ public class Player extends MapEvent {
 		
 		for(MapEvent me: Game.map.mapEvents)
 		{
-			if( me.getX() == x && me.getY() == y && me.touchEvent != null)
+			if( me.getX() == x && me.getY() == y && !me.belowPlayer && me.touchEvent != null)
 			{
 				Game.startEvent(me.touchEvent);
 				break;
@@ -64,7 +64,18 @@ public class Player extends MapEvent {
 
 	public void update() {
 				
-		if( timer > 0 ) timer--;
+		if( timer > 0 ) {
+			timer--;
+			if( timer == 0 )
+				for(MapEvent me: Game.map.mapEvents)
+				{
+					if( me.getX() == posx && me.getY() == posy && me.belowPlayer && me.touchEvent != null)
+					{
+						Game.startEvent(me.touchEvent);
+						break;
+					}
+				}
+		}
 		else if(Game.inputs.contains("A"))
 		{
 			Game.inputs.remove("A");

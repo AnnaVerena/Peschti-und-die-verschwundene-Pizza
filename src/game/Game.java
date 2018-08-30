@@ -5,9 +5,9 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 
-import events.GameEvent;
-import events.MapEvent;
-import events.Player;
+import event.GameEvent;
+import event.MapEvent;
+import event.Player;
 import javafx.scene.canvas.GraphicsContext;
 import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
@@ -117,9 +117,9 @@ public class Game {
 		player = new Player( 7, 9, GameUtil.DOWN, Image.loadImage(new File("res/charsets/Peschti.png")));
 		
 		try {
-			Game.maps.add( new maps.ShopMap() );
-			Game.maps.add( new maps.VillageMap() );
-			Game.maps.add(new maps.OutisZimmer());
+			Game.maps.add( new map.ShopMap() );
+			Game.maps.add( new map.VillageMap() );
+			Game.maps.add(new map.OutisZimmer());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
