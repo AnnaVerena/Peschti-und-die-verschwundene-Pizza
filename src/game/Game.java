@@ -15,6 +15,7 @@ import javafx.scene.image.WritableImage;
 import javafx.scene.paint.Color;
 import javafx.scene.transform.Affine;
 import javafx.scene.transform.Translate;
+import map.WorldMap;
 import render.Image;
 import render.Renderer;
 
@@ -120,6 +121,7 @@ public class Game {
 			Game.maps.add( new map.ShopMap() );
 			Game.maps.add( new map.VillageMap() );
 			Game.maps.add(new map.OutisZimmer());
+			Game.maps.add(new WorldMap());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
