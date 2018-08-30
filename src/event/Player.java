@@ -6,6 +6,8 @@ import render.Renderer;
 public class Player extends MapEvent {
 	
 	int timer;
+	Image charsetLarge;
+	Image charsetSmall;
 
 	/**
 	 * Player erbt von MapEvent
@@ -15,9 +17,11 @@ public class Player extends MapEvent {
 	 * @param charset Bilddatei
 	 */
 	
-	public Player(int posx, int posy, int dir, Image charset) {
+	public Player(int posx, int posy, int dir, Image charset, Image charsetSmall) {
 		super(posx, posy, dir, charset);
 		
+		charsetLarge = charset;
+		this.charsetSmall = charsetSmall;
 		timer = 0;
 	}
 	
@@ -123,6 +127,14 @@ public class Player extends MapEvent {
         	if( (timer / 4) == 0 || (timer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16+timer, 16, 32);
         	else if( (timer / 4) == 1 || (timer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16+timer, 16, 32);
         }				
+	}
+	
+	public void useSmallCharset() {
+		charset = charsetSmall;
+	}
+	
+	public void useLargeCharset() {
+		charset = charsetLarge;
 	}
 	
 	public int getScrX() {

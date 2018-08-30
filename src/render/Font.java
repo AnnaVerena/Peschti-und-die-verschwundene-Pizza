@@ -13,7 +13,7 @@ import java.util.Map;
 public class Font {
     private java.awt.Font font = null;
     int fontHeight;
-    private boolean antiAlias = false;
+    private boolean antiAlias = true;
     
     public final int scale = 3;
     
