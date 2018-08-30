@@ -15,13 +15,15 @@ public class Font {
     int fontHeight;
     private boolean antiAlias = false;
     
+    public final int scale = 3;
+    
     Image buffer;
     
     Map<Character, Glyph> glyphs = new HashMap<>();
     
     public Font( File f ) {
     	try {
-			font = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, f).deriveFont(java.awt.Font.PLAIN, 10);
+			font = java.awt.Font.createFont(java.awt.Font.TRUETYPE_FONT, f).deriveFont(java.awt.Font.PLAIN, 10*scale);
 		} catch (FontFormatException | IOException e) {
 			e.printStackTrace();
 		}

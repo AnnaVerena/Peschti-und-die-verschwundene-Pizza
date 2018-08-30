@@ -191,7 +191,7 @@ public class Renderer {
     	    char ch = text.charAt(i);
     	    if (ch == '\n') {
     	        /* Line feed, set x and y to draw at the next line */
-    	        drawY += font.fontHeight;
+    	        drawY += (float)font.fontHeight/font.scale;
     	        drawX = x;
     	        continue;
     	    }
@@ -201,8 +201,8 @@ public class Renderer {
     	    }
     	    Glyph g = font.glyphs.get(ch);
     	    vertexCount++;
-    	    addQuad(  drawX, drawY, g.width, g.height, (float)g.x/font.buffer.width, (float)g.y/font.buffer.height, (float)g.width/font.buffer.width, (float)g.height/font.buffer.height, color, verticesBuffer);
-    	    drawX += g.width;
+    	    addQuad(  drawX, drawY, (float)g.width/font.scale, (float)g.height/font.scale, (float)g.x/font.buffer.width, (float)g.y/font.buffer.height, (float)g.width/font.buffer.width, (float)g.height/font.buffer.height, color, verticesBuffer);
+    	    drawX += (float)g.width/font.scale;
     	}
     	
     	verticesBuffer.flip();
