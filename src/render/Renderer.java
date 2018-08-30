@@ -44,17 +44,12 @@ import org.lwjgl.system.MemoryUtil;
 import game.Game;
 import game.Map;
 
-/**
- * Zum erstellen des Bildschirms und initialisieren von OpenGL. Startet die Gameloop und stellt Methoden zum Rendern bereit.
- * Speichert Tasteneingaben in Game.inputs.
- * @author Tim
- *
- */
+// Zum erstellen des Bildschirms und initialisieren von OpenGL. Startet die Gameloop und stellt Methoden zum Rendern bereit.
+// Speichert Tasteneingaben in Game.inputs.
 public class Renderer {
 
-	/**
-	 * Identitätsmatrix. Wird genutzt um in Bildkoordinaten zu Arbeiten.
-	 */
+	
+	 // Identitätsmatrix. Wird genutzt um in Bildkoordinaten zu Arbeiten.
 	public static Matrix4f MAT4_IDENTITY = new Matrix4f().identity();
 	private static Font font;
 	
@@ -113,10 +108,8 @@ public class Renderer {
 	    }
 	};
 
-	/**
-	 * Löscht den Inhalt des Bildes
-	 */
-    public static void clearScreen() {
+	// Löscht den Inhalt des Bildes
+	public static void clearScreen() {
     	glClear(GL_COLOR_BUFFER_BIT);
     }
     
@@ -124,19 +117,8 @@ public class Renderer {
     	renderSubImage( img, sourceX, sourceY, sourceWidth, sourceHeight, x, y ,width, height, Color.WHITE );
     }
     
-    /**
-     * Rendert ein Teilbild eines Bildes.
-     * @param img Bild
-     * @param sourceX x-Position im Bild
-     * @param sourceY y-Position im Bild
-     * @param sourceWidth Breite des Teilbildes
-     * @param sourceHeight Höhe des Teilbildes
-     * @param x x-Position auf dem Bildschirm
-     * @param y y-Position auf dem Bildschirm
-     * @param width Breite auf dem Bildschirm
-     * @param height Höhe auf dem Bildschirm
-     * @param color Farbe
-     */
+    
+    // Rendert ein Teilbild eines Bildes.
     public static void renderSubImage( Image img, float sourceX, float sourceY, float sourceWidth, float sourceHeight, float x, float y, float width, float height, Color color ) {
     	
     	Renderer.bindImage(img);
@@ -158,11 +140,7 @@ public class Renderer {
     	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA8, img.width, img.height, 0, GL_RGBA, GL_UNSIGNED_BYTE, img.buffer);
     }
     
-    /**
-     * Rendert eine Ebene der Karte.
-     * @param map Karte
-     * @param layer Ebene
-     */
+    // Rendert eine Ebene der Karte.
     public static void renderMapLayer( Map map, int layer ) {
     	
     	Renderer.bindImage(map.tileset);
@@ -199,13 +177,7 @@ public class Renderer {
         glDrawArrays(GL_TRIANGLES, 0, 6*vertexCount);
     }
     
-    /**
-     * Schreibt Text.
-     * @param x x-Position des Textes
-     * @param y y-Position des Textes
-     * @param text Text
-     * @param color Farbe des Textes
-     */
+    // Schreibt Text.
     public static void renderText( float x, float y, String text, Color color ) {
     	float drawX = x;
     	float drawY = y;
@@ -254,10 +226,8 @@ public class Renderer {
     	verticesBuffer.put( x+width ).put( 	y+height ).put(color.r).put(color.g).put(color.b).put(	texX+texWidth ).put( texY+texHeight );
     }
     
-    /**
-     * Erstellt das Fenster, initialisiert OpenGL und startet die Gameloop.
-     * Muss ganz am Anfang einmal aufgerufen werden.
-     */
+    // Erstellt das Fenster, initialisiert OpenGL und startet die Gameloop.
+    // Muss ganz am Anfang einmal aufgerufen werden.
     public static void run(){
     	glfwSetErrorCallback( errorCallback );
     	if ( !glfwInit() )
@@ -341,11 +311,8 @@ public class Renderer {
 		glfwTerminate();
     }
     
-    /**
-     * Setzt die view-Matrix.
-     * Wird benutzt um zwischen Welt- und Bildkoordinaten zu wechseln.
-     * @param view Matrix, welche die Transformation beschreibt
-     */
+    // Setzt die view-Matrix.
+    // Wird benutzt um zwischen Welt- und Bildkoordinaten zu wechseln.
     public static void setView( Matrix4f view ) {
     	shaderProgram.setUniformMatrix("view", view );
     }

@@ -100,6 +100,7 @@ public class Game {
 		
 	}
 	
+	//Die Gameloop. Wird vom automatisch aufgerufen (vom Renderer).
 	public static void loop() {
 		update();
 		render();

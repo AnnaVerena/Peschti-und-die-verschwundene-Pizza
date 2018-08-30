@@ -21,11 +21,7 @@ public class Image
 	}
 	
 	
-	/**
-	 * Lädt ein Bild aus einer Datei.
-	 * @param f Bilddatei
-	 * @return
-	 */
+	// Lädt ein Bild aus einer Datei.
 	public static Image loadImage( File f ) {
 		int width, height;
 		ByteBuffer buffer;
@@ -49,11 +45,7 @@ public class Image
 		return new Image( width, height, buffer );
 	}
 	
-	/**
-	 * Konvertiert ein BufferedImage in ein Bild vom Typ Image.
-	 * @param image BufferedImage
-	 * @return
-	 */
+	// Konvertiert ein BufferedImage in ein Bild vom Typ Image.
 	public static Image convertImage( BufferedImage image ) {
 		int width = image.getWidth();
 		int height = image.getHeight();
