@@ -30,7 +30,7 @@ public class Textbox extends GameEvent{
 		Renderer.setView(Renderer.MAT4_IDENTITY);		
 		GameUtil.renderTextbox(2, 11, 16, 4);
 		
-		Renderer.renderText(2*16+8, 11*16+5, text, Color.BLACK);
+		Renderer.renderText(2*16+8, 11*16+5, text, Color.WHITE);
 		
 	}
 	

@@ -114,7 +114,7 @@ public class Game {
 	
 	public static void init(){
 
-        Game.textboxTileset = Image.loadImage(new File("res/Textbox.png"));
+        Game.textboxTileset = Image.loadImage(new File("res/Textbox2.png"));
 		player = new Player( 7, 9, GameUtil.DOWN, Image.loadImage(new File("res/charsets/Peschti.png")));
 		
 		try {
