@@ -30,19 +30,9 @@ public class VillageMap extends game.Map{
         doorOutis.actionEvent = teleportOutis;
         mapEvents.add(doorOutis);
         
-        GameEvent playerSmall = new GameEvent() {
-        	public void init(){
-        		Game.player.useSmallCharset();
-        	}
-        	
-        	public boolean isFinished() {
-        		return true;
-        	}
-        };
-        
-        mapEvents.add( new MapEvent(4, 29, GameUtil.DOWN, null, true, null, new EventList( playerSmall, new Teleport(3, 6, 6, GameUtil.DOWN)) ));
-        mapEvents.add( new MapEvent(5, 29, GameUtil.DOWN, null, true, null, new EventList( playerSmall, new Teleport(3, 6, 6, GameUtil.DOWN)) ));
-        mapEvents.add( new MapEvent(6, 29, GameUtil.DOWN, null, true, null, new EventList( playerSmall, new Teleport(3, 6, 6, GameUtil.DOWN)) ));
+        mapEvents.add( new MapEvent(4, 29, GameUtil.DOWN, null, true, null, new EventList( new Teleport(3, 6, 6, GameUtil.DOWN)) ));
+        mapEvents.add( new MapEvent(5, 29, GameUtil.DOWN, null, true, null, new EventList(  new Teleport(3, 6, 6, GameUtil.DOWN)) ));
+        mapEvents.add( new MapEvent(6, 29, GameUtil.DOWN, null, true, null, new EventList(  new Teleport(3, 6, 6, GameUtil.DOWN)) ));
         
         MapEvent waterfall1 = new AnimatedMapEvent(30, 9, GameUtil.DOWN, Image.loadImage(new File("res/charsets/waterfall.png")), 10);
         mapEvents.add(waterfall1);

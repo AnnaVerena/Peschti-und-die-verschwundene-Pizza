@@ -17,17 +17,12 @@ public class WorldMap extends game.Map{
 		super(new File("res/maps/world.txt"));
         tileset = Image.loadImage( new File("res/tilesets/world.png"));   
         
-        GameEvent playerLarge = new GameEvent() {
-        	public void init(){
-        		Game.player.useLargeCharset();
-        	}
-        	
-        	public boolean isFinished() {
-        		return true;
-        	}
-        };
         
-        mapEvents.add( new MapEvent(6, 5, GameUtil.DOWN, null, true, null, new EventList( playerLarge, new Teleport(1, 5, 29, GameUtil.UP))) );
+        
+        mapEvents.add( new MapEvent(6, 5, GameUtil.DOWN, null, true, null, new EventList( new Teleport(1, 5, 29, GameUtil.UP))) );
 	}
-
+	
+	public boolean isWorldMap() {
+		return true;
+	}
 }

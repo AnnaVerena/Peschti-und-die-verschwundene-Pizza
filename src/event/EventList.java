@@ -14,17 +14,17 @@ public class EventList extends GameEvent{
 	public void init() {
 		stage = 0;
 		finished = false;
-		for(GameEvent event : events)
-		{
-			event.init();
-		}
+		events[0].init();
 	}
 	
 	public void update() {
 		if( stage >= length ) finished = true;		
 		if( !finished )
 		{
-			if( events[stage].isFinished() ) stage++;
+			if( events[stage].isFinished() ) {
+				stage++;
+				if( stage < events.length) events[stage].init();
+			}
 			else events[stage].update();
 		}
 	}

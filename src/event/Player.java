@@ -35,6 +35,11 @@ public class Player extends MapEvent {
 		if(dir == UP) y--;
 		if(dir == DOWN) y++;
 		
+		if(Game.inputs.contains("RIGHT") && !Game.map.isBlocked(this.getX()+1, this.getY())) move(RIGHT);
+    	else if(Game.inputs.contains("LEFT") && !Game.map.isBlocked(this.getX()-1, this.getY())) move(LEFT);
+    	else if(Game.inputs.contains("UP") && !Game.map.isBlocked(this.getX(), this.getY()-1)) move(UP);
+    	else if(Game.inputs.contains("DOWN") && !Game.map.isBlocked(this.getX(), this.getY()+1)) move(DOWN);
+		
 		for(MapEvent me: Game.map.mapEvents)
 		{
 			if( me.getX() == x && me.getY() == y && !me.belowPlayer && me.touchEvent != null)
@@ -43,11 +48,6 @@ public class Player extends MapEvent {
 				break;
 			}
 		}
-		
-		if(Game.inputs.contains("RIGHT") && !Game.map.isBlocked(this.getX()+1, this.getY())) move(RIGHT);
-    	else if(Game.inputs.contains("LEFT") && !Game.map.isBlocked(this.getX()-1, this.getY())) move(LEFT);
-    	else if(Game.inputs.contains("UP") && !Game.map.isBlocked(this.getX(), this.getY()-1)) move(UP);
-    	else if(Game.inputs.contains("DOWN") && !Game.map.isBlocked(this.getX(), this.getY()+1)) move(DOWN);
 	}
 	
 	public void move( int dir ) {
@@ -63,7 +63,7 @@ public class Player extends MapEvent {
 	public void init()
 	{
 		frame = 0;
-		timer = 0;
+		timer = 0;		
 	}
 
 	public void update() {
@@ -127,14 +127,6 @@ public class Player extends MapEvent {
         	if( (timer / 4) == 0 || (timer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16+timer, 16, 32);
         	else if( (timer / 4) == 1 || (timer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16+timer, 16, 32);
         }				
-	}
-	
-	public void useSmallCharset() {
-		charset = charsetSmall;
-	}
-	
-	public void useLargeCharset() {
-		charset = charsetLarge;
 	}
 	
 	public int getScrX() {

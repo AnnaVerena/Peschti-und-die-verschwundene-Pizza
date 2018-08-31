@@ -143,4 +143,8 @@ public class Map
 			e.printStackTrace();
 		}
 	}
+	
+	public boolean isWorldMap() {
+		return false;
+	}
 }

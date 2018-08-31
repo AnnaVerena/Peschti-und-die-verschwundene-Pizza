@@ -14,19 +14,24 @@ public class Teleport extends GameEvent{
 		this.dir = dir;
 	}
 	
-	public void init() {
-		finished = false;
+	public void init() 
+	{		
+		Game.player.setX(x);
+		Game.player.setY(y);
+		Game.player.setDirection(dir);
+		
+		GameEvent tmp = Game.eventStack.pop();
+		Game.eventStack.clear();
+		
+		Game.startEvent( new MapMode( Game.maps.get( mapID ) ));
+		
+		Game.eventStack.push(tmp);
+		
+		finished = true;
 	}
 	
 	public void update() {
-		Game.map = Game.maps.get(mapID);
-		Game.player.setX(x);
-		Game.player.setY(y);;
-		Game.player.setDirection(dir);
-				
-		for( MapEvent me: Game.map.mapEvents) me.init(); 
 		
-		finished = true;
 	}
 	
 	public void draw( GraphicsContext gc ){
