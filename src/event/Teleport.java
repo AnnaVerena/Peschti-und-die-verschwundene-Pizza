@@ -23,7 +23,8 @@ public class Teleport extends GameEvent{
 		GameEvent tmp = Game.eventStack.pop();
 		Game.eventStack.clear();
 		
-		Game.startEvent( new MapMode( Game.maps.get( mapID ) ));
+		Game.map = Game.maps.get(mapID);
+		Game.startEvent( new MapMode());
 		
 		Game.eventStack.push(tmp);
 		

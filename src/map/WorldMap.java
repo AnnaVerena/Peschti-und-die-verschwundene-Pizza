@@ -15,7 +15,7 @@ public class WorldMap extends game.Map{
 	
 	public WorldMap() throws MalformedURLException{
 		super(new File("res/maps/world.txt"));
-        tileset = Image.loadImage( new File("res/tilesets/world.png"));   
+        tileset = Game.tilesets.get("world");
         
         
         

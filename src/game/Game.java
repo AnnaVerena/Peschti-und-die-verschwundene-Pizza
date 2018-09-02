@@ -2,21 +2,12 @@ package game;
 import java.io.File;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Comparator;
+import java.util.HashMap;
 import java.util.Stack;
 
 import event.GameEvent;
-import event.MapEvent;
 import event.MapMode;
 import event.Player;
-import javafx.scene.canvas.GraphicsContext;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
-import javafx.scene.paint.Color;
-import javafx.scene.transform.Affine;
-import javafx.scene.transform.Translate;
 import map.WorldMap;
 import render.Image;
 import render.Renderer;
@@ -26,11 +17,14 @@ public class Game {
 	public static Map map;
 	public static Player player;
 	public static ArrayList<String> inputs = new ArrayList<String>();
-	public static ArrayList<Map> maps = new ArrayList<Map>();
 	
+	public static ArrayList<Map> maps = new ArrayList<Map>();
+		
 	public static Stack<GameEvent> eventStack = new Stack<GameEvent>();
 	
 	public static Image textboxTileset;
+	public static HashMap<String,Image> tilesets = new HashMap<String,Image>();
+	public static HashMap<String,Image> charsets = new HashMap<String,Image>();
 	
 	public static Camera camera = new Camera(0,0);
 	
@@ -55,9 +49,21 @@ public class Game {
 	}
 	
 	public static void init(){
+		charsets.put("peschti", Image.loadImage(new File( "res/charsets/Peschti.png")));
+		charsets.put("peschti_small", Image.loadImage(new File( "res/charsets/small_peschti.png")));
+		charsets.put("business", Image.loadImage(new File( "res/charsets/Business.png")));
+		charsets.put("waterfall", Image.loadImage(new File( "res/charsets/waterfall.png")));
+		charsets.put("waterfall_left", Image.loadImage(new File( "res/charsets/waterfall_left.png")));
+		charsets.put("waterfall_right", Image.loadImage(new File( "res/charsets/waterfall_right.png")));
+		charsets.put("door", Image.loadImage(new File( "res/charsets/door.png")));
+		
+		tilesets.put("world", Image.loadImage(new File("res/tilesets/world.png")));
+		tilesets.put("shop", Image.loadImage(new File("res/tilesets/Tileset.png")));
+		tilesets.put("village", Image.loadImage(new File("res/tilesets/Tileset2.png")));
+		tilesets.put("outi_room", Image.loadImage(new File("res/tilesets/OutiZimmer.png")));
 
         Game.textboxTileset = Image.loadImage(new File("res/Textbox2.png"));
-		player = new Player( 7, 9, GameUtil.DOWN, Image.loadImage(new File("res/charsets/Peschti.png")), Image.loadImage(new File("res/charsets/small_peschti.png")));
+		player = new Player( 7, 9, GameUtil.DOWN, "peschti", "peschti_small");
 		
 		try {
 			Game.maps.add( new map.ShopMap() );
@@ -68,7 +74,8 @@ public class Game {
 			e.printStackTrace();
 		}
         
-        startEvent( new MapMode( maps.get(1) ));
+		map = maps.get(1);
+        startEvent( new MapMode());
 	}
 	
 	public static void startEvent(GameEvent event )
@@ -77,6 +84,9 @@ public class Game {
 		event.init();
 	}
 	
-	
+	public static void main( String... args)
+	{
+		Renderer.run();
+	}
 	
 }

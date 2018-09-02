@@ -153,6 +153,8 @@ public class Renderer {
         Image img = map.tileset;
         int vertexCount = 0;
         
+        int tilesetWidth = img.width / 16;
+        
         for( int x = 0; x < map.getWidth(); x++)
         	for( int y = 0; y < map.getHeight(); y++ )
         	{
@@ -160,8 +162,8 @@ public class Renderer {
         		{
         			vertexCount++;
         			
-        			sourceX = (map.getTile(layer, x, y)%8)*16;
-           			sourceY = (map.getTile(layer, x, y)/8)*16;
+        			sourceX = (map.getTile(layer, x, y)%tilesetWidth)*16;
+           			sourceY = (map.getTile(layer, x, y)/tilesetWidth)*16;
            			
            			addQuad(x*16, y*16, width, height, ((float)sourceX)/ img.width, ((float) sourceY)/ img.height, ((float)sourceWidth)/ img.width, ((float) sourceHeight)/ img.height, verticesBuffer );
           

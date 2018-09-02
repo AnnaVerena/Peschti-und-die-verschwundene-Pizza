@@ -38,6 +38,7 @@ public class Editor extends Application {
 	
 	 Map map;
 	 final int SCALE = 2;
+	 int tilesetWidth;
 	
 	public static void main(String[] args) 
     {
@@ -49,6 +50,7 @@ public class Editor extends Application {
 	    theStage.setTitle( "Mapeditor (Layer 0)" );
 	    map = new Map(20, 15);
 	    int[] layer = {0};
+	    
 	         
 	    Group root = new Group();
 	    Scene theScene = new Scene( root, 800, 600 );
@@ -139,8 +141,11 @@ public class Editor extends Application {
             }
         });
 	    
+	    Image tileset = resample( new Image( new File("res/tilesets/Tileset2.png").toURI().toURL().toString()), SCALE );
+	    tilesetWidth = (int) (tileset.getWidth()/(16*SCALE));
+	    
 	    Canvas canvas = new Canvas( map.getWidth()*16*SCALE, map.getHeight()*16*SCALE );	    
-	    Canvas tCanvas = new Canvas( 128*SCALE,512*SCALE );
+	    Canvas tCanvas = new Canvas( tilesetWidth*16*SCALE,512*SCALE );
 	    
 	    scrollPane.setContent( canvas );
 	    scrollPane2.setContent( tCanvas );
@@ -160,7 +165,7 @@ public class Editor extends Application {
 	    GraphicsContext gc = canvas.getGraphicsContext2D();	    
 	    GraphicsContext gct = tCanvas.getGraphicsContext2D();
 	    
-	    Image tileset = resample( new Image( new File("res/tilesets/world.png").toURI().toURL().toString()), SCALE );
+	    
 	    
 	    int[] tileId = new int[1];
 	    tileId[0] = 8;
@@ -226,7 +231,7 @@ public class Editor extends Application {
 	            {
 	                public void handle(MouseEvent e)
 	                {
-	                    tileId[0] = (int)e.getX()/(16*SCALE) + (int)e.getY()/(16*SCALE) * 8;
+	                    tileId[0] = (int)e.getX()/(16*SCALE) + (int)e.getY()/(16*SCALE)*tilesetWidth;
 	                }
 	            });
 	    
@@ -288,11 +293,11 @@ public class Editor extends Application {
         	    
         	    
         	    gct.setFill(Color.BLACK);
-        	    gct.fillRect(0, 0, 128*SCALE, 512*SCALE);
+        	    gct.fillRect(0, 0, tilesetWidth*16*SCALE, 1024*SCALE);
         	    gct.drawImage(tileset, 0, 0);
 
         	    gct.setStroke(Color.RED);
-        	    gct.strokeRect( tileId[0]%8*16*SCALE, tileId[0]/8*16*SCALE, 16*SCALE, 16*SCALE);
+        	    gct.strokeRect( tileId[0]%tilesetWidth*16*SCALE, tileId[0]/tilesetWidth*16*SCALE, 16*SCALE, 16*SCALE);
             }
         }.start();
 	         
@@ -301,7 +306,7 @@ public class Editor extends Application {
 	
 	private void renderTile( int x, int y, int tileId, Image tileset, GraphicsContext gc )
 	{
-		gc.drawImage(tileset, (tileId%8) * 16 * SCALE, (tileId/8)*16*SCALE, 16*SCALE, 16*SCALE, x*16*SCALE, y*16*SCALE, 16*SCALE, 16*SCALE );
+		gc.drawImage(tileset, (tileId%tilesetWidth) * 16 * SCALE, (tileId/tilesetWidth)*16*SCALE, 16*SCALE, 16*SCALE, x*16*SCALE, y*16*SCALE, 16*SCALE, 16*SCALE );
 	}
 	
 	private Image resample(Image input, int scaleFactor) {

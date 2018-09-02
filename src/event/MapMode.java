@@ -12,16 +12,21 @@ public class MapMode extends GameEvent
 	private Map map;
 	private Player player;
 	
-	public MapMode( Map map )
+	private Comparator<MapEvent> comparator = new Comparator<MapEvent>() {
+        @Override
+        public int compare(MapEvent o1, MapEvent o2) {
+            return o1.getY() - o2.getY();
+        }
+    };
+	
+	public MapMode()
 	{
-		this.map = map;
+		this.map = Game.map;
 		this.player = Game.player;
 	}
 	
 	public void init()
 	{
-		Game.map = map;
-		
 		if( !map.mapEvents.contains(player)) map.mapEvents.add(player);
 		
 		for( MapEvent x : map.mapEvents)
@@ -49,12 +54,7 @@ public class MapMode extends GameEvent
 		for( MapEvent x : map.mapEvents)
 			   x.update();
 				
-		Collections.sort(map.mapEvents, new Comparator<MapEvent>() {
-            @Override
-            public int compare(MapEvent o1, MapEvent o2) {
-                return o1.getY() - o2.getY();
-            }
-        });
+		Collections.sort(map.mapEvents, comparator);
 	}
 	
 	private void updateCamera() {

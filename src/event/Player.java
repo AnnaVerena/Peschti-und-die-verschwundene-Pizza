@@ -17,11 +17,11 @@ public class Player extends MapEvent {
 	 * @param charset Bilddatei
 	 */
 	
-	public Player(int posx, int posy, int dir, Image charset, Image charsetSmall) {
-		super(posx, posy, dir, charset);
+	public Player(int posx, int posy, int dir, String charsetID, String charsetSmallID) {
+		super(posx, posy, dir, charsetID);
 		
 		charsetLarge = charset;
-		this.charsetSmall = charsetSmall;
+		this.charsetSmall = Game.charsets.get(charsetSmallID);
 		timer = 0;
 	}
 	

@@ -1,5 +1,6 @@
 package event;
 
+import game.Game;
 import render.Image;
 import render.Renderer;
 
@@ -23,17 +24,14 @@ public class MapEvent extends GameEvent{
 	final int LEFT = 2;
 	final int RIGHT = 3;
 	
-	public MapEvent(int posx, int posy, int dir, Image charSet ) {
-		this.posx = posx;
-		this.posy=posy;
-		this.charset=charSet;
-		this.dir = dir;
+	public MapEvent(int posx, int posy, int dir, String charSetID ) {
+		this(posx, posy, dir, charSetID, false, null, null);
 	}
 	
-	public MapEvent(int posx, int posy, int dir, Image charSet, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
+	public MapEvent(int posx, int posy, int dir, String charSetID, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
 		this.posx = posx;
 		this.posy=posy;
-		this.charset=charSet;
+		this.charset=Game.charsets.get(charSetID);
 		this.dir = dir;
 		this.belowPlayer = belowPlayer;
 		this.actionEvent = actionEvent;

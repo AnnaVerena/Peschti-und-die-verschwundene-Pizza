@@ -11,16 +11,16 @@ import event.Teleport;
 import event.Textbox;
 import event.TurnToPlayer;
 import event.WaitEvent;
+import game.Game;
 import game.GameUtil;
-import render.Image;
 
 public class ShopMap extends game.Map{
 	
 	public ShopMap() throws MalformedURLException{
 		super(new File("res/maps/map_shop.txt"));
-        tileset = Image.loadImage(new File("res/tilesets/Tileset.png"));//GameUtil.resample (new Image(new File("res/Tileset.png").toURI().toURL().toString()),2);
+        tileset = Game.tilesets.get("shop");
         
-        MapEvent busi = new MapEvent( 8,5, GameUtil.DOWN, Image.loadImage(new File("res/charsets/Business.png")));
+        MapEvent busi = new MapEvent( 8,5, GameUtil.DOWN, "business");
         busi.actionEvent = new EventList( new TurnToPlayer(busi), new Textbox("Kaufen, kaufen, kaufen!\n"
         		+ "Ich habe die besten Preise!"), new event.TurnEvent(busi, GameUtil.DOWN));
         
