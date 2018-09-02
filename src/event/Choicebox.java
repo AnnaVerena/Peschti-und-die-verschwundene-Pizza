@@ -44,8 +44,8 @@ public class Choicebox extends GameEvent {
 			if(Game.inputs.contains("A"))
 			{
 				choosen = true;
-				yes.init();
-				no.init();
+				if(choice == true) yes.init();
+				else no.init();
 				Game.inputs.remove("A");
 			}			
 			if(Game.inputs.contains("DOWN"))
@@ -77,8 +77,8 @@ public class Choicebox extends GameEvent {
 			GameUtil.renderTextbox(15, 11, 3, 4);
 			
 			Renderer.renderText(2*16+8, 11*16+5, text, Color.WHITE);
-			Color color = Color.BLACK;
 			
+			Color color = Color.WHITE;
 			if(choice == true)
 		    	Renderer.renderText(15*16+8, 11*16+5, "\nJa", color);
 		    else Renderer.renderText(15*16+8, 11*16+5, "\n\nNein", color);

@@ -3,23 +3,26 @@ package map;
 import java.io.File;
 import java.net.MalformedURLException;
 
+import event.CasesEvent;
 import event.Choicebox;
 import event.EventList;
 import event.GameEvent;
 import event.MapEvent;
+import event.SetVariableEvent;
 import event.Teleport;
 import event.Textbox;
 import event.TurnToPlayer;
 import event.WaitEvent;
 import game.Game;
 import game.GameUtil;
+import javafx.util.Pair;
 
 public class ShopMap extends game.Map{
 	
 	public ShopMap() throws MalformedURLException{
 		super(new File("res/maps/map_shop.txt"));
         tileset = Game.tilesets.get("shop");
-        
+              
         MapEvent busi = new MapEvent( 8,5, GameUtil.DOWN, "business");
         busi.actionEvent = new EventList( new TurnToPlayer(busi), new Textbox("Kaufen, kaufen, kaufen!\n"
         		+ "Ich habe die besten Preise!"), new event.TurnEvent(busi, GameUtil.DOWN));
@@ -37,8 +40,11 @@ public class ShopMap extends game.Map{
         mapEvents.add( new MapEvent(14, 10, GameUtil.DOWN, null, false, bookEvent, null ));
         mapEvents.add( new MapEvent(15, 10, GameUtil.DOWN, null, false, bookEvent, null ));
         
+        GameEvent kekseDefault = new Textbox("Peschti hat kein Geld.");
+        GameEvent kekseKaufen = new EventList( new Textbox("Peschti kauft Kekse für 1$."), new SetVariableEvent("KEKSE", 2));
+        
         GameEvent cookieEvent = new Choicebox("Hmm ...\n"
-        		+ "Die Kekse sehen sehr lecker aus!\nMöchtest du einen kaufen?", new Textbox("Ein Keks kostet 1$."), new Textbox("Du bist ja komisch."));
+        		+ "Die Kekse sehen sehr lecker aus!\nMöchtest du welche kaufen?", new CasesEvent("KEKSE", kekseDefault, new Pair(1, kekseKaufen) ), new Textbox("Du bist ja komisch."));
         mapEvents.add( new MapEvent(11, 7, GameUtil.DOWN, null, false, cookieEvent, null ));
         
         

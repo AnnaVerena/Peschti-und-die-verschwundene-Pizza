@@ -28,6 +28,8 @@ public class Game {
 	
 	public static HashMap<String,Map> maps = new HashMap<String,Map>();
 	
+	public static HashMap<String, Integer> intVars = new HashMap<>();
+	
 	public static Camera camera = new Camera(0,0);
 	
 	public static void render() {
