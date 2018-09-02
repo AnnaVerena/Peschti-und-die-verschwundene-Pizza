@@ -21,18 +21,18 @@ public class VillageMap extends game.Map{
         tileset = Game.tilesets.get("village");
         
         MapEvent doorBusiness = new MapEvent(18, 5, GameUtil.DOWN, "door");
-        GameEvent teleportBusiness = new EventList( new SetFrameEvent(doorBusiness, 1), new WaitEvent(10), new Teleport(0, 9, 12, GameUtil.UP) );
+        GameEvent teleportBusiness = new EventList( new SetFrameEvent(doorBusiness, 1), new WaitEvent(10), new Teleport("shop", 9, 12, GameUtil.UP) );
         doorBusiness.actionEvent = teleportBusiness;
         mapEvents.add(doorBusiness);
         
         MapEvent doorOutis = new MapEvent(7, 8, GameUtil.DOWN, "door");
-        GameEvent teleportOutis = new EventList( new SetFrameEvent(doorOutis, 1), new WaitEvent(10), new Teleport(2, 9, 12, GameUtil.UP) );
+        GameEvent teleportOutis = new EventList( new SetFrameEvent(doorOutis, 1), new WaitEvent(10), new Teleport("outi_room", 9, 12, GameUtil.UP) );
         doorOutis.actionEvent = teleportOutis;
         mapEvents.add(doorOutis);
         
-        mapEvents.add( new MapEvent(4, 29, GameUtil.DOWN, null, true, null, new EventList( new Teleport(3, 6, 6, GameUtil.DOWN)) ));
-        mapEvents.add( new MapEvent(5, 29, GameUtil.DOWN, null, true, null, new EventList(  new Teleport(3, 6, 6, GameUtil.DOWN)) ));
-        mapEvents.add( new MapEvent(6, 29, GameUtil.DOWN, null, true, null, new EventList(  new Teleport(3, 6, 6, GameUtil.DOWN)) ));
+        mapEvents.add( new MapEvent(4, 29, GameUtil.DOWN, null, true, null, new EventList( new Teleport("world", 6, 6, GameUtil.DOWN)) ));
+        mapEvents.add( new MapEvent(5, 29, GameUtil.DOWN, null, true, null, new EventList(  new Teleport("world", 6, 6, GameUtil.DOWN)) ));
+        mapEvents.add( new MapEvent(6, 29, GameUtil.DOWN, null, true, null, new EventList(  new Teleport("world", 6, 6, GameUtil.DOWN)) ));
         
         MapEvent waterfall1 = new AnimatedMapEvent(30, 9, GameUtil.DOWN, "waterfall", 10);
         mapEvents.add(waterfall1);

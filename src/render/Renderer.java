@@ -296,7 +296,6 @@ public class Renderer {
         
 		glClearColor( 0.5f, 0.5f, 0.5f, 0.0f );
 		
-		Game.init();
 		font = new Font(new File("res/fonts/OxygenMono-Regular.ttf"));
 		
 		while ( !glfwWindowShouldClose(window) ) {

@@ -5,9 +5,10 @@ import javafx.scene.canvas.GraphicsContext;
 public class Teleport extends GameEvent{
 
 	boolean finished = false;
-	int mapID, x, y, dir;
+	String mapID;
+	int x, y, dir;
 	
-	public Teleport(int mapID, int x, int y, int dir) {
+	public Teleport(String mapID, int x, int y, int dir) {
 		this.mapID = mapID;
 		this.x = x;
 		this.y = y;

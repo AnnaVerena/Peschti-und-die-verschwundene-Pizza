@@ -18,13 +18,15 @@ public class Game {
 	public static Player player;
 	public static ArrayList<String> inputs = new ArrayList<String>();
 	
-	public static ArrayList<Map> maps = new ArrayList<Map>();
+	
 		
 	public static Stack<GameEvent> eventStack = new Stack<GameEvent>();
 	
 	public static Image textboxTileset;
 	public static HashMap<String,Image> tilesets = new HashMap<String,Image>();
 	public static HashMap<String,Image> charsets = new HashMap<String,Image>();
+	
+	public static HashMap<String,Map> maps = new HashMap<String,Map>();
 	
 	public static Camera camera = new Camera(0,0);
 	
@@ -66,15 +68,15 @@ public class Game {
 		player = new Player( 7, 9, GameUtil.DOWN, "peschti", "peschti_small");
 		
 		try {
-			Game.maps.add( new map.ShopMap() );
-			Game.maps.add( new map.VillageMap() );
-			Game.maps.add(new map.OutisZimmer());
-			Game.maps.add(new WorldMap());
+			Game.maps.put( "shop", new map.ShopMap() );
+			Game.maps.put( "village", new map.VillageMap() );
+			Game.maps.put("outi_room", new map.OutisZimmer());
+			Game.maps.put("world", new WorldMap());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();
 		}
         
-		map = maps.get(1);
+		map = maps.get("village");
         startEvent( new MapMode());
 	}
 	
@@ -86,6 +88,7 @@ public class Game {
 	
 	public static void main( String... args)
 	{
+		Game.init();
 		Renderer.run();
 	}
 	

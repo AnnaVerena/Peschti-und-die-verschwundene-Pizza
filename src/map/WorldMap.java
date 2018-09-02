@@ -4,12 +4,10 @@ import java.io.File;
 import java.net.MalformedURLException;
 
 import event.EventList;
-import event.GameEvent;
 import event.MapEvent;
 import event.Teleport;
 import game.Game;
 import game.GameUtil;
-import render.Image;
 
 public class WorldMap extends game.Map{
 	
@@ -19,7 +17,7 @@ public class WorldMap extends game.Map{
         
         
         
-        mapEvents.add( new MapEvent(6, 5, GameUtil.DOWN, null, true, null, new EventList( new Teleport(1, 5, 29, GameUtil.UP))) );
+        mapEvents.add( new MapEvent(6, 5, GameUtil.DOWN, null, true, null, new EventList( new Teleport("village", 5, 29, GameUtil.UP))) );
 	}
 	
 	public boolean isWorldMap() {

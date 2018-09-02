@@ -19,8 +19,8 @@ public class OutisZimmer extends game.Map{
 		super(new File("res/maps/map_outis.txt"));
         tileset = Game.tilesets.get("outi_room");        
         
-        mapEvents.add(new MapEvent(9, 13, GameUtil.DOWN, null, false, null, new EventList( new Teleport(1, 7, 9, GameUtil.DOWN), new WaitEvent(10))));
-        mapEvents.add(new MapEvent(10, 13, GameUtil.DOWN, null, false, null, new EventList( new Teleport(1, 7, 9, GameUtil.DOWN), new WaitEvent(10))));
+        mapEvents.add(new MapEvent(9, 13, GameUtil.DOWN, null, false, null, new EventList( new Teleport("village", 7, 9, GameUtil.DOWN), new WaitEvent(10))));
+        mapEvents.add(new MapEvent(10, 13, GameUtil.DOWN, null, false, null, new EventList( new Teleport("village", 7, 9, GameUtil.DOWN), new WaitEvent(10))));
         
         MapEvent outi = new MapEvent( 11,4, GameUtil.DOWN, "business");
         outi.actionEvent = new EventList( new TurnToPlayer(outi), new Textbox("Outis: Hier ist mein Zimmer!\n"
