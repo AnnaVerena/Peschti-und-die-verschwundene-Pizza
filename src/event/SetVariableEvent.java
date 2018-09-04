@@ -18,7 +18,7 @@ public class SetVariableEvent extends GameEvent {
 	public void init() {		
 		finished = true;
 		
-		Game.intVars.put(intVarID,  value);
+		Game.variables.put(intVarID,  value);
 	}
 	
 	public void update() {

@@ -21,12 +21,12 @@ public class CasesEvent extends GameEvent {
 	public void init() {		
 		finished = true;
 		
-		if( !Game.intVars.containsKey(intVarID) ) {
+		if( !Game.variables.containsKey(intVarID) ) {
 			Game.startEvent(defaultEvent);
 			return;
 		}
 		
-		int var = Game.intVars.get(intVarID);
+		int var = Game.variables.get(intVarID);
 		
 		for(Pair<Integer,GameEvent> p : cases) {
 			if(p.getKey() == var) {

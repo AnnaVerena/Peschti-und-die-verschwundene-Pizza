@@ -23,7 +23,7 @@ public class ShopMap extends game.Map{
 		super(new File("res/maps/map_shop.txt"));
         tileset = Game.tilesets.get("shop");
               
-        MapEvent busi = new MapEvent( 8,5, GameUtil.DOWN, "business");
+        MapEvent busi = new MapEvent( "business", 8,5, GameUtil.DOWN, "business");
         busi.actionEvent = new EventList( new TurnToPlayer(busi), new Textbox("Kaufen, kaufen, kaufen!\n"
         		+ "Ich habe die besten Preise!"), new event.TurnEvent(busi, GameUtil.DOWN));
         
@@ -66,8 +66,8 @@ public class ShopMap extends game.Map{
         GameEvent pictureEvent = new Textbox("Ein Bild vom Outis.");
         mapEvents.add( new MapEvent(9, 3, GameUtil.DOWN, null, false, pictureEvent, null ));
         
-        mapEvents.add(new MapEvent(9, 13, GameUtil.DOWN, null, false, null, new EventList( new Teleport("village", 18, 6, GameUtil.DOWN), new WaitEvent(10) )));
-        mapEvents.add(new MapEvent(10, 13, GameUtil.DOWN, null, false, null, new EventList( new Teleport("village", 18, 6, GameUtil.DOWN), new WaitEvent(10) )));
+        mapEvents.add(new MapEvent(9, 12, GameUtil.DOWN, null, true, null, new EventList( new Teleport("village", 18, 6, GameUtil.DOWN), new WaitEvent(10) )));
+        mapEvents.add(new MapEvent(10, 12, GameUtil.DOWN, null, true, null, new EventList( new Teleport("village", 18, 6, GameUtil.DOWN), new WaitEvent(10) )));
 	}
 
 }

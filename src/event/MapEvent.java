@@ -1,6 +1,7 @@
 package event;
 
 import game.Game;
+import game.GameUtil;
 import render.Image;
 import render.Renderer;
 
@@ -8,27 +9,31 @@ public class MapEvent extends GameEvent{
 
 	protected int posx;
 	protected int posy;
+	protected int animationTimer;
 	
 	public boolean belowPlayer = false;
 	public GameEvent actionEvent = null;
 	public GameEvent touchEvent = null;
+	public final String eventID;
 	
 	// Das charset besteht aus 3x4 Bildern.
-	// dir und frame geben das Bild an.
 	protected Image charset;
 	int dir; 		// y-Position im Charset
-	int frame = 0; 	// x-Position im Charset
-	
-	final int UP = 1;
-	final int DOWN = 0;
-	final int LEFT = 2;
-	final int RIGHT = 3;
 	
 	public MapEvent(int posx, int posy, int dir, String charSetID ) {
-		this(posx, posy, dir, charSetID, false, null, null);
+		this("", posx, posy, dir, charSetID, false, null, null);
+	}
+	
+	public MapEvent(String eventID, int posx, int posy, int dir, String charSetID ) {
+		this(eventID, posx, posy, dir, charSetID, false, null, null);
 	}
 	
 	public MapEvent(int posx, int posy, int dir, String charSetID, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
+		this("", posx, posy, dir, charSetID, belowPlayer, actionEvent, touchEvent);
+	}
+	
+	public MapEvent(String eventID, int posx, int posy, int dir, String charSetID, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
+		this.eventID = eventID;
 		this.posx = posx;
 		this.posy=posy;
 		this.charset=Game.charsets.get(charSetID);
@@ -45,11 +50,55 @@ public class MapEvent extends GameEvent{
 	 */
 	
 	public void render() {
-		if( charset != null ) {
-			Renderer.renderSubImage(charset, frame*16, dir*32, 16, 32, posx*16, (posy-1)*16, 16, 32);	
-		}
+		if(charset == null) return;
+		
+		if(dir == GameUtil.RIGHT)
+        {
+        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16-animationTimer, (posy-1)*16, 16, 32);
+        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*32, 16, 32, posx*16-animationTimer, (posy-1)*16, 16, 32);
+        }
+        else if(dir == GameUtil.LEFT)
+        {
+        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16+animationTimer, (posy-1)*16, 16, 32);
+        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*32, 16, 32, posx*16+animationTimer, (posy-1)*16, 16, 32);
+        }
+        else if(dir == GameUtil.DOWN)
+        {
+        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16-animationTimer, 16, 32);
+        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16-animationTimer, 16, 32);
+        }
+        else if(dir == GameUtil.UP)
+        {
+        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16+animationTimer, 16, 32);
+        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16+animationTimer, 16, 32);
+        }				
 	}
 	
+
+	
+	public void tryToMove( int dir ) {
+		this.dir = dir;
+		
+		int x = posx;
+		if(dir == GameUtil.RIGHT) x++;
+		if(dir == GameUtil.LEFT) x--;
+		int y = posy;
+		if(dir == GameUtil.UP) y--;
+		if(dir == GameUtil.DOWN) y++;
+		
+		if( !Game.map.isBlocked(x, y)) move(dir);
+	}
+	
+	public void move( int dir ) {
+		
+		if( dir == GameUtil.UP ) posy--;
+		if( dir == GameUtil.DOWN ) posy++;
+		if( dir == GameUtil.LEFT ) posx--;
+		if( dir == GameUtil.RIGHT ) posx++;
+		
+		this.dir = dir;
+		animationTimer = 15;
+	}
 	
 	public int getX() {
 		return posx;
@@ -74,19 +123,20 @@ public class MapEvent extends GameEvent{
 	void setDirection(int d) {
 		dir = d;
 	}
-	void setFrame(int f) {
-		frame = f;
-	}
 	
 	public void init()
 	{
-		frame = 0;
+		animationTimer = 0;
 	}
 	
 	public void update()
 	{
-		
+		if( animationTimer > 0 ) animationTimer--;
 	}
 	
+	public boolean isFinished()
+	{
+		return animationTimer == 0;
+	}
 	
 }

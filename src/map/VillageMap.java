@@ -7,7 +7,6 @@ import event.AnimatedMapEvent;
 import event.EventList;
 import event.GameEvent;
 import event.MapEvent;
-import event.SetFrameEvent;
 import event.Teleport;
 import event.WaitEvent;
 import game.Game;
@@ -21,12 +20,12 @@ public class VillageMap extends game.Map{
         tileset = Game.tilesets.get("village");
         
         MapEvent doorBusiness = new MapEvent(18, 5, GameUtil.DOWN, "door");
-        GameEvent teleportBusiness = new EventList( new SetFrameEvent(doorBusiness, 1), new WaitEvent(10), new Teleport("shop", 9, 12, GameUtil.UP) );
+        GameEvent teleportBusiness = new EventList( new Teleport("shop", 9, 12, GameUtil.UP) );
         doorBusiness.actionEvent = teleportBusiness;
         mapEvents.add(doorBusiness);
         
         MapEvent doorOutis = new MapEvent(7, 8, GameUtil.DOWN, "door");
-        GameEvent teleportOutis = new EventList( new SetFrameEvent(doorOutis, 1), new WaitEvent(10), new Teleport("outi_room", 9, 12, GameUtil.UP) );
+        GameEvent teleportOutis = new EventList( new WaitEvent(10), new Teleport("outi_room", 9, 12, GameUtil.UP) );
         doorOutis.actionEvent = teleportOutis;
         mapEvents.add(doorOutis);
         

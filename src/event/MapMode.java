@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.Comparator;
 
 import game.Game;
+import game.GameUtil;
 import game.Map;
 import render.Renderer;
 
@@ -51,6 +52,7 @@ public class MapMode extends GameEvent
 	
 	public void update()
 	{		
+		handleInputs();
 		for( MapEvent x : map.mapEvents)
 			   x.update();
 				
@@ -68,6 +70,53 @@ public class MapMode extends GameEvent
         if( ty < -map.getHeight()*16 + 15*16 ) ty = -map.getHeight()*16 + 15*16;
         
         Game.camera.setPos(tx,ty);
+	}
+	
+	private void handleInputs() {
+		if(Game.inputs.contains("A"))
+		{
+			Game.inputs.remove("A");
+			
+			int x = player.getX();
+			if(player.getDirection() == GameUtil.RIGHT) x++;
+			if(player.getDirection() == GameUtil.LEFT) x--;
+			int y = player.getY();
+			if(player.getDirection() == GameUtil.UP) y--;
+			if(player.getDirection() == GameUtil.DOWN) y++;
+			
+			for(MapEvent me: Game.map.mapEvents)
+			{
+				if( me.getX() == x && me.getY() == y && me.actionEvent != null)
+				{
+					Game.startEvent(me.actionEvent);
+					break;
+				}
+			}
+		}
+		if( player.isFinished() ) //Player bewegt sich nicht
+		{		
+			int dir = -1;
+			for( String tmp : Game.inputs)
+			{
+				if( tmp.equals("LEFT")) dir = GameUtil.LEFT;
+				else if( tmp.equals("RIGHT")) dir = GameUtil.RIGHT;
+				else if( tmp.equals("UP")) dir = GameUtil.UP;
+				else if( tmp.equals("DOWN")) dir = GameUtil.DOWN;
+			}
+			
+			if( dir != -1 ) player.tryToMove(dir);
+			
+			if( !player.isFinished() ) {				
+				for(MapEvent me: Game.map.mapEvents)
+				{
+					if( me.getX() == player.getX() && me.getY() == player.getY() && me.belowPlayer && me.touchEvent != null)
+					{
+						Game.startEvent(new EventList( new WaitForMapEvent("player"), me.touchEvent));
+						break;
+					}
+				}
+			}
+		}
 	}
 	
 	public boolean isFinished() {

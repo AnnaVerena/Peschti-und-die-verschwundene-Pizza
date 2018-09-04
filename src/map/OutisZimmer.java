@@ -8,6 +8,7 @@ import event.Choicebox;
 import event.EventList;
 import event.GameEvent;
 import event.MapEvent;
+import event.MoveEvent;
 import event.SetVariableEvent;
 import event.Teleport;
 import event.Textbox;
@@ -24,10 +25,10 @@ public class OutisZimmer extends game.Map{
 		super(new File("res/maps/map_outis.txt"));
         tileset = Game.tilesets.get("outi_room");        
         
-        mapEvents.add(new MapEvent(9, 13, GameUtil.DOWN, null, false, null, new EventList( new Teleport("village", 7, 9, GameUtil.DOWN), new WaitEvent(10))));
-        mapEvents.add(new MapEvent(10, 13, GameUtil.DOWN, null, false, null, new EventList( new Teleport("village", 7, 9, GameUtil.DOWN), new WaitEvent(10))));
+        mapEvents.add( new MapEvent("teleport1", 9, 12, GameUtil.DOWN, null, true, null, new EventList( new Teleport("village", 7, 9, GameUtil.DOWN), new WaitEvent(10))));
+        mapEvents.add( new MapEvent("teleport2", 10, 12, GameUtil.DOWN, null, true, null, new EventList( new Teleport("village", 7, 9, GameUtil.DOWN), new WaitEvent(10))));
         
-        MapEvent outi = new MapEvent( 11,4, GameUtil.DOWN, "business");
+        MapEvent outi = new MapEvent("outis",  11,4, GameUtil.DOWN, "business");
         
         GameEvent stage0 = new EventList( new TurnToPlayer(outi), 
         				new Textbox("Outis: Hier ist mein Zimmer!\n"
@@ -56,8 +57,8 @@ public class OutisZimmer extends game.Map{
         
         mapEvents.add( outi );
         
-        mapEvents.add( new MapEvent( 6,4, GameUtil.DOWN, null, true, null, new EventList( new TurnEvent(outi, GameUtil.LEFT),
-        				new Textbox("Outis: Was suchst du hinter meinem Bett?"), new TurnEvent(outi, GameUtil.DOWN)  )));
+        mapEvents.add( new MapEvent( "bett", 6,4, GameUtil.DOWN, null, true, null, new EventList( new TurnEvent(outi, GameUtil.LEFT),
+        				new Textbox("Outis: Was suchst du hinter meinem Bett?"), new TurnEvent(outi, GameUtil.DOWN), new MoveEvent("player", GameUtil.RIGHT)   )));
 	}
 
 }

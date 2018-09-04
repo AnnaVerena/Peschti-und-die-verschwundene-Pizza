@@ -27,5 +27,6 @@
 			<attribute name="javadoc_location" value="jar:platform:/resource/Peschti-und-die-verschwundene-Pizza/res/libs/lwjgl-stb-javadoc.jar!/"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="C:/Users/Tim/git/Peschti-und-die-verschwundene-Pizza/res/libs/antlr-4.7.1-complete.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

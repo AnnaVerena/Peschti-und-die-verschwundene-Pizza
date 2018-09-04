@@ -144,6 +144,15 @@ public class Map
 		}
 	}
 	
+	public MapEvent getMapEvent( String eventID )
+	{
+		for( MapEvent me : mapEvents )
+		{
+			if( me.eventID.equals(eventID)) return me;
+		}
+		return null;
+	}
+	
 	public boolean isWorldMap() {
 		return false;
 	}
