@@ -8,6 +8,7 @@ import event.EventList;
 import event.GameEvent;
 import event.MapEvent;
 import event.Teleport;
+import event.TurnEvent;
 import event.WaitEvent;
 import game.Game;
 import game.GameUtil;
@@ -19,13 +20,13 @@ public class VillageMap extends game.Map{
 		super(new File("res/maps/map_village_large.txt"));
         tileset = Game.tilesets.get("village");
         
-        MapEvent doorBusiness = new MapEvent(18, 5, GameUtil.DOWN, "door");
-        GameEvent teleportBusiness = new EventList( new Teleport("shop", 9, 12, GameUtil.UP) );
+        MapEvent doorBusiness = new MapEvent( "doorBusi", 18, 5, GameUtil.DOWN, "door");
+        GameEvent teleportBusiness = new EventList( new TurnEvent("doorBusi", GameUtil.UP), new WaitEvent(10), new Teleport("shop", 9, 12, GameUtil.UP) );
         doorBusiness.actionEvent = teleportBusiness;
         mapEvents.add(doorBusiness);
         
-        MapEvent doorOutis = new MapEvent(7, 8, GameUtil.DOWN, "door");
-        GameEvent teleportOutis = new EventList( new WaitEvent(10), new Teleport("outi_room", 9, 12, GameUtil.UP) );
+        MapEvent doorOutis = new MapEvent("doorOuti", 7, 8, GameUtil.DOWN, "door");
+        GameEvent teleportOutis = new EventList( new TurnEvent("doorOuti", GameUtil.UP), new WaitEvent(10), new Teleport("outi_room", 9, 12, GameUtil.UP) );
         doorOutis.actionEvent = teleportOutis;
         mapEvents.add(doorOutis);
         

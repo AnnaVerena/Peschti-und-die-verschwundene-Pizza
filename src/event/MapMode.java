@@ -104,7 +104,11 @@ public class MapMode extends GameEvent
 				else if( tmp.equals("DOWN")) dir = GameUtil.DOWN;
 			}
 			
-			if( dir != -1 ) player.tryToMove(dir);
+			if( dir != -1 )
+			{
+				player.setDirection(dir);
+				player.tryToMove(dir);
+			}
 			
 			if( !player.isFinished() ) {				
 				for(MapEvent me: Game.map.mapEvents)

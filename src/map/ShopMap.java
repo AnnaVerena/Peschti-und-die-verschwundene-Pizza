@@ -24,8 +24,8 @@ public class ShopMap extends game.Map{
         tileset = Game.tilesets.get("shop");
               
         MapEvent busi = new MapEvent( "business", 8,5, GameUtil.DOWN, "business");
-        busi.actionEvent = new EventList( new TurnToPlayer(busi), new Textbox("Kaufen, kaufen, kaufen!\n"
-        		+ "Ich habe die besten Preise!"), new event.TurnEvent(busi, GameUtil.DOWN));
+        busi.actionEvent = new EventList( new TurnToPlayer("business"), new Textbox("Kaufen, kaufen, kaufen!\n"
+        		+ "Ich habe die besten Preise!"), new event.TurnEvent("business", GameUtil.DOWN));
         
         mapEvents.add( busi );
         

@@ -7,24 +7,32 @@ import javafx.scene.canvas.GraphicsContext;
 public class TurnToPlayer extends GameEvent {
 	
 	MapEvent me;
+	String eventID;
 	boolean finished;
 	
-	public TurnToPlayer( MapEvent me ) {
-		this.me = me;
+	public TurnToPlayer( String eventID ) {
+		this.eventID = eventID;
 	}
 	
 	public void init() {
-		finished = false;
-	}
-	
-	public void update() {
-		if( Game.player.getDirection() == GameUtil.UP ) me.setDirection(GameUtil.DOWN);
-		if( Game.player.getDirection() == GameUtil.DOWN ) me.setDirection(GameUtil.UP);
-		if( Game.player.getDirection() == GameUtil.LEFT ) me.setDirection(GameUtil.RIGHT);
-		if( Game.player.getDirection() == GameUtil.RIGHT ) me.setDirection(GameUtil.LEFT);
+		me = Game.map.getMapEvent(eventID);
 		finished = true;
+		
+		int dx = me.getX() - Game.player.getX();
+		int dy = me.getY() - Game.player.getY();
+		
+		if( Math.abs(dy) > Math.abs(dx) )
+		{
+			if( dy < 0 ) me.setDirection(GameUtil.DOWN);
+			else me.setDirection(GameUtil.UP);
+		}
+		else
+		{
+			if( dx < 0 ) me.setDirection(GameUtil.RIGHT);
+			else me.setDirection(GameUtil.LEFT);
+		}
 	}
-	
+		
 	public void draw( GraphicsContext gc ){
 		
 	}

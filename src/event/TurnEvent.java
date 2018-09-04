@@ -1,29 +1,23 @@
 package event;
 
-import javafx.scene.canvas.GraphicsContext;
+import game.Game;
 
 public class TurnEvent extends GameEvent {
 	
 	MapEvent me;
+	String eventID;
 	boolean finished;
 	int dir;
 	
-	public TurnEvent( MapEvent me, int dir ) {
-		this.me = me;
+	public TurnEvent( String eventID, int dir ) {
+		this.eventID = eventID;
 		this.dir = dir;
 	}
 	
 	public void init() {
-		finished = false;
-	}
-	
-	public void update() {
+		me = Game.map.getMapEvent(eventID);
 		me.setDirection(dir);
 		finished = true;
-	}
-	
-	public void draw( GraphicsContext gc ){
-		
 	}
 	
 	public boolean isFinished() {

@@ -76,9 +76,7 @@ public class MapEvent extends GameEvent{
 	
 
 	
-	public void tryToMove( int dir ) {
-		this.dir = dir;
-		
+	public void tryToMove( int dir ) {		
 		int x = posx;
 		if(dir == GameUtil.RIGHT) x++;
 		if(dir == GameUtil.LEFT) x--;
