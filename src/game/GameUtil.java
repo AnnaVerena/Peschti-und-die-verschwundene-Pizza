@@ -5,6 +5,7 @@ import javafx.scene.image.PixelReader;
 import javafx.scene.image.PixelWriter;
 import javafx.scene.image.WritableImage;
 import javafx.scene.transform.Affine;
+import render.Color;
 import render.Renderer;
 
 public class GameUtil {
@@ -17,29 +18,33 @@ public class GameUtil {
 	public static final Affine IDENTITY = new Affine();
 	
 	public static void renderTextbox( int x, int y, int width, int height) {
+		renderTextbox( x, y, width, height, Color.WHITE );
+	}
+	
+	public static void renderTextbox( int x, int y, int width, int height, Color color) {
 		
-		Renderer.renderSubImage(Game.textboxTileset, 0, 0, 16, 16, x*16, y*16, 16, 16  );
+		Renderer.renderSubImage(Game.textboxTileset, 0, 0, 16, 16, x*16, y*16, 16, 16, color  );
 		for( int ty = y+1; ty < y+height-1; ty++)
 		{
-			Renderer.renderSubImage(Game.textboxTileset, 0, 16, 16, 16, x*16, ty*16, 16, 16  );
+			Renderer.renderSubImage(Game.textboxTileset, 0, 16, 16, 16, x*16, ty*16, 16, 16, color  );
 		}
-		Renderer.renderSubImage(Game.textboxTileset, 0, 32, 16, 16, x*16, (y+height-1)*16, 16, 16  );
+		Renderer.renderSubImage(Game.textboxTileset, 0, 32, 16, 16, x*16, (y+height-1)*16, 16, 16, color  );
 		
 		for( int tx = x+1; tx < x+width - 1 ; tx++ ) {
-			Renderer.renderSubImage(Game.textboxTileset, 16, 0, 16, 16, tx*16, y*16, 16, 16  );
+			Renderer.renderSubImage(Game.textboxTileset, 16, 0, 16, 16, tx*16, y*16, 16, 16, color  );
 			for( int ty = y+1; ty < y+height-1; ty++)
 			{
-				Renderer.renderSubImage(Game.textboxTileset, 16, 16, 16, 16, tx*16, ty*16, 16, 16  );
+				Renderer.renderSubImage(Game.textboxTileset, 16, 16, 16, 16, tx*16, ty*16, 16, 16, color  );
 			}
-			Renderer.renderSubImage(Game.textboxTileset, 16, 32, 16, 16, tx*16, (y+height-1)*16, 16, 16  );
+			Renderer.renderSubImage(Game.textboxTileset, 16, 32, 16, 16, tx*16, (y+height-1)*16, 16, 16, color  );
 		}
 		
-		Renderer.renderSubImage(Game.textboxTileset, 32, 0, 16, 16, (x+width-1)*16, y*16, 16, 16  );
+		Renderer.renderSubImage(Game.textboxTileset, 32, 0, 16, 16, (x+width-1)*16, y*16, 16, 16, color  );
 		for( int ty = y+1; ty < y+height-1; ty++)
 		{
-			Renderer.renderSubImage(Game.textboxTileset, 32, 16, 16, 16, (x+width-1)*16, ty*16, 16, 16  );
+			Renderer.renderSubImage(Game.textboxTileset, 32, 16, 16, 16, (x+width-1)*16, ty*16, 16, 16, color  );
 		}
-		Renderer.renderSubImage(Game.textboxTileset, 32, 32, 16, 16, (x+width-1)*16, (y+height-1)*16, 16, 16  );
+		Renderer.renderSubImage(Game.textboxTileset, 32, 32, 16, 16, (x+width-1)*16, (y+height-1)*16, 16, 16, color  );
 		
 		
 	}

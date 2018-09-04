@@ -13,7 +13,6 @@ import event.RandomWalkNPC;
 import event.SetVariableEvent;
 import event.Teleport;
 import event.Textbox;
-import event.TurnEvent;
 import event.TurnToPlayer;
 import event.WaitEvent;
 import event.WaitForMapEvent;

@@ -52,25 +52,27 @@ public class MapEvent extends GameEvent{
 	public void render() {
 		if(charset == null) return;
 		
+		int x = (animationTimer/4)%4;
+		
 		if(dir == GameUtil.RIGHT)
         {
-        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16-animationTimer, (posy-1)*16, 16, 32);
-        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*32, 16, 32, posx*16-animationTimer, (posy-1)*16, 16, 32);
+        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16-animationTimer, (posy-1)*16, 16, 32);
+        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*32, 16, 32, posx*16-animationTimer, (posy-1)*16, 16, 32);
         }
         else if(dir == GameUtil.LEFT)
         {
-        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16+animationTimer, (posy-1)*16, 16, 32);
-        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*32, 16, 32, posx*16+animationTimer, (posy-1)*16, 16, 32);
+        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16+animationTimer, (posy-1)*16, 16, 32);
+        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*32, 16, 32, posx*16+animationTimer, (posy-1)*16, 16, 32);
         }
         else if(dir == GameUtil.DOWN)
         {
-        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16-animationTimer, 16, 32);
-        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16-animationTimer, 16, 32);
+        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16-animationTimer, 16, 32);
+        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16-animationTimer, 16, 32);
         }
         else if(dir == GameUtil.UP)
         {
-        	if( (animationTimer / 4) == 0 || (animationTimer / 4) == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16+animationTimer, 16, 32);
-        	else if( (animationTimer / 4) == 1 || (animationTimer / 4) == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16+animationTimer, 16, 32);
+        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir*32, 16, 32, posx*16, (posy-1)*16+animationTimer, 16, 32);
+        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*32, 16, 32, posx*16, (posy-1)*16+animationTimer, 16, 32);
         }				
 	}
 	
@@ -95,7 +97,7 @@ public class MapEvent extends GameEvent{
 		if( dir == GameUtil.RIGHT ) posx++;
 		
 		this.dir = dir;
-		animationTimer = 15;
+		animationTimer = 16;
 	}
 	
 	public int getX() {

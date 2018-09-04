@@ -93,4 +93,17 @@ public class Font {
     	g.dispose();
     	return image;
     }
+    
+    public float getTextLength( String text )
+    {
+    	float length = 0;
+    	
+    	for( int i = 0; i<text.length(); i++)
+    	{
+    		char c = text.charAt(i);
+    		if( c != '\n' && c != '\r' ) length += glyphs.get(c).width;
+    	}
+    	
+    	return length/scale;
+    }
 }

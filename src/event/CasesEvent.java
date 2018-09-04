@@ -10,7 +10,7 @@ public class CasesEvent extends GameEvent {
 	GameEvent defaultEvent;
 	Pair<Integer, GameEvent>[] cases;
 	
-	
+	@SafeVarargs
 	public CasesEvent( String intVarID, GameEvent defaultEvent, Pair<Integer, GameEvent>... cases ) 
 	{
 		this.intVarID = intVarID;

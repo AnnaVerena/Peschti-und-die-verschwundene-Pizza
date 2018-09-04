@@ -2,7 +2,6 @@ package event;
 
 import game.Game;
 import game.GameUtil;
-import javafx.scene.canvas.GraphicsContext;
 
 public class TurnToPlayer extends GameEvent {
 	
@@ -31,10 +30,6 @@ public class TurnToPlayer extends GameEvent {
 			if( dx < 0 ) me.setDirection(GameUtil.RIGHT);
 			else me.setDirection(GameUtil.LEFT);
 		}
-	}
-		
-	public void draw( GraphicsContext gc ){
-		
 	}
 	
 	public boolean isFinished() {

@@ -12,7 +12,6 @@ import event.TurnEvent;
 import event.WaitEvent;
 import game.Game;
 import game.GameUtil;
-import render.Image;
 
 public class VillageMap extends game.Map{
 	
