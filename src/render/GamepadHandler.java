@@ -4,7 +4,6 @@ import java.nio.ByteBuffer;
 import java.nio.FloatBuffer;
 
 import org.lwjgl.glfw.GLFW;
-
 import game.Game;
 
 public class GamepadHandler
@@ -32,12 +31,14 @@ public class GamepadHandler
 	private boolean[] isPressed = new boolean[14];
 	private int[] axisDir = new int[6];
 	
+	private int activeJoystick = GLFW.GLFW_JOYSTICK_1;
+	
 	public void handleInputs()
 	{
-		if( GLFW.glfwJoystickPresent( GLFW.GLFW_JOYSTICK_1 ) )
+		if( GLFW.glfwJoystickPresent( activeJoystick ) )
 		{
-			FloatBuffer axes = GLFW.glfwGetJoystickAxes( GLFW.GLFW_JOYSTICK_1 );
-			ByteBuffer buttons = GLFW.glfwGetJoystickButtons( GLFW.GLFW_JOYSTICK_1 );
+			FloatBuffer axes = GLFW.glfwGetJoystickAxes( activeJoystick );
+			ByteBuffer buttons = GLFW.glfwGetJoystickButtons( activeJoystick );
 			
 			handleButton( BUTTON_A, "A", buttons );
 			handleButton( BUTTON_UP, "UP", buttons );

@@ -19,7 +19,6 @@ public class WaitForMapEvent extends GameEvent
 	
 	public void update()
 	{
-		event.update();
 	}
 	
 	public boolean isFinished()

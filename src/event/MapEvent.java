@@ -52,6 +52,7 @@ public class MapEvent extends GameEvent{
 	public void render() {
 		if(charset == null) return;
 		
+		if( animationTimer > 0 ) animationTimer--;		
 		int x = (animationTimer/4)%4;
 		
 		if(dir == GameUtil.RIGHT)
@@ -131,7 +132,7 @@ public class MapEvent extends GameEvent{
 	
 	public void update()
 	{
-		if( animationTimer > 0 ) animationTimer--;
+		
 	}
 	
 	public boolean isFinished()
