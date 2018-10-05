@@ -10,8 +10,8 @@ import org.lwjgl.stb.STBImage;
 
 public class Image 
 {
-	int width;
-	int height;
+	public int width;
+	public int height;
 	ByteBuffer buffer;
 	
 	public Image(int width, int height, ByteBuffer buffer) {

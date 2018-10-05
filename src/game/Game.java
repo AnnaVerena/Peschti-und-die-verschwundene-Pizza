@@ -53,7 +53,7 @@ public class Game {
 	}
 	
 	public static void init(){
-		charsets.put("peschti", Image.loadImage(new File( "res/charsets/Peschti.png")));
+		charsets.put("peschti", Image.loadImage(new File( "res/charsets/peschti2.png")));
 		charsets.put("peschti_small", Image.loadImage(new File( "res/charsets/small_peschti.png")));
 		charsets.put("business", Image.loadImage(new File( "res/charsets/Business.png")));
 		charsets.put("waterfall", Image.loadImage(new File( "res/charsets/waterfall.png")));
