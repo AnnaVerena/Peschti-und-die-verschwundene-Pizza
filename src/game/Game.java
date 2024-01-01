@@ -73,6 +73,7 @@ public class Game {
 			Game.maps.put( "shop", new map.ShopMap() );
 			Game.maps.put( "village", new map.VillageMap() );
 			Game.maps.put("outi_room", new map.OutisZimmer());
+			Game.maps.put("peschti_room", new map.PeschtiZimmer());
 			Game.maps.put("world", new WorldMap());
 		} catch (MalformedURLException e) {
 			e.printStackTrace();

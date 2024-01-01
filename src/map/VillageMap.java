@@ -29,6 +29,11 @@ public class VillageMap extends game.Map{
         doorOutis.actionEvent = teleportOutis;
         mapEvents.add(doorOutis);
         
+        MapEvent doorPeschti = new MapEvent("doorPeschti", 5, 17, GameUtil.DOWN, "door");
+        GameEvent teleportPeschti = new EventList( new TurnEvent("doorPeschti", GameUtil.UP), new WaitEvent(10), new Teleport("peschti_room", 9, 13, GameUtil.UP) );
+        doorPeschti.actionEvent = teleportPeschti;
+        mapEvents.add(doorPeschti);
+        
         mapEvents.add( new MapEvent(4, 29, GameUtil.DOWN, null, true, null, new EventList( new Teleport("world", 6, 6, GameUtil.DOWN)) ));
         mapEvents.add( new MapEvent(5, 29, GameUtil.DOWN, null, true, null, new EventList(  new Teleport("world", 6, 6, GameUtil.DOWN)) ));
         mapEvents.add( new MapEvent(6, 29, GameUtil.DOWN, null, true, null, new EventList(  new Teleport("world", 6, 6, GameUtil.DOWN)) ));
