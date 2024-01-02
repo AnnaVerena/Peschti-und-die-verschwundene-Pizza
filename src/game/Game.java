@@ -25,9 +25,6 @@ public class Game {
 	public static Image textboxTileset;
 	public static HashMap<String,Image> tilesets = new HashMap<String,Image>();
 	public static HashMap<String,Image> charsets = new HashMap<String,Image>();
-	
-	public static HashMap<String,Map> maps = new HashMap<String,Map>();
-	
 	public static HashMap<String, Integer> variables = new HashMap<>();
 	
 	public static Camera camera = new Camera(0,0);
@@ -68,20 +65,26 @@ public class Game {
 
         Game.textboxTileset = Image.loadImage(new File("res/Textbox2.png"));
 		player = new Player( 7, 9, GameUtil.DOWN, "peschti", "peschti_small");
-		
-		try {
-			Game.maps.put( "shop", new map.ShopMap() );
-			Game.maps.put( "village", new map.VillageMap() );
-			Game.maps.put("outi_room", new map.OutisZimmer());
-			Game.maps.put("peschti_room", new map.PeschtiZimmer());
-			Game.maps.put("world", new WorldMap());
-		} catch (MalformedURLException e) {
-			e.printStackTrace();
-		}
-        
-		map = maps.get("village");
+
+        try {
+            map = loadMap("village");
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
         startEvent( new MapMode());
 	}
+
+	public static Map loadMap(String mapId) throws Exception {
+        return switch (mapId) {
+            case "shop" -> new map.ShopMap();
+            case "village" -> new map.VillageMap();
+            case "outi_room" -> new map.OutisZimmer();
+            case "peschti_room" -> new map.PeschtiZimmer();
+            case "world" -> new WorldMap();
+            default -> throw new Exception("unknown map id: " + mapId);
+        };
+    }
 	
 	public static void startEvent(GameEvent event )
 	{

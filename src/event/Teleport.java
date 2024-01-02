@@ -21,9 +21,14 @@ public class Teleport extends GameEvent{
 		Game.player.setDirection(dir);
 
 		Game.eventStack.clear();
-		
-		Game.map = Game.maps.get(mapID);
-		Game.startEvent( new MapMode());
+
+        try {
+            Game.map = Game.loadMap(mapID);
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+
+        Game.startEvent( new MapMode());
 		Game.startEvent(new WaitEvent(5));
 		
 		finished = true;
