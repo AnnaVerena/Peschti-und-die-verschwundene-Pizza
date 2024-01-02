@@ -11,7 +11,7 @@ import game.GameUtil;
 
 public class WorldMap extends game.Map{
 	
-	public WorldMap() throws MalformedURLException{
+	public WorldMap(){
 		super(new File("res/maps/world.txt"));
         tileset = Game.tilesets.get("world");
         

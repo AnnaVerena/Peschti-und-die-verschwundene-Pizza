@@ -22,7 +22,7 @@ import util.Pair;
 
 public class OutisZimmer extends game.Map{
 	
-	public OutisZimmer() throws MalformedURLException{
+	public OutisZimmer(){
 		super(new File("res/maps/map_outis.txt"));
         tileset = Game.tilesets.get("outi_room");        
         

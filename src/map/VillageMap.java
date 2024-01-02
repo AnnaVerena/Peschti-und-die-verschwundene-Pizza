@@ -15,7 +15,7 @@ import game.GameUtil;
 
 public class VillageMap extends game.Map{
 	
-	public VillageMap() throws MalformedURLException{
+	public VillageMap(){
 		super(new File("res/maps/map_village_large.txt"));
         tileset = Game.tilesets.get("village");
         

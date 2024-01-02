@@ -21,7 +21,7 @@ import util.Pair;
 
 public class ShopMap extends game.Map{
 	
-	public ShopMap() throws MalformedURLException{
+	public ShopMap(){
 		super(new File("res/maps/map_shop.txt"));
         tileset = Game.tilesets.get("shop");
               

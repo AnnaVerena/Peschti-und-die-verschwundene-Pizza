@@ -9,7 +9,7 @@ import game.GameUtil;
 import util.Pair;
 
 public class PeschtiZimmer extends game.Map {
-    public PeschtiZimmer() throws MalformedURLException {
+    public PeschtiZimmer(){
         super(new File("res/maps/map_peschti.txt"));
         tileset = Game.tilesets.get("outi_room");
         mapEvents.add(new MapEvent("teleport1", 9, 13, GameUtil.DOWN, null, true, null,
