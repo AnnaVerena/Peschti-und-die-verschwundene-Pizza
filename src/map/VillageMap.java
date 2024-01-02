@@ -1,17 +1,10 @@
 package map;
 
-import java.io.File;
-import java.net.MalformedURLException;
-
-import event.AnimatedMapEvent;
-import event.EventList;
-import event.GameEvent;
-import event.MapEvent;
-import event.Teleport;
-import event.TurnEvent;
-import event.WaitEvent;
+import event.*;
 import game.Game;
 import game.GameUtil;
+
+import java.io.File;
 
 public class VillageMap extends game.Map{
 	
@@ -20,18 +13,15 @@ public class VillageMap extends game.Map{
         tileset = Game.tilesets.get("village");
         
         MapEvent doorBusiness = new MapEvent( "doorBusi", 18, 5, GameUtil.DOWN, "door");
-        GameEvent teleportBusiness = new EventList( new TurnEvent("doorBusi", GameUtil.UP), new WaitEvent(10), new Teleport("shop", 9, 12, GameUtil.UP) );
-        doorBusiness.actionEvent = teleportBusiness;
+        doorBusiness.actionEvent = new EventList( new TurnEvent("doorBusi", GameUtil.UP), new WaitEvent(10), new Teleport("shop", 9, 12, GameUtil.UP) );
         mapEvents.add(doorBusiness);
         
         MapEvent doorOutis = new MapEvent("doorOuti", 7, 8, GameUtil.DOWN, "door");
-        GameEvent teleportOutis = new EventList( new TurnEvent("doorOuti", GameUtil.UP), new WaitEvent(10), new Teleport("outi_room", 9, 12, GameUtil.UP) );
-        doorOutis.actionEvent = teleportOutis;
+        doorOutis.actionEvent = new EventList( new TurnEvent("doorOuti", GameUtil.UP), new WaitEvent(10), new Teleport("outi_room", 9, 12, GameUtil.UP) );
         mapEvents.add(doorOutis);
         
         MapEvent doorPeschti = new MapEvent("doorPeschti", 5, 17, GameUtil.DOWN, "door");
-        GameEvent teleportPeschti = new EventList( new TurnEvent("doorPeschti", GameUtil.UP), new WaitEvent(10), new Teleport("peschti_room", 9, 13, GameUtil.UP) );
-        doorPeschti.actionEvent = teleportPeschti;
+        doorPeschti.actionEvent = new EventList( new TurnEvent("doorPeschti", GameUtil.UP), new WaitEvent(10), new Teleport("peschti_room", 9, 13, GameUtil.UP) );
         mapEvents.add(doorPeschti);
         
         mapEvents.add( new MapEvent(4, 29, GameUtil.DOWN, null, true, null, new EventList( new Teleport("world", 6, 6, GameUtil.DOWN)) ));

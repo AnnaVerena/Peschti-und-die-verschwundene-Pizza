@@ -1,9 +1,4 @@
 package game;
-import java.io.File;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.Stack;
 
 import event.GameEvent;
 import event.MapMode;
@@ -12,19 +7,24 @@ import map.WorldMap;
 import render.Image;
 import render.Renderer;
 
+import java.io.File;
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Stack;
+
 public class Game {
 	
 	public static Map map;
 	public static Player player;
-	public static ArrayList<String> inputs = new ArrayList<String>();
+	public static ArrayList<String> inputs = new ArrayList<>();
 	
 	
 		
-	public static Stack<GameEvent> eventStack = new Stack<GameEvent>();
+	public static Stack<GameEvent> eventStack = new Stack<>();
 	
 	public static Image textboxTileset;
-	public static HashMap<String,Image> tilesets = new HashMap<String,Image>();
-	public static HashMap<String,Image> charsets = new HashMap<String,Image>();
+	public static HashMap<String,Image> tilesets = new HashMap<>();
+	public static HashMap<String,Image> charsets = new HashMap<>();
 	public static HashMap<String, Integer> variables = new HashMap<>();
 	
 	public static Camera camera = new Camera(0,0);

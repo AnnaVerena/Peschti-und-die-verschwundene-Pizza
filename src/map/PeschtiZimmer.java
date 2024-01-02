@@ -1,12 +1,11 @@
 package map;
 
-import java.io.File;
-import java.net.MalformedURLException;
-
 import event.*;
 import game.Game;
 import game.GameUtil;
 import util.Pair;
+
+import java.io.File;
 
 public class PeschtiZimmer extends game.Map {
     public PeschtiZimmer(){

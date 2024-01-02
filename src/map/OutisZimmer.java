@@ -1,24 +1,11 @@
 package map;
 
-import java.io.File;
-import java.net.MalformedURLException;
-
-import event.CasesEvent;
-import event.Choicebox;
-import event.EventList;
-import event.GameEvent;
-import event.MapEvent;
-import event.MoveEvent;
-import event.RandomWalkNPC;
-import event.SetVariableEvent;
-import event.Teleport;
-import event.Textbox;
-import event.TurnToPlayer;
-import event.WaitEvent;
-import event.WaitForMapEvent;
+import event.*;
 import game.Game;
 import game.GameUtil;
 import util.Pair;
+
+import java.io.File;
 
 public class OutisZimmer extends game.Map{
 	

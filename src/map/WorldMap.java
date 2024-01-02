@@ -1,13 +1,12 @@
 package map;
 
-import java.io.File;
-import java.net.MalformedURLException;
-
 import event.EventList;
 import event.MapEvent;
 import event.Teleport;
 import game.Game;
 import game.GameUtil;
+
+import java.io.File;
 
 public class WorldMap extends game.Map{
 	
