@@ -1,7 +1,7 @@
 package event;
 
 import game.Game;
-import javafx.util.Pair;
+import util.Pair;
 
 public class CasesEvent extends GameEvent {
 		
@@ -29,8 +29,8 @@ public class CasesEvent extends GameEvent {
 		int var = Game.variables.get(intVarID);
 		
 		for(Pair<Integer,GameEvent> p : cases) {
-			if(p.getKey() == var) {
-				Game.startEvent(p.getValue());
+			if(p._1 == var) {
+				Game.startEvent(p._2);
 				return;
 			}
 		}

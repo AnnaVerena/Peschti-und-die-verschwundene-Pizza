@@ -17,7 +17,7 @@ import event.TurnToPlayer;
 import event.WaitEvent;
 import game.Game;
 import game.GameUtil;
-import javafx.util.Pair;
+import util.Pair;
 
 public class ShopMap extends game.Map{
 	
@@ -46,7 +46,7 @@ public class ShopMap extends game.Map{
         GameEvent kekseKaufen = new EventList( new Textbox("Peschti kauft Kekse für 1$."), new SetVariableEvent("KEKSE", 2));
         
         GameEvent cookieEvent = new Choicebox("Hmm ...\n"
-        		+ "Die Kekse sehen sehr lecker aus!\nMöchtest du welche kaufen?", new CasesEvent("KEKSE", kekseDefault, new Pair<Integer, GameEvent>(1, kekseKaufen) ), new Textbox("Du bist ja komisch."));
+        		+ "Die Kekse sehen sehr lecker aus!\nMöchtest du welche kaufen?", new CasesEvent("KEKSE", kekseDefault, new Pair<>(1, kekseKaufen) ), new Textbox("Du bist ja komisch."));
         mapEvents.add( new MapEvent(11, 7, GameUtil.DOWN, null, false, cookieEvent, null ));
         
         

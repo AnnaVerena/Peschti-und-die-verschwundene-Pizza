@@ -6,7 +6,7 @@ import java.net.MalformedURLException;
 import event.*;
 import game.Game;
 import game.GameUtil;
-import javafx.util.Pair;
+import util.Pair;
 
 public class PeschtiZimmer extends game.Map {
     public PeschtiZimmer() throws MalformedURLException {
@@ -30,7 +30,7 @@ public class PeschtiZimmer extends game.Map {
         GameEvent stage3 = new EventList(new TurnToPlayer("outi"),
                 new Textbox("Outis: Hier ist mein Zimmer!\n" + "Hier gibt es gratis Kakao und Kekse!"));
         outi.actionEvent = new EventList(new WaitForMapEvent("outi"),
-                new CasesEvent("KEKSE", stage0, new Pair(1, stage1), new Pair(2, stage2), new Pair(3, stage3)));
+                new CasesEvent("KEKSE", stage0, new Pair<>(1, stage1), new Pair<>(2, stage2), new Pair<>(3, stage3)));
         mapEvents.add(outi);
         
     }

@@ -1,7 +1,5 @@
 package event;
 
-import javafx.scene.canvas.GraphicsContext;
-
 public class WaitEvent extends GameEvent{
 	int duration;
 	int timer;
@@ -18,11 +16,7 @@ public class WaitEvent extends GameEvent{
 	public void update() {
 		timer--;
 	}
-	
-	public void draw( GraphicsContext gc ){
-		
-	}
-	
+
 	public boolean isFinished() {
 		return timer <= 0;
 	}

@@ -1,12 +1,11 @@
 package game;
 
-import javafx.scene.image.Image;
-import javafx.scene.image.PixelReader;
-import javafx.scene.image.PixelWriter;
-import javafx.scene.image.WritableImage;
-import javafx.scene.transform.Affine;
 import render.Color;
 import render.Renderer;
+
+import java.awt.geom.AffineTransform;
+import java.awt.image.AffineTransformOp;
+import java.awt.image.BufferedImage;
 
 public class GameUtil {
 	
@@ -14,9 +13,8 @@ public class GameUtil {
 	public final static int DOWN = 0;
 	public final static int LEFT = 2;
 	public final static int RIGHT = 3;
-	
-	public static final Affine IDENTITY = new Affine();
-	
+
+
 	public static void renderTextbox( int x, int y, int width, int height) {
 		renderTextbox( x, y, width, height, Color.WHITE );
 	}
@@ -49,53 +47,32 @@ public class GameUtil {
 		
 	}
 
-	public static Image resample(Image input, int scaleFactor) {
-        final int W = (int) input.getWidth();
-        final int H = (int) input.getHeight();
-        final int S = scaleFactor;
-        
-        WritableImage output = new WritableImage(
-          W * S,
-          H * S
+	public static BufferedImage resample(BufferedImage input, int scaleFactor) {
+        final int W = input.getWidth();
+        final int H = input.getHeight();
+
+        BufferedImage output = new BufferedImage(
+          W * scaleFactor,
+          H * scaleFactor,
+                BufferedImage.TYPE_INT_ARGB
         );
-        
-        PixelReader reader = input.getPixelReader();
-        PixelWriter writer = output.getPixelWriter();
-        
-        for (int y = 0; y < H; y++) {
-          for (int x = 0; x < W; x++) {
-            final int argb = reader.getArgb(x, y);
-            for (int dy = 0; dy < S; dy++) {
-              for (int dx = 0; dx < S; dx++) {
-                writer.setArgb(x * S + dx, y * S + dy, argb);
-              }
-            }
-          }
-        }
+
+        AffineTransform at = new AffineTransform();
+        at.scale(scaleFactor, scaleFactor);
+        AffineTransformOp scaleOp =
+                new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        output = scaleOp.filter(input, output);
         
         return output;
       }
 	
-	public static Image resample(Image input, WritableImage output, int scaleFactor) {
-        final int W = (int) input.getWidth();
-        final int H = (int) input.getHeight();
-        final int S = scaleFactor;
-        
-        
-        PixelReader reader = input.getPixelReader();
-        PixelWriter writer = output.getPixelWriter();
-        
-        for (int y = 0; y < H; y++) {
-          for (int x = 0; x < W; x++) {
-            final int argb = reader.getArgb(x, y);
-            for (int dy = 0; dy < S; dy++) {
-              for (int dx = 0; dx < S; dx++) {
-                writer.setArgb(x * S + dx, y * S + dy, argb);
-              }
-            }
-          }
-        }
-        
+	public static BufferedImage resample(BufferedImage input, BufferedImage output, int scaleFactor) {
+        AffineTransform at = new AffineTransform();
+        at.scale(scaleFactor, scaleFactor);
+        AffineTransformOp scaleOp =
+                new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
+        output = scaleOp.filter(input, output);
+
         return output;
       }
 }
