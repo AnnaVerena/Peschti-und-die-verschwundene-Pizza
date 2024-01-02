@@ -28,10 +28,6 @@ public class Teleport extends GameEvent{
 		
 		finished = true;
 	}
-	
-	public void update() {
-		
-	}
 
 	public boolean isFinished() {
 		return finished;

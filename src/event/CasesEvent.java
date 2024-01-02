@@ -37,12 +37,8 @@ public class CasesEvent extends GameEvent {
 		
 		Game.startEvent(defaultEvent);
 	}
-	
-	public void update() {
-	}
-	
-	
-	
+
+
 	public boolean isFinished() {
 		return finished;
 	}

@@ -65,14 +65,4 @@ public class GameUtil {
         
         return output;
       }
-	
-	public static BufferedImage resample(BufferedImage input, BufferedImage output, int scaleFactor) {
-        AffineTransform at = new AffineTransform();
-        at.scale(scaleFactor, scaleFactor);
-        AffineTransformOp scaleOp =
-                new AffineTransformOp(at, AffineTransformOp.TYPE_NEAREST_NEIGHBOR);
-        output = scaleOp.filter(input, output);
-
-        return output;
-      }
 }
