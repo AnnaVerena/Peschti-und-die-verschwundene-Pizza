@@ -1,6 +1,5 @@
 package event;
 import game.Game;
-import javafx.scene.canvas.GraphicsContext;
 
 public class Teleport extends GameEvent{
 
@@ -29,15 +28,7 @@ public class Teleport extends GameEvent{
 		
 		finished = true;
 	}
-	
-	public void update() {
-		
-	}
-	
-	public void draw( GraphicsContext gc ){
-		
-	}
-	
+
 	public boolean isFinished() {
 		return finished;
 	}

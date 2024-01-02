@@ -18,7 +18,7 @@ import event.WaitEvent;
 import event.WaitForMapEvent;
 import game.Game;
 import game.GameUtil;
-import javafx.util.Pair;
+import util.Pair;
 
 public class OutisZimmer extends game.Map{
 	
@@ -52,7 +52,7 @@ public class OutisZimmer extends game.Map{
 						+ "Hier gibt es gratis Kakao und Kekse!"));
         				
         
-        outi.actionEvent = new EventList( new WaitForMapEvent("outi") ,  new CasesEvent( "KEKSE", stage0, new Pair(1,stage1), new Pair(2,stage2), new Pair(3, stage3)));
+        outi.actionEvent = new EventList( new WaitForMapEvent("outi") ,  new CasesEvent( "KEKSE", stage0, new Pair<>(1,stage1), new Pair<>(2,stage2), new Pair<>(3, stage3)));
         
         mapEvents.add( outi );
         
