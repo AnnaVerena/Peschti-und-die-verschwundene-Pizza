@@ -6,5 +6,5 @@
 !pom.xml
 
 # whitelist directories
-!res/
-!src/
+!res/**
+!src/**
