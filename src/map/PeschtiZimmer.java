@@ -1,6 +1,15 @@
 package map;
 
-import event.*;
+import event_system.*;
+import event_system.control_flow.CasesEvent;
+import event_system.control_flow.EventList;
+import event_system.dialog.Choicebox;
+import event_system.dialog.Textbox;
+import event_system.map_control.Teleport;
+import event_system.map_control.TurnToPlayer;
+import event_system.map_control.WaitForMapEntity;
+import event_system.map_entities.MapEntity;
+import event_system.map_entities.RandomWalkNPC;
 import game.Game;
 import game.GameUtil;
 import util.Pair;
@@ -11,11 +20,11 @@ public class PeschtiZimmer extends game.Map {
     public PeschtiZimmer(){
         super(new File("res/maps/map_peschti.txt"));
         tileset = Game.tilesets.get("outi_room");
-        mapEvents.add(new MapEvent("teleport1", 9, 13, GameUtil.DOWN, null, true, null,
+        mapEntities.add(new MapEntity("teleport1", 9, 13, GameUtil.DOWN, null, true, null,
                 new EventList(new Teleport("village", 5, 17, GameUtil.DOWN), new WaitEvent(10))));
-        mapEvents.add(new MapEvent("teleport2", 10, 13, GameUtil.DOWN, null, true, null,
+        mapEntities.add(new MapEntity("teleport2", 10, 13, GameUtil.DOWN, null, true, null,
                 new EventList(new Teleport("village", 5, 17, GameUtil.DOWN), new WaitEvent(10))));
-        MapEvent outi = new RandomWalkNPC("outi", 11, 4, GameUtil.DOWN, "business");
+        MapEntity outi = new RandomWalkNPC("outi", 11, 4, GameUtil.DOWN, "business");
         GameEvent stage0 = new EventList(new TurnToPlayer("outi"),
                 new Textbox("Outis: Hier ist mein Zimmer!\n" + "Hier gibt es gratis Kakao!"),
                 new Choicebox("Outis: Kannst du mir vielleicht\nKekse kaufen gehen?",
@@ -28,9 +37,9 @@ public class PeschtiZimmer extends game.Map {
                 new Textbox("Outis: Vielen Dank für die Kekse!"), new SetVariableEvent("KEKSE", 3));
         GameEvent stage3 = new EventList(new TurnToPlayer("outi"),
                 new Textbox("Outis: Hier ist mein Zimmer!\n" + "Hier gibt es gratis Kakao und Kekse!"));
-        outi.actionEvent = new EventList(new WaitForMapEvent("outi"),
+        outi.actionEvent = new EventList(new WaitForMapEntity("outi"),
                 new CasesEvent("KEKSE", stage0, new Pair<>(1, stage1), new Pair<>(2, stage2), new Pair<>(3, stage3)));
-        mapEvents.add(outi);
+        mapEntities.add(outi);
         
     }
 }

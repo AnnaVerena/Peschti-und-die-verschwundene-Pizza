@@ -1,8 +1,8 @@
 package game;
 
-import event.GameEvent;
-import event.MapMode;
-import event.Player;
+import event_system.GameEvent;
+import event_system.MapMode;
+import event_system.map_entities.Player;
 import map.WorldMap;
 import render.Image;
 import render.Renderer;

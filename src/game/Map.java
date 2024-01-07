@@ -7,7 +7,7 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 
-import event.MapEvent;
+import event_system.map_entities.MapEntity;
 import render.Image;
 
 public class Map 
@@ -16,7 +16,7 @@ public class Map
 	int height;
 	int[][][] map;
 	boolean[][] blocked;
-	public ArrayList<MapEvent> mapEvents = new ArrayList<MapEvent>();
+	public ArrayList<MapEntity> mapEntities = new ArrayList<MapEntity>();
 	public Image tileset;
 	
 	public Map(int width, int height)
@@ -104,7 +104,7 @@ public class Map
 
 	public boolean isBlocked(int x, int y ) {
 		if(isTileBlocked(x, y)) return true;
-		for (MapEvent me : mapEvents) {
+		for (MapEntity me : mapEntities) {
 			if(x == me.getX() && y == me.getY() && !me.belowPlayer) return true;
 		}
 		return false;
@@ -144,9 +144,9 @@ public class Map
 		}
 	}
 	
-	public MapEvent getMapEvent( String eventID )
+	public MapEntity getMapEntity(String eventID )
 	{
-		for( MapEvent me : mapEvents )
+		for( MapEntity me : mapEntities)
 		{
 			if( me.eventID.equals(eventID)) return me;
 		}
