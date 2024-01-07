@@ -8,13 +8,6 @@ import java.awt.image.AffineTransformOp;
 import java.awt.image.BufferedImage;
 
 public class GameUtil {
-	
-	public final static int UP = 1;
-	public final static int DOWN = 0;
-	public final static int LEFT = 2;
-	public final static int RIGHT = 3;
-
-
 	public static void renderTextbox( int x, int y, int width, int height) {
 		renderTextbox( x, y, width, height, Color.WHITE );
 	}

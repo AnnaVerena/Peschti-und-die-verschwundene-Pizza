@@ -11,6 +11,7 @@ import game.Game;
 import game.GameUtil;
 import game.Map;
 import render.Renderer;
+import util.Direction;
 
 public class MapMode extends GameEvent
 {
@@ -82,11 +83,11 @@ public class MapMode extends GameEvent
 			Game.inputs.remove("A");
 			
 			int x = player.getX();
-			if(player.getDirection() == GameUtil.RIGHT) x++;
-			if(player.getDirection() == GameUtil.LEFT) x--;
+			if(player.getDirection() == Direction.RIGHT) x++;
+			if(player.getDirection() == Direction.LEFT) x--;
 			int y = player.getY();
-			if(player.getDirection() == GameUtil.UP) y--;
-			if(player.getDirection() == GameUtil.DOWN) y++;
+			if(player.getDirection() == Direction.UP) y--;
+			if(player.getDirection() == Direction.DOWN) y++;
 			
 			for(MapEntity me: Game.map.mapEntities)
 			{
@@ -98,17 +99,20 @@ public class MapMode extends GameEvent
 			}
 		}
 		if( player.isFinished() ) //Player bewegt sich nicht
-		{		
-			int dir = -1;
+		{
+			Direction dir = Direction.NO_DIRECTION;
 			for( String tmp : Game.inputs)
 			{
-				if( tmp.equals("LEFT")) dir = GameUtil.LEFT;
-				else if( tmp.equals("RIGHT")) dir = GameUtil.RIGHT;
-				else if( tmp.equals("UP")) dir = GameUtil.UP;
-				else if( tmp.equals("DOWN")) dir = GameUtil.DOWN;
+                dir = switch (tmp) {
+                    case "LEFT" -> Direction.LEFT;
+                    case "RIGHT" -> Direction.RIGHT;
+                    case "UP" -> Direction.UP;
+                    case "DOWN" -> Direction.DOWN;
+                    default -> dir;
+                };
 			}
 			
-			if( dir != -1 )
+			if( dir != Direction.NO_DIRECTION )
 			{
 				player.setDirection(dir);
 				player.tryToMove(dir);

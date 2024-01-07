@@ -2,13 +2,14 @@ package event_system.map_control;
 
 import event_system.GameEvent;
 import game.Game;
+import util.Direction;
 
 public class MoveEvent extends GameEvent
 {
 	private String eventID;
-	private int dir;
+	private Direction dir;
 	
-	public MoveEvent( String eventID, int dir )
+	public MoveEvent( String eventID, Direction dir )
 	{
 		this.eventID = eventID;
 		this.dir = dir;

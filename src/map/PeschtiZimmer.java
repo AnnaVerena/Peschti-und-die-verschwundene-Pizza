@@ -12,6 +12,7 @@ import event_system.map_entities.MapEntity;
 import event_system.map_entities.RandomWalkNPC;
 import game.Game;
 import game.GameUtil;
+import util.Direction;
 import util.Pair;
 
 import java.io.File;
@@ -20,11 +21,11 @@ public class PeschtiZimmer extends game.Map {
     public PeschtiZimmer(){
         super(new File("res/maps/map_peschti.txt"));
         tileset = Game.tilesets.get("outi_room");
-        mapEntities.add(new MapEntity("teleport1", 9, 13, GameUtil.DOWN, null, true, null,
-                new EventList(new Teleport("village", 5, 17, GameUtil.DOWN), new WaitEvent(10))));
-        mapEntities.add(new MapEntity("teleport2", 10, 13, GameUtil.DOWN, null, true, null,
-                new EventList(new Teleport("village", 5, 17, GameUtil.DOWN), new WaitEvent(10))));
-        MapEntity outi = new RandomWalkNPC("outi", 11, 4, GameUtil.DOWN, "business");
+        mapEntities.add(new MapEntity("teleport1", 9, 13, Direction.DOWN, null, true, null,
+                new EventList(new Teleport("village", 5, 17, Direction.DOWN), new WaitEvent(10))));
+        mapEntities.add(new MapEntity("teleport2", 10, 13, Direction.DOWN, null, true, null,
+                new EventList(new Teleport("village", 5, 17, Direction.DOWN), new WaitEvent(10))));
+        MapEntity outi = new RandomWalkNPC("outi", 11, 4, Direction.DOWN, "business");
         GameEvent stage0 = new EventList(new TurnToPlayer("outi"),
                 new Textbox("Outis: Hier ist mein Zimmer!\n" + "Hier gibt es gratis Kakao!"),
                 new Choicebox("Outis: Kannst du mir vielleicht\nKekse kaufen gehen?",

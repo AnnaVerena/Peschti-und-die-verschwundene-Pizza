@@ -1,15 +1,15 @@
 package event_system.map_entities;
 
 import event_system.GameEvent;
-import game.GameUtil;
+import util.Direction;
 
 public class RandomWalkNPC extends MapEntity {
 
-	public RandomWalkNPC(String eventID, int posx, int posy, int dir, String charSetID, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent) {
+	public RandomWalkNPC(String eventID, int posx, int posy, Direction dir, String charSetID, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent) {
 		super(eventID, posx, posy, dir, charSetID, belowPlayer, actionEvent, touchEvent);
 	}
 	
-	public RandomWalkNPC(String eventID, int posx, int posy, int dir, String charSetID) {
+	public RandomWalkNPC(String eventID, int posx, int posy, Direction dir, String charSetID) {
 		super( eventID, posx, posy, dir, charSetID);
 	}
 
@@ -20,10 +20,10 @@ public class RandomWalkNPC extends MapEntity {
 		if( isFinished() )
 		{
 			double r = Math.random();
-			if( r < 0.005 ) tryToMove( GameUtil.UP );
-			else if(r < 0.01 ) tryToMove( GameUtil.DOWN );
-			else if(r < 0.015 ) tryToMove( GameUtil.LEFT );
-			else if(r < 0.02 ) tryToMove( GameUtil.RIGHT );
+			if( r < 0.005 ) tryToMove( Direction.UP );
+			else if(r < 0.01 ) tryToMove( Direction.DOWN );
+			else if(r < 0.015 ) tryToMove( Direction.LEFT );
+			else if(r < 0.02 ) tryToMove( Direction.RIGHT );
 		}
 	}
 }

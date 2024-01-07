@@ -13,6 +13,7 @@ import event_system.map_entities.MapEntity;
 import event_system.map_entities.RandomWalkNPC;
 import game.Game;
 import game.GameUtil;
+import util.Direction;
 import util.Pair;
 
 import java.io.File;
@@ -23,10 +24,10 @@ public class OutisZimmer extends game.Map{
 		super(new File("res/maps/map_outis.txt"));
         tileset = Game.tilesets.get("outi_room");        
         
-        mapEntities.add( new MapEntity("teleport1", 9, 12, GameUtil.DOWN, null, true, null, new EventList( new Teleport("village", 7, 9, GameUtil.DOWN), new WaitEvent(10))));
-        mapEntities.add( new MapEntity("teleport2", 10, 12, GameUtil.DOWN, null, true, null, new EventList( new Teleport("village", 7, 9, GameUtil.DOWN), new WaitEvent(10))));
+        mapEntities.add( new MapEntity("teleport1", 9, 12, Direction.DOWN, null, true, null, new EventList( new Teleport("village", 7, 9, Direction.DOWN), new WaitEvent(10))));
+        mapEntities.add( new MapEntity("teleport2", 10, 12, Direction.DOWN, null, true, null, new EventList( new Teleport("village", 7, 9, Direction.DOWN), new WaitEvent(10))));
         
-        MapEntity outi = new RandomWalkNPC("outi",  11,4, GameUtil.DOWN, "business");
+        MapEntity outi = new RandomWalkNPC("outi",  11,4, Direction.DOWN, "business");
         
         GameEvent stage0 = new EventList( new TurnToPlayer("outi"),
         				new Textbox("Outis: Hier ist mein Zimmer!\n"
@@ -53,8 +54,8 @@ public class OutisZimmer extends game.Map{
         
         mapEntities.add( outi );
         
-        mapEntities.add( new MapEntity( "bett", 6,4, GameUtil.DOWN, null, true, null, new EventList( new TurnToPlayer("outi"),
-        				new Textbox("Outis: Was suchst du hinter meinem Bett?"), new TurnToPlayer("outi"), new MoveEvent("player", GameUtil.RIGHT)   )));
+        mapEntities.add( new MapEntity( "bett", 6,4, Direction.DOWN, null, true, null, new EventList( new TurnToPlayer("outi"),
+        				new Textbox("Outis: Was suchst du hinter meinem Bett?"), new TurnToPlayer("outi"), new MoveEvent("player", Direction.RIGHT)   )));
 	}
 
 }

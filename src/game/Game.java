@@ -6,6 +6,7 @@ import event_system.map_entities.Player;
 import map.WorldMap;
 import render.Image;
 import render.Renderer;
+import util.Direction;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -64,7 +65,7 @@ public class Game {
 		tilesets.put("outi_room", Image.loadImage(new File("res/tilesets/OutiZimmer.png")));
 
         Game.textboxTileset = Image.loadImage(new File("res/Textbox2.png"));
-		player = new Player( 7, 9, GameUtil.DOWN, "peschti", "peschti_small");
+		player = new Player( 7, 9, Direction.DOWN, "peschti", "peschti_small");
 
         try {
             map = loadMap("village");

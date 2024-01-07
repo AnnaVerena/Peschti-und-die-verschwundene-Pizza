@@ -21,11 +21,6 @@ public class SetVariableEvent extends GameEvent {
 		Game.variables.put(intVarID,  value);
 	}
 	
-	public void update() {
-	}
-	
-	
-	
 	public boolean isFinished() {
 		return finished;
 	}

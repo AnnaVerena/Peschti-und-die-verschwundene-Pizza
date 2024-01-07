@@ -17,11 +17,7 @@ public class WaitForMapEntity extends GameEvent
 	{
 		event = Game.map.getMapEntity(eventID);
 	}
-	
-	public void update()
-	{
-	}
-	
+
 	public boolean isFinished()
 	{
 		return event.isFinished();

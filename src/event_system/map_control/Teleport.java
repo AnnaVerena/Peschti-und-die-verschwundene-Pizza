@@ -3,14 +3,16 @@ import event_system.GameEvent;
 import event_system.MapMode;
 import event_system.WaitEvent;
 import game.Game;
+import util.Direction;
 
 public class Teleport extends GameEvent {
 
 	boolean finished = false;
 	String mapID;
-	int x, y, dir;
+	int x, y;
+	Direction dir;
 	
-	public Teleport(String mapID, int x, int y, int dir) {
+	public Teleport(String mapID, int x, int y, Direction dir) {
 		this.mapID = mapID;
 		this.x = x;
 		this.y = y;

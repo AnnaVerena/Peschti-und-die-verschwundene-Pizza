@@ -2,9 +2,9 @@ package event_system.map_entities;
 
 import event_system.GameEvent;
 import game.Game;
-import game.GameUtil;
 import render.Image;
 import render.Renderer;
+import util.Direction;
 
 public class MapEntity extends GameEvent {
 
@@ -19,21 +19,21 @@ public class MapEntity extends GameEvent {
 	
 	// Das charset besteht aus 3x4 Bildern.
 	public Image charset;
-	int dir; 		// y-Position im Charset
+	Direction dir;
 	
-	public MapEntity(int posx, int posy, int dir, String charSetID ) {
+	public MapEntity(int posx, int posy, Direction dir, String charSetID ) {
 		this("", posx, posy, dir, charSetID, false, null, null);
 	}
 	
-	public MapEntity(String eventID, int posx, int posy, int dir, String charSetID ) {
+	public MapEntity(String eventID, int posx, int posy, Direction dir, String charSetID ) {
 		this(eventID, posx, posy, dir, charSetID, false, null, null);
 	}
 	
-	public MapEntity(int posx, int posy, int dir, String charSetID, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
+	public MapEntity(int posx, int posy, Direction dir, String charSetID, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
 		this("", posx, posy, dir, charSetID, belowPlayer, actionEvent, touchEvent);
 	}
 	
-	public MapEntity(String eventID, int posx, int posy, int dir, String charSetID, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
+	public MapEntity(String eventID, int posx, int posy, Direction dir, String charSetID, boolean belowPlayer, GameEvent actionEvent, GameEvent touchEvent ) {
 		this.eventID = eventID;
 		this.posx = posx;
 		this.posy=posy;
@@ -43,13 +43,7 @@ public class MapEntity extends GameEvent {
 		this.actionEvent = actionEvent;
 		this.touchEvent = touchEvent;
 	}
-	
-	
-	/**
-	 * @param name description Bildfile, Blickrichtung, Position
-	 * Wir malen die Figur
-	 */
-	
+
 	public void render() {
 		if(charset == null) return;
 		
@@ -58,47 +52,47 @@ public class MapEntity extends GameEvent {
 		
 		int h = charset.height / 4;
 		
-		if(dir == GameUtil.RIGHT)
+		if(dir == Direction.RIGHT)
         {
-        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir*h, 16, h, posx*16-animationTimer, (posy+1)*16-h, 16, h);
-        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*h, 16, h, posx*16-animationTimer, (posy+1)*16-h, 16, h);
+        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir.getDirectionId()*h, 16, h, posx*16-animationTimer, (posy+1)*16-h, 16, h);
+        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir.getDirectionId()*h, 16, h, posx*16-animationTimer, (posy+1)*16-h, 16, h);
         }
-        else if(dir == GameUtil.LEFT)
+        else if(dir == Direction.LEFT)
         {
-        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir*h, 16, h, posx*16+animationTimer, (posy+1)*16-h, 16, h);
-        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir*h, 16, h, posx*16+animationTimer, (posy+1)*16-h, 16, h);
+        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir.getDirectionId()*h, 16, h, posx*16+animationTimer, (posy+1)*16-h, 16, h);
+        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2 +1)*16, dir.getDirectionId()*h, 16, h, posx*16+animationTimer, (posy+1)*16-h, 16, h);
         }
-        else if(dir == GameUtil.DOWN)
+        else if(dir == Direction.DOWN)
         {
-        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir*h, 16, h, posx*16, (posy+1)*16-h-animationTimer, 16, h);
-        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*h, 16, h, posx*16, (posy+1)*16-h-animationTimer, 16, h);
+        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir.getDirectionId()*h, 16, h, posx*16, (posy+1)*16-h-animationTimer, 16, h);
+        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir.getDirectionId()*h, 16, h, posx*16, (posy+1)*16-h-animationTimer, 16, h);
         }
-        else if(dir == GameUtil.UP)
+        else if(dir == Direction.UP)
         {
-        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir*h, 16, h, posx*16, (posy+1)*16-h+animationTimer, 16, h);
-        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir*h, 16, h, posx*16, (posy+1)*16-h+animationTimer, 16, h);
+        	if( x == 0 || x == 3 ) Renderer.renderSubImage(charset, 0, dir.getDirectionId()*h, 16, h, posx*16, (posy+1)*16-h+animationTimer, 16, h);
+        	else if( x == 1 || x == 2 ) Renderer.renderSubImage(charset, ((posx+posy)%2+1)*16, dir.getDirectionId()*h, 16, h, posx*16, (posy+1)*16-h+animationTimer, 16, h);
         }				
 	}
 	
 
 	
-	public void tryToMove( int dir ) {		
+	public void tryToMove( Direction dir ) {
 		int x = posx;
-		if(dir == GameUtil.RIGHT) x++;
-		if(dir == GameUtil.LEFT) x--;
+		if(dir == Direction.RIGHT) x++;
+		if(dir == Direction.LEFT) x--;
 		int y = posy;
-		if(dir == GameUtil.UP) y--;
-		if(dir == GameUtil.DOWN) y++;
+		if(dir == Direction.UP) y--;
+		if(dir == Direction.DOWN) y++;
 		
 		if( !Game.map.isBlocked(x, y)) move(dir);
 	}
 	
-	public void move( int dir ) {
+	public void move( Direction dir ) {
 		
-		if( dir == GameUtil.UP ) posy--;
-		if( dir == GameUtil.DOWN ) posy++;
-		if( dir == GameUtil.LEFT ) posx--;
-		if( dir == GameUtil.RIGHT ) posx++;
+		if( dir == Direction.UP ) posy--;
+		if( dir == Direction.DOWN ) posy++;
+		if( dir == Direction.LEFT ) posx--;
+		if( dir == Direction.RIGHT ) posx++;
 		
 		this.dir = dir;
 		animationTimer = 16;
@@ -120,11 +114,11 @@ public class MapEntity extends GameEvent {
 		posy=y;
 	}
 
-	public int getDirection() {
+	public Direction getDirection() {
 		return dir;
 	}
 	
-	public void setDirection(int d) {
+	public void setDirection(Direction d) {
 		dir = d;
 	}
 	
@@ -132,12 +126,7 @@ public class MapEntity extends GameEvent {
 	{
 		animationTimer = 0;
 	}
-	
-	public void update()
-	{
-		
-	}
-	
+
 	public boolean isFinished()
 	{
 		return animationTimer == 0;
