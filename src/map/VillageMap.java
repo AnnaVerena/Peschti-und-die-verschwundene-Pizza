@@ -1,13 +1,12 @@
 package map;
 
-import event_system.*;
+import event_system.WaitEvent;
 import event_system.control_flow.EventList;
 import event_system.map_control.Teleport;
 import event_system.map_control.TurnEvent;
 import event_system.map_entities.AnimatedMapEntity;
 import event_system.map_entities.MapEntity;
 import game.Game;
-import game.GameUtil;
 import util.Direction;
 
 import java.io.File;

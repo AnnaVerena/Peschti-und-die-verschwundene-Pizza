@@ -1,17 +1,16 @@
 package event_system;
 
-import java.util.Collections;
-import java.util.Comparator;
-
 import event_system.control_flow.EventList;
 import event_system.map_control.WaitForMapEntity;
 import event_system.map_entities.MapEntity;
 import event_system.map_entities.Player;
 import game.Game;
-import game.GameUtil;
 import game.Map;
 import render.Renderer;
 import util.Direction;
+
+import java.util.Collections;
+import java.util.Comparator;
 
 public class MapMode extends GameEvent
 {

@@ -1,6 +1,8 @@
 package map;
 
-import event_system.*;
+import event_system.GameEvent;
+import event_system.SetVariableEvent;
+import event_system.WaitEvent;
 import event_system.control_flow.CasesEvent;
 import event_system.control_flow.EventList;
 import event_system.dialog.Choicebox;
@@ -11,7 +13,6 @@ import event_system.map_control.WaitForMapEntity;
 import event_system.map_entities.MapEntity;
 import event_system.map_entities.RandomWalkNPC;
 import game.Game;
-import game.GameUtil;
 import util.Direction;
 import util.Pair;
 

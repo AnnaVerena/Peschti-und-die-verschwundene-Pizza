@@ -3,7 +3,6 @@ package event_system.map_control;
 import event_system.GameEvent;
 import event_system.map_entities.MapEntity;
 import game.Game;
-import game.GameUtil;
 import util.Direction;
 
 public class TurnToPlayer extends GameEvent {

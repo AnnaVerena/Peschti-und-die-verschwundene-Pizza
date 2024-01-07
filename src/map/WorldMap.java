@@ -1,10 +1,9 @@
 package map;
 
 import event_system.control_flow.EventList;
-import event_system.map_entities.MapEntity;
 import event_system.map_control.Teleport;
+import event_system.map_entities.MapEntity;
 import game.Game;
-import game.GameUtil;
 import util.Direction;
 
 import java.io.File;
