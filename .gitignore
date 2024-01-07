@@ -8,3 +8,4 @@
 # whitelist directories
 !res/**
 !src/**
+/target/

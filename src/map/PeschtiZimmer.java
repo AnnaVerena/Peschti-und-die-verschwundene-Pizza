@@ -1,4 +1,4 @@
-package map;
+  package map;
 
 import event.*;
 import game.Game;
@@ -15,22 +15,23 @@ public class PeschtiZimmer extends game.Map {
                 new EventList(new Teleport("village", 5, 17, GameUtil.DOWN), new WaitEvent(10))));
         mapEvents.add(new MapEvent("teleport2", 10, 13, GameUtil.DOWN, null, true, null,
                 new EventList(new Teleport("village", 5, 17, GameUtil.DOWN), new WaitEvent(10))));
-        MapEvent outi = new RandomWalkNPC("outi", 11, 4, GameUtil.DOWN, "business");
-        GameEvent stage0 = new EventList(new TurnToPlayer("outi"),
-                new Textbox("Outis: Hier ist mein Zimmer!\n" + "Hier gibt es gratis Kakao!"),
-                new Choicebox("Outis: Kannst du mir vielleicht\nKekse kaufen gehen?",
-                        new EventList(new Textbox("Vielen Dank!\nDer Business verkauft Kekse."),
-                                new Textbox("Outis gibt Peschti 1$."), new SetVariableEvent("KEKSE", 1)),
-                        new Textbox("Outis: Das ist aber schade.")));
-        GameEvent stage1 = new EventList(new TurnToPlayer("outi"),
-                new Textbox("Outis: Hier ist mein Zimmer!\n" + "Hier gibt es gratis Kakao!"));
-        GameEvent stage2 = new EventList(new TurnToPlayer("outi"), new Textbox("Peschti gibt Outis die Kekse"),
-                new Textbox("Outis: Vielen Dank für die Kekse!"), new SetVariableEvent("KEKSE", 3));
-        GameEvent stage3 = new EventList(new TurnToPlayer("outi"),
-                new Textbox("Outis: Hier ist mein Zimmer!\n" + "Hier gibt es gratis Kakao und Kekse!"));
-        outi.actionEvent = new EventList(new WaitForMapEvent("outi"),
-                new CasesEvent("KEKSE", stage0, new Pair<>(1, stage1), new Pair<>(2, stage2), new Pair<>(3, stage3)));
-        mapEvents.add(outi);
+        
+        MapEvent paula = new RandomWalkNPC("paula", 11, 4, GameUtil.DOWN, "paula");
+        GameEvent stage0 = new EventList(new TurnToPlayer("paula"),
+                new Textbox("Paula: Hallo Peschti!\n" + "Schön, dass du zuhause bist!"),
+                new Choicebox("Paula: Hast du Lust auf Pizza?",
+                        new EventList(new Textbox("Großartig! Der Business verkauft Pizza!"),
+                                new Textbox("Paula gibt Peschti 10P$.") , new SetVariableEvent("PIZZA", 1)),
+                        new Textbox("Paula: Ok.")));
+        GameEvent stage1 = new EventList(new TurnToPlayer("paula"),
+                new Textbox("Paula: Willkommen zuhause!\n" + "Hier kannst du deine Ausrüstung lagern!"));
+        GameEvent stage2 = new EventList(new TurnToPlayer("paula"), new Textbox("Peschti gibt Paula die Pizza"),
+                new Textbox("Paula: Ihhhh Oliven!"), new SetVariableEvent("PIZZA", 3));
+        GameEvent stage3 = new EventList(new TurnToPlayer("paula"),
+                new Textbox("Paula: Leider ist diese Pizza ungenießbar!\n" + "Wir müssen uns etwas einfallen lassen!"));
+       paula.actionEvent = new EventList(new WaitForMapEvent("paula"),
+                new CasesEvent("PIZZA", stage0, new Pair<>(1, stage1), new Pair<>(2, stage2), new Pair<>(3, stage3)));
+        mapEvents.add(paula);
         
     }
 }

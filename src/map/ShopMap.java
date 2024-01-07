@@ -48,9 +48,13 @@ public class ShopMap extends game.Map{
         		+ "Menge Energie. Es ist grün\n"
         		+ "und leuchtet bei Dunkelheit.");
         mapEvents.add( new MapEvent(10, 7, GameUtil.DOWN, null, false, energyEvent, null ));
+        
+        GameEvent pizzaDefault = new Textbox("Peschti hat kein Geld.");
+        GameEvent pizzaKaufen = new EventList( new Textbox("Peschti kauft Pizza für 10P$."), new SetVariableEvent("PIZZA", 2));
 
-        GameEvent pizzaEvent = new Textbox("Leider ist diese Pizza mit Oliven belegt.\n"
-        		+ "Wer macht sowas nur?");
+        GameEvent pizzaEvent = new Choicebox("Diese Pizza sieht ... merkwürdig aus.\n"
+        		+ "Möchtest du sie kaufen?", new CasesEvent("PIZZA", pizzaDefault, new Pair<>(1, pizzaKaufen) ), new Textbox("Ist auch besser so."));
+        mapEvents.add( new MapEvent(11, 7, GameUtil.DOWN, null, false, pizzaEvent, null ));
         mapEvents.add( new MapEvent(8, 7, GameUtil.DOWN, null, false, pizzaEvent, null ));
         
         GameEvent pictureEvent = new Textbox("Ein Bild vom Outis.");

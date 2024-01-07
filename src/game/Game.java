@@ -26,6 +26,8 @@ public class Game {
 	public static HashMap<String,Image> tilesets = new HashMap<>();
 	public static HashMap<String,Image> charsets = new HashMap<>();
 	public static HashMap<String, Integer> variables = new HashMap<>();
+
+    //Inventory inventory = new Inventory();
 	
 	public static Camera camera = new Camera(0,0);
 	
@@ -53,6 +55,7 @@ public class Game {
 		charsets.put("peschti", Image.loadImage(new File( "res/charsets/Peschti3.png")));
 		charsets.put("peschti_small", Image.loadImage(new File( "res/charsets/small_peschti.png")));
 		charsets.put("business", Image.loadImage(new File( "res/charsets/Business.png")));
+		charsets.put("paula", Image.loadImage(new File( "res/charsets/Paula.png")));
 		charsets.put("waterfall", Image.loadImage(new File( "res/charsets/waterfall.png")));
 		charsets.put("waterfall_left", Image.loadImage(new File( "res/charsets/waterfall_left.png")));
 		charsets.put("waterfall_right", Image.loadImage(new File( "res/charsets/waterfall_right.png")));
